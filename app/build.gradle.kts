@@ -75,4 +75,18 @@ dependencies {
 
     // Timber
     implementation(libs.timber)
+
+    implementation(projects.core.domain)
+    implementation(projects.core.data)
+    implementation(projects.core.database)
+    implementation(projects.core.presnetation.ui)
+    implementation(projects.core.presnetation.designsystem)
+
+    implementation(projects.character.domain)
+    implementation(projects.character.data)
+    implementation(projects.character.presentation)
+
+    implementation(projects.events.domain)
+    implementation(projects.events.data)
+    implementation(projects.events.presentation)
 }
