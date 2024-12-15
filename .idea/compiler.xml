@@ -5,6 +5,8 @@
       <module name="Lostark.build-logic.convention" target="11" />
       <module name="Lostark.build-logic.convention.main" target="11" />
       <module name="Lostark.build-logic.convention.test" target="11" />
+      <module name="Lostark.core.presnetation.designsystem" target="21" />
+      <module name="Lostark.core.presnetation.ui" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

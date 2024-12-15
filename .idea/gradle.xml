@@ -33,9 +33,9 @@
             <option value="$PROJECT_DIR$/core/data" />
             <option value="$PROJECT_DIR$/core/database" />
             <option value="$PROJECT_DIR$/core/domain" />
-            <option value="$PROJECT_DIR$/core/presnetation" />
-            <option value="$PROJECT_DIR$/core/presnetation/designsystem" />
-            <option value="$PROJECT_DIR$/core/presnetation/ui" />
+            <option value="$PROJECT_DIR$/core/presentation" />
+            <option value="$PROJECT_DIR$/core/presentation/designsystem" />
+            <option value="$PROJECT_DIR$/core/presentation/ui" />
             <option value="$PROJECT_DIR$/events" />
             <option value="$PROJECT_DIR$/events/data" />
             <option value="$PROJECT_DIR$/events/domain" />
