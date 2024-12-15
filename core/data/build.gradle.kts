@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.lostark.android.library)
+    alias(libs.plugins.lostark.jvm.ktor)
 }
 
 android {

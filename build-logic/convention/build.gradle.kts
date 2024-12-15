@@ -42,5 +42,9 @@ gradlePlugin {
             id = "lostark.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
         }
+        register("jvmKtor") {
+            id = "lostark.jvm.ktor"
+            implementationClass = "JvmKtorConventionPlugin"
+        }
     }
 }

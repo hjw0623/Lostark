@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.lostark.android.application.compose)
+    alias(libs.plugins.lostark.jvm.ktor)
     alias(libs.plugins.mapsplatform.secrets.plugin)
 }
 
@@ -8,8 +9,16 @@ android {
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
