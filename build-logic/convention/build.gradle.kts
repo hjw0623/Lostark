@@ -22,5 +22,9 @@ gradlePlugin {
             id = "lostark.android.application.compose"
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
+        register("androidLibrary") {
+            id = "lostark.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
+        }
     }
 }
