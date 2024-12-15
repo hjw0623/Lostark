@@ -1,20 +1,12 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     alias(libs.plugins.mapsplatform.secrets.plugin)
+    alias(libs.plugins.lostark.android.application)
 }
 
 android {
     namespace = "com.hjw0623.lostark"
-    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.hjw0623.lostark"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -26,13 +18,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
