@@ -114,6 +114,7 @@ lostark-android-application-compose = { id = "lostark.android.application.compos
 lostark-android-library = { id = "lostark.android.library", version = "unspecified"}
 lostark-android-library-compose = { id = "lostark.android.library.compose", version = "unspecified"}
 lostark-android-feature-ui = { id = "lostark.android.feature.ui", version = "unspecified"}
+lostark-android-room = { id = "lostark.android.room", version = "unspecified"}
 
 [bundles]
 compose = [

@@ -34,5 +34,9 @@ gradlePlugin {
             id = "lostark.android.feature.ui"
             implementationClass = "AndroidFeatureUiConventionPlugin"
         }
+        register("androidRoom") {
+            id = "lostark.android.room"
+            implementationClass = "AndroidRoomConventionPlugin"
+        }
     }
 }
