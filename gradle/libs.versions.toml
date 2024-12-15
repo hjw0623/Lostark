@@ -113,3 +113,21 @@ lostark-android-application = { id = "lostark.android.application", version = "u
 lostark-android-application-compose = { id = "lostark.android.application.compose", version = "unspecified"}
 lostark-android-library = { id = "lostark.android.library", version = "unspecified"}
 lostark-android-library-compose = { id = "lostark.android.library.compose", version = "unspecified"}
+lostark-android-feature-ui = { id = "lostark.android.feature.ui", version = "unspecified"}
+
+[bundles]
+compose = [
+    "androidx-activity-compose",
+    "androidx-lifecycle-runtime-compose",
+    "androidx-lifecycle-viewmodel-compose",
+    "androidx-compose-material3",
+    "androidx-compose-ui",
+    "androidx-compose-ui-graphics",
+    "androidx-compose-ui-tooling-preview",
+]
+compose-debug = [
+    "androidx-compose-ui-tooling",
+    "androidx-compose-ui-test-manifest",
+]
+koin = ["koin-core", "koin-android", "koin-android-workmanager"]
+koin-compose = ["koin-core", "koin-android", "koin-android-workmanager", "koin-androidx-compose"]
