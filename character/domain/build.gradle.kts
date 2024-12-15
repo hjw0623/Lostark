@@ -1,13 +1,7 @@
 plugins {
-    id("java-library")
-    id("org.jetbrains.kotlin.jvm")
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    alias(libs.plugins.lostark.jvm.library)
 }
 
 dependencies {
-    implementation(libs.kotlinx.coroutines.core)
+    implementation(projects.core.domain)
 }

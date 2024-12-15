@@ -38,5 +38,9 @@ gradlePlugin {
             id = "lostark.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
+        register("jvmLibrary") {
+            id = "lostark.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
     }
 }
