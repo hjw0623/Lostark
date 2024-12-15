@@ -112,3 +112,4 @@ mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.
 lostark-android-application = { id = "lostark.android.application", version = "unspecified"}
 lostark-android-application-compose = { id = "lostark.android.application.compose", version = "unspecified"}
 lostark-android-library = { id = "lostark.android.library", version = "unspecified"}
+lostark-android-library-compose = { id = "lostark.android.library.compose", version = "unspecified"}
