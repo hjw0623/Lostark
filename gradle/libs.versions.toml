@@ -110,3 +110,4 @@ androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "agp
 mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin"}
 
 lostark-android-application = { id = "lostark.android.application", version = "unspecified"}
+lostark-android-application-compose = { id = "lostark.android.application.compose", version = "unspecified"}
