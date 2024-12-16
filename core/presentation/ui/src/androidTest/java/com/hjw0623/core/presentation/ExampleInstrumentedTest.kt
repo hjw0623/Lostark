@@ -1,4 +1,4 @@
-package com.hjw0623.core.presentationui
+package com.hjw0623.core.presentation
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,4 +1,4 @@
-package com.hjw0623.core.presentationui
+package com.hjw0623.core.presentation
 
 import org.junit.Test
 
