@@ -6,34 +6,32 @@ playCore = "1.10.3"
 coreSplashscreen = "1.0.1"
 coilCompose = "2.6.0"
 composeCompiler = "1.5.9"
-desugar_jdk_libs = "2.1.3"
-kotlin = "2.0.0"
-coreKtx = "1.15.0"
+desugar_jdk_libs = "2.0.4"
+kotlin = "1.9.22"
+coreKtx = "1.12.0"
 junit = "4.13.2"
-junitVersion = "1.2.1"
-espressoCore = "3.6.1"
-activityCompose = "1.9.3"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+activityCompose = "1.8.2"
 ktor = "2.3.8"
 ktorClientLogging = "2.3.8"
-ktorServerCallLogging = "2.3.7"
 koin = "3.5.3"
-lifecycleRuntimeKtx = "2.8.7"
-composeBom = "2024.11.00"
-materialIconsExtended = "1.7.5"
-navigationCompose = "2.8.4"
+lifecycleRuntimeKtx = "2.7.0"
+composeBom = "2024.02.02"
+materialIconsExtended = "1.6.3"
+navigationCompose = "2.7.7"
 securityCryptoKtx = "1.1.0-alpha06"
 timber = "5.0.1"
 ksp = "1.9.22-1.0.17"
 room = "2.6.1"
-appcompat = "1.7.0"
-material = "1.12.0"
-org-jetbrains-kotlin-jvm = "2.0.0"
+appcompat = "1.6.1"
+material = "1.11.0"
+org-jetbrains-kotlin-jvm = "1.9.22"
 coroutines = "1.8.0"
-bson = "4.11.1"
-work = "2.10.0"
+work = "2.9.0"
 kotlinx-serialization = "1.6.3"
 secretsPlugin = "2.0.1"
-annotation = "1.9.1"
+annotation = "1.7.1"
 
 # Project versions
 projectApplicationId = "com.hjw0623.Lostark"
@@ -42,6 +40,7 @@ projectMinSdkVersion = "25"
 projectTargetSdkVersion = "34"
 projectCompileSdkVersion = "34"
 projectVersionCode = "1"
+monitor = "1.7.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -96,11 +95,12 @@ android-tools-common = { group = "com.android.tools", name = "common", version.r
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
+androidx-monitor = { group = "androidx.test", name = "monitor", version.ref = "monitor" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-Kotlin-Android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 room = { id = "androidx.room", version.ref = "room" }

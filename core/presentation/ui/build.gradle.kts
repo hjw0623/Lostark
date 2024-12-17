@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hjw0623.core.presentationui"
+    namespace = "com.hjw0623.core.presentation.ui"
 }
 
 dependencies {

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hjw0623.data"
+    namespace = "com.hjw0623.character.data"
 }
 
 dependencies {
