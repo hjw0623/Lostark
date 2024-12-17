@@ -1,7 +1,6 @@
 package com.hjw0623.core.presentation.ui
 
 import com.hjw0623.core.domain.util.DataError
-import com.hjw0623.core.presentationui.R
 
 fun DataError.asUiText(): UiText {
     return when (this) {
