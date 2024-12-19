@@ -8,40 +8,44 @@ fun DataError.asUiText(): UiText {
             R.string.error_disk_full
         )
 
-        DataError.Network.Timeout -> UiText.StringResource(
+        DataError.Network.TIMEOUT -> UiText.StringResource(
             R.string.error_network_timeout
         )
 
-        DataError.Network.ConnectionLost -> UiText.StringResource(
+        DataError.Network.CONNECTION_LOST -> UiText.StringResource(
             R.string.error_connection_lost
         )
 
-        DataError.Network.ServerError -> UiText.StringResource(
-            R.string.error_server_error
-        )
-
-        DataError.Network.Unauthorized -> UiText.StringResource(
+        DataError.Network.UNAUTHORIZED -> UiText.StringResource(
             R.string.error_unauthorized
         )
 
-        DataError.Network.Forbidden -> UiText.StringResource(
+        DataError.Network.FORBIDDEN -> UiText.StringResource(
             R.string.error_forbidden
         )
 
-        DataError.Network.NotFound -> UiText.StringResource(
+        DataError.Network.NOT_FOUND -> UiText.StringResource(
             R.string.error_not_found
         )
 
-        DataError.Network.TooManyRequests -> UiText.StringResource(
+        DataError.Network.TOO_MANY_REQUESTS -> UiText.StringResource(
             R.string.error_too_many_requests
         )
 
-        DataError.Network.ServiceUnavailable -> UiText.StringResource(
-            R.string.error_service_unavailable
+        DataError.Network.UNSUPPORTED_MEDIA_TYPE -> UiText.StringResource(
+            R.string.error_unsupported_media_type
         )
 
-        DataError.Network.GatewayTimeout -> UiText.StringResource(
-            R.string.error_gateway_timeout
+        DataError.Network.SERVER_ERROR -> UiText.StringResource(
+            R.string.error_server_error
+        )
+
+        DataError.Network.NO_INTERNET -> UiText.StringResource(
+            R.string.error_no_internet
+        )
+
+        DataError.Network.SERIALIZATION -> UiText.StringResource(
+            R.string.error_serialization
         )
         else -> UiText.StringResource(R.string.error_unknown)
     }
