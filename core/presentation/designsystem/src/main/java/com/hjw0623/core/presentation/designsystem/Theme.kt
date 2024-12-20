@@ -1,4 +1,4 @@
-package com.hjw0623.core.presentation.designsystem.designsystem
+package com.hjw0623.core.presentation.designsystem
 
 import android.app.Activity
 import androidx.compose.material3.MaterialTheme

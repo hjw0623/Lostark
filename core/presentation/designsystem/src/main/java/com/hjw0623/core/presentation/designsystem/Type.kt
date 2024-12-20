@@ -1,4 +1,4 @@
-package com.hjw0623.core.presentation.designsystem.designsystem
+package com.hjw0623.core.presentation.designsystem
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
@@ -6,7 +6,6 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.hjw0623.core.presentation.designsystem.R
 
 val Poppins = FontFamily(
     Font(

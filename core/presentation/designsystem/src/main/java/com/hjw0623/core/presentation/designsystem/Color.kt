@@ -1,4 +1,4 @@
-package com.hjw0623.core.presentation.designsystem.designsystem
+package com.hjw0623.core.presentation.designsystem
 
 import androidx.compose.ui.graphics.Color
 
