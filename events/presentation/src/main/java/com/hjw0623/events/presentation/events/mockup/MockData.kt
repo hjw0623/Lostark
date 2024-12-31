@@ -1,14 +1,14 @@
 package com.hjw0623.events.presentation.events.mockup
 
-import com.hjw0623.core.domain.events.model.EventsItem
-import com.hjw0623.core.domain.events.model.Item
-import com.hjw0623.core.domain.events.model.RewardItem
+import com.hjw0623.core.domain.islands.model.Islands
+import com.hjw0623.core.domain.islands.model.Item
+import com.hjw0623.core.domain.islands.model.IslandRewardItems
 
 fun mockEventContent(
     name: String = "하모니 섬",
     rewardItem: String = "실링"
-): EventsItem {
-    return EventsItem(
+): Islands {
+    return Islands(
         categoryName = "모험섬",
         contentsName = name,
         contentsIcon = "https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_55.png",
@@ -27,7 +27,7 @@ fun mockEventContent(
         ),
         location = name,
         rewardItems = listOf(
-            RewardItem(
+            IslandRewardItems(
                 itemLevel = 0,
                 items = listOf(
                     Item(
