@@ -1,7 +1,5 @@
 package com.hjw0623.core.domain.util
 
-import org.ietf.jgss.GSSException.UNAUTHORIZED
-
 sealed interface DataError: Error {
 
     enum class Network : DataError {
