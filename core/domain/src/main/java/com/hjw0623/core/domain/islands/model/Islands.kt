@@ -1,11 +1,11 @@
-package com.hjw0623.core.domain.events.model
+package com.hjw0623.core.domain.islands.model
 
-data class EventsItem(
+data class Islands(
     val categoryName: String,
     val contentsName: String,
     val contentsIcon: String,
     val minItemLevel: Int,
     val startTimes: List<String>,
     val location: String,
-    val rewardItems: List<RewardItem>
+    val rewardItems: List<IslandRewardItems>
 )
