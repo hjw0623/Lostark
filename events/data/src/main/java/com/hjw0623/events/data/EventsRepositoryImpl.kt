@@ -28,7 +28,9 @@ class EventsRepositoryImpl(
                 urlString = constructRoute("/gamecontents/calendar")
             )
         }.map { response ->
-            response.map { it.toDomain() }
+            response.map { it.toDomain() }.filter {
+                it.categoryName == "모험 섬"
+            }
         }
     }
 
@@ -38,7 +40,7 @@ class EventsRepositoryImpl(
                 urlString = constructRoute("/news/events")
             )
         }.map { response ->
-            response.map { it.toDomain()}
+            response.map { it.toDomain() }
         }
     }
 
@@ -48,7 +50,7 @@ class EventsRepositoryImpl(
                 urlString = constructRoute("/news/notices")
             )
         }.map { response ->
-            response.map { it.toDomain()}
+            response.map { it.toDomain() }
         }
     }
 }
