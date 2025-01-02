@@ -1,11 +1,11 @@
-package com.hjw0623.core.data.networking.islands
+package com.hjw0623.events.data.islands
 
-import com.hjw0623.core.data.networking.islands.model.IslandsSerializable
-import com.hjw0623.core.data.networking.islands.model.ItemSerializable
-import com.hjw0623.core.data.networking.islands.model.IslandRewardItemsSerializable
-import com.hjw0623.core.domain.islands.model.Islands
-import com.hjw0623.core.domain.islands.model.Item
-import com.hjw0623.core.domain.islands.model.IslandRewardItems
+import com.hjw0623.events.data.islands.model.IslandsSerializable
+import com.hjw0623.events.data.islands.model.ItemSerializable
+import com.hjw0623.events.data.islands.model.IslandRewardItemsSerializable
+import com.hjw0623.events.domain.IslandRewardItems
+import com.hjw0623.events.domain.Islands
+import com.hjw0623.events.domain.Item
 
 fun IslandsSerializable.toDomain(): Islands {
     return Islands(

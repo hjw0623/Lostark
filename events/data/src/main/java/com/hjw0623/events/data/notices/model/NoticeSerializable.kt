@@ -1,4 +1,4 @@
-package com.hjw0623.core.data.networking.notices.model
+package com.hjw0623.events.data.notices.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

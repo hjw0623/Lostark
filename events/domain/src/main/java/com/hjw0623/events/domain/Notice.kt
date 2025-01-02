@@ -1,4 +1,4 @@
-package com.hjw0623.core.domain.notices.model
+package com.hjw0623.events.domain
 
 data class Notice(
     val data: String,

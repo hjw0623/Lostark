@@ -1,7 +1,7 @@
-package com.hjw0623.core.data.networking.events
+package com.hjw0623.events.data.events
 
-import com.hjw0623.core.data.networking.events.model.EventSerializable
-import com.hjw0623.core.domain.events.model.Event
+import com.hjw0623.events.data.events.model.EventSerializable
+import com.hjw0623.events.domain.Event
 
 fun EventSerializable.toDomain(): Event {
     return Event(

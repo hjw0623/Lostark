@@ -1,4 +1,4 @@
-package com.hjw0623.core.domain.events.model
+package com.hjw0623.events.domain
 
 data class Event(
     val endDate: String,
@@ -8,3 +8,4 @@ data class Event(
     val thumbnail: String,
     val title: String
 )
+

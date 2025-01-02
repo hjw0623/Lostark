@@ -1,4 +1,4 @@
-package com.hjw0623.core.data.networking.islands.model
+package com.hjw0623.events.data.islands.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

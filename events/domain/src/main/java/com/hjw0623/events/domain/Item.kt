@@ -1,4 +1,4 @@
-package com.hjw0623.core.domain.islands.model
+package com.hjw0623.events.domain
 
 data class Item(
     val name: String,
