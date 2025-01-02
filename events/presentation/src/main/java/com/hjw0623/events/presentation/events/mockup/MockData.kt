@@ -1,8 +1,10 @@
 package com.hjw0623.events.presentation.events.mockup
 
+import com.hjw0623.events.domain.Event
 import com.hjw0623.events.domain.IslandRewardItems
 import com.hjw0623.events.domain.Islands
 import com.hjw0623.events.domain.Item
+import com.hjw0623.events.domain.Notice
 
 fun mockIslandContent(
     name: String = "하모니 섬",
@@ -93,5 +95,25 @@ fun mockIslandContent(
                 )
             ),
         )
+    )
+}
+
+fun mockEventContent(): Event {
+    return Event(
+        title = "일리오스",
+        thumbnail = "https://cdn-lostark.game.onstove.com/uploadfiles/banner/821fa4a90b3d4a8caf8da8961b2c5aa9.png",
+        link = "https://lostark.game.onstove.com/News/Notice/Views/12992",
+        startDate = "2024-12-31T23:30:00",
+        endDate = "2025-01-15T06:00:00",
+        rewardDate = null
+    )
+}
+
+fun mockNoticeContent(): Notice {
+    return Notice(
+        title = "로스트아크 개인정보처리방침 변경 안내 (시행 2025.1.9)",
+        data = "2025-01-02T10:00:11.4",
+        link = "https://lostark.game.onstove.com/News/Notice/Views/12999",
+        type = "공지"
     )
 }
