@@ -4,7 +4,7 @@ import com.hjw0623.events.domain.IslandRewardItems
 import com.hjw0623.events.domain.Islands
 import com.hjw0623.events.domain.Item
 
-fun mockEventContent(
+fun mockIslandContent(
     name: String = "하모니 섬",
     rewardItem: String = "실링"
 ): Islands {
