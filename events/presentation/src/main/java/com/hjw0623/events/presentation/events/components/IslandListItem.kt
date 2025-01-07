@@ -79,10 +79,9 @@ fun IslandListItem(
                 Modifier.background(
                     when (islandUi.mainRewardItem) {
                         "실링" -> LostArkGray
-                        "카드" -> LostArkPurple
                         "해적 주화" -> LostArkOrange
                         "골드" -> LostArkYellow
-                        else -> Color.Gray
+                        else -> LostArkPurple
                     },
                     RoundedCornerShape(10.dp)
                 )
@@ -96,10 +95,9 @@ fun IslandListItem(
                 .background(
                     when (islandUi.mainRewardItem) {
                         "실링" -> LostArkGray
-                        "카드" -> LostArkPurple
                         "해적 주화" -> LostArkOrange
                         "골드" -> LostArkYellow
-                        else -> Color.Transparent
+                        else -> LostArkPurple
                     },
                     RoundedCornerShape(8.dp)
                 )
@@ -110,10 +108,9 @@ fun IslandListItem(
             Text(
                 text = when (islandUi.mainRewardItem) {
                     "실링" -> "실링"
-                    "카드" -> "카드"
                     "해적 주화" -> "주화"
                     "골드" -> "골드"
-                    else -> "없음"
+                    else -> "카드"
                 },
                 fontSize = 16.sp,
                 style = Typography.bodyMedium,

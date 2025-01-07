@@ -34,7 +34,7 @@ fun EventsListItem(
                 color = MaterialTheme.colorScheme.primaryContainer,
                 RoundedCornerShape(12.dp)
             )
-            .padding(16.dp)
+            .padding(8.dp)
     ) {
         AsyncImage(
             model = eventUi.thumbnail,
@@ -42,13 +42,7 @@ fun EventsListItem(
             modifier = Modifier
                 .aspectRatio(16 / 9f)
                 .clip(RoundedCornerShape(16.dp))
-                .padding(5.dp)
                 .clickable { onClick() }
-        )
-        Text(
-            text = eventUi.dateRange,
-            style = Typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurface
         )
     }
 }

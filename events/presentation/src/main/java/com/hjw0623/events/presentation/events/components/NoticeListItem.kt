@@ -5,11 +5,10 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,27 +35,33 @@ fun NoticeListItem(
             .background(Color.White)
             .border(width = 1.dp, color = Color.Black)
             .clickable { onClick() },
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically // Row 내 세로 정렬
     ) {
+        // Type 텍스트: 중앙 정렬
         Text(
             modifier = Modifier
                 .padding(8.dp)
                 .border(width = 2.dp, color = Color.Black, shape = RoundedCornerShape(16.dp))
                 .padding(horizontal = 12.dp, vertical = 6.dp),
-            text = noticeUi.type
+            text = noticeUi.type,
+            textAlign = TextAlign.Center // 가로로 중앙 정렬
         )
 
-        Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.width(8.dp)) // Type과 Title 사이의 간격
 
+        // Title 텍스트: 왼쪽 정렬
         Text(
+            modifier = Modifier
+                .fillMaxWidth() // 남은 공간 채우기
+                .align(Alignment.CenterVertically), // Row 안에서 세로로 가운데 정렬
             text = noticeUi.title,
-            modifier = Modifier.padding(8.dp),
-            textAlign = TextAlign.Center,
+            textAlign = TextAlign.Start, // 텍스트를 왼쪽 정렬
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
     }
 }
+
 
 @Preview
 @Composable

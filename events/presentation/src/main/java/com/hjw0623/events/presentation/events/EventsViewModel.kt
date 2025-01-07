@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -54,63 +55,72 @@ class EventsViewModel(
 
     private fun loadIslands() {
         viewModelScope.launch {
-            _state.update { it.copy(
-                isLoading = true
-            ) }
+            _state.update { it.copy(isLoading = true) }
+            Timber.d("Loading islands...")
 
             eventsRepository
                 .getIslands()
                 .onSuccess { islands ->
                     val filteredIslands = filterEventsByCurrentDate(islands)
-                    _state.update { it.copy(
-                        isLoading = false,
-                        currentIslands = filteredIslands.map { it.toIslandUi() }
-                    ) }
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            currentIslands = filteredIslands.map { it.toIslandUi() }
+                        )
+                    }
+                    Timber.d("Successfully loaded islands: $filteredIslands")
                 }
                 .onError { error ->
                     _state.update { it.copy(isLoading = false) }
                     _events.send(EventsEvent.Error(error))
+                    Timber.e("$error", "Failed to load islands")
                 }
         }
     }
 
     private fun loadEvents() {
         viewModelScope.launch {
-            _state.update { it.copy(
-                isLoading = true
-            ) }
+            _state.update { it.copy( isLoading = true) }
+            Timber.d("Loading events...")
 
             eventsRepository
                 .getEvents()
                 .onSuccess { events ->
-                    _state.update { it.copy(
-                        isLoading = false,
-                        events = events.map { it.toEventUi() }
-                    )}
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            events = events.map { it.toEventUi() }
+                        )
+                    }
+                    Timber.d("Successfully loaded events: $events")
                 }
                 .onError { error ->
                     _state.update { it.copy(isLoading = false) }
                     _events.send(EventsEvent.Error(error))
+                    Timber.e("$error", "Failed to load Events")
                 }
         }
     }
+
     private fun loadNotices() {
         viewModelScope.launch {
-            _state.update { it.copy(
-                isLoading = true
-            ) }
+            _state.update { it.copy(isLoading = true) }
 
             eventsRepository
                 .getNotices()
                 .onSuccess { notices ->
-                    _state.update { it.copy(
-                        isLoading = false,
-                        notices = notices.map { it.toNoticeUi() }
-                    ) }
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            notices = notices.map { it.toNoticeUi() }
+                        )
+                    }
+                    Timber.d("Successfully loaded Notices: $notices")
                 }
                 .onError { error ->
                     _state.update { it.copy(isLoading = false) }
                     _events.send(EventsEvent.Error(error))
+                    Timber.e("$error", "Failed to load Notices")
                 }
         }
     }
@@ -119,7 +129,8 @@ class EventsViewModel(
         val currentDate = LocalDate.now()
         return islands.mapNotNull { island ->
             val filteredStartTimes = island.startTimes.filter { startTime ->
-                val eventDate = LocalDate.parse(startTime.substring(0, 10), DateTimeFormatter.ISO_LOCAL_DATE)
+                val eventDate =
+                    LocalDate.parse(startTime.substring(0, 10), DateTimeFormatter.ISO_LOCAL_DATE)
                 eventDate == currentDate
             }
             if (filteredStartTimes.isNotEmpty()) {
