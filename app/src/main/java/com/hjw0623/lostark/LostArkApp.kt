@@ -4,6 +4,7 @@ import android.app.Application
 import com.hjw0623.core.data.di.coreDataModule
 import com.hjw0623.events.data.di.eventsDataModule
 import com.hjw0623.events.presentation.events.di.eventsPresentationModule
+import com.hjw0623.lostark.di.appModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.koin.androidContext
@@ -27,6 +28,7 @@ class LostArkApp: Application() {
             androidContext(this@LostArkApp)
             workManagerFactory()
             modules(
+                appModule,
                 coreDataModule,
                 eventsDataModule,
                 eventsPresentationModule
