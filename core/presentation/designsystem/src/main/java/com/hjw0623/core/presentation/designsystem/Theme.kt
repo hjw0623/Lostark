@@ -9,16 +9,16 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 val DarkColorScheme = darkColorScheme(
-    primary = LostArkBlack,
-    background = LostArkBlack,
-    surface = LostArkDarkGray,
-    secondary = LostArkDarkRed,
+    primary = LostArkBlue,
+    background = LostArkWhite,
+    surface = LostArkLightBlue,
+    secondary = LostArkGreen,
     tertiary = LostArkGray,
-    primaryContainer = LostArkBlack30,
+    primaryContainer = LostArkLightBlue,
     onPrimary = LostArkWhite,
-    onBackground = LostArkWhite,
+    onBackground = LostArkBlack,
     onSurface = LostArkWhite,
-    onSurfaceVariant = LostArkGray40
+    onSurfaceVariant = LostArkBlack
 )
 
 
