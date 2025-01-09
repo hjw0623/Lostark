@@ -42,13 +42,6 @@ class EventsViewModel(
 
     private var hasErrorOccurred = false
 
-    fun onAction(action: EventsAction) {
-        when (action) {
-            is EventsAction.OnEventDetailClick -> TODO()
-            is EventsAction.OnIslandDetailClick -> TODO()
-            is EventsAction.OnNoticeDetailClick -> TODO()
-        }
-    }
 
     private fun loadAllData() {
         loadIslands()
