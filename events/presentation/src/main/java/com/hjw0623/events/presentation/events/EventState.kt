@@ -11,7 +11,7 @@ data class EventState(
     val isEventsLoading: Boolean = false,
     val isNoticesLoading: Boolean = false,
     val currentIslands: List<IslandUi> = emptyList(),
-    val selectedIsland: IslandUi? = null,
+    var selectedIsland: IslandUi? = null,
     val events: List<EventUi> = emptyList(),
     val notices: List<NoticeUi> = emptyList()
 ) {
