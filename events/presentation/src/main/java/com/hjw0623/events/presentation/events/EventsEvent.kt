@@ -1,7 +1,7 @@
 package com.hjw0623.events.presentation.events
 
-import com.hjw0623.core.domain.util.DataError
+import com.hjw0623.core.presentation.ui.UiText
 
 sealed interface EventsEvent {
-    data class Error(val error: DataError.Network): EventsEvent
+    data class Error(val error: UiText): EventsEvent
 }

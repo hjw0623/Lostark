@@ -1,9 +1,9 @@
 package com.hjw0623.events.presentation.events
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,18 +13,19 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import com.hjw0623.core.presentation.designsystem.Typography
+import com.hjw0623.core.presentation.ui.ObserveAsEvents
 import com.hjw0623.events.presentation.events.components.EventsListItem
 import com.hjw0623.events.presentation.events.components.IslandListItem
 import com.hjw0623.events.presentation.events.components.NoticeListItem
@@ -34,91 +35,123 @@ import com.hjw0623.events.presentation.events.mockup.mockNoticeContent
 import com.hjw0623.events.presentation.events.model.toEventUi
 import com.hjw0623.events.presentation.events.model.toIslandUi
 import com.hjw0623.events.presentation.events.model.toNoticeUi
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun EventScreen(
+    modifier: Modifier = Modifier,
     state: EventState,
-    modifier: Modifier = Modifier
+    viewModel: EventsViewModel = koinViewModel()
 ) {
+    val context = LocalContext.current
+    ObserveAsEvents(flow = viewModel.events) { event ->
+        when(event) {
+            is EventsEvent.Error ->  Toast.makeText(
+                context,
+                event.error.asString(context),
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
     if (state.isLoading) {
         Box(
-            modifier = modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.primary),
+            modifier = modifier
+                .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator()
         }
     } else {
-        Column(
+        LazyColumn(
             modifier = modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
-                //.verticalScroll(rememberScrollState())
+                .background(MaterialTheme.colorScheme.primary)
                 .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text(
-                text = "모험섬",
-                color = MaterialTheme.colorScheme.onBackground,
-                style = Typography.headlineMedium,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            LazyColumn (
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(state.currentIslands) { island ->
-                    IslandListItem(
-                        islandUi = island,
-                        onClick = {  }
-                    )
+            // 모험섬 섹션
+            item {
+                Text(
+                    text = "모험섬",
+                    color = MaterialTheme.colorScheme.onSurface,
+                    style = Typography.headlineMedium,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            }
+            items(state.currentIslands) { island ->
+                IslandListItem(
+                    islandUi = island,
+                    onClick = { }
+                )
+            }
+
+
+            // Spacer
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+
+            // 이벤트 섹션
+            item {
+                Text(
+                    text = "이벤트",
+                    color = MaterialTheme.colorScheme.onSurface,
+                    style = Typography.headlineMedium,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            }
+            item {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(state.events) { event ->
+                        EventsListItem(
+                            eventUi = event,
+                            onClick = { /* TODO: Click action */ },
+                            modifier = Modifier
+                                .width(300.dp)
+                                .height(180.dp)
+                        )
+                    }
                 }
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = "이벤트",
-                color = MaterialTheme.colorScheme.onBackground,
-                style = Typography.headlineMedium,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(state.events) { event ->
-                    EventsListItem(
-                        eventUi = event,
-                        onClick = { /* TODO: Click action */ },
-                        modifier = Modifier
-                            .width(300.dp)
-                            .height(180.dp)
-                    )
-                }
+            // Spacer
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = "공지",
-                color = MaterialTheme.colorScheme.onBackground,
-                style = Typography.headlineMedium,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(1.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-
-            ) {
-                items(state.notices) { notice ->
-                    NoticeListItem(
-                        noticeUi = notice,
-                        onClick = { /* TODO: Click action */ },
-                        modifier = Modifier.fillMaxWidth()
-                    )
+            // 공지 섹션
+            item {
+                Text(
+                    text = "공지",
+                    color = MaterialTheme.colorScheme.onSurface,
+                    style = Typography.headlineMedium,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            }
+            item {
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp) // 고정된 높이로 제한
+                ) {
+                    items(state.notices) { notice ->
+                        NoticeListItem(
+                            noticeUi = notice,
+                            onClick = { /* TODO: Click action */ },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
                 }
             }
         }
     }
 }
+
+
+
 
 @Preview
 @Composable
@@ -126,6 +159,7 @@ private fun EventScreenPreview() {
     LostarkTheme {
         EventScreen(
             state = EventState(
+
                 currentIslands = listOf(
                     mockIslandContent().toIslandUi(),
                     mockIslandContent("수라도", "골드").toIslandUi(),

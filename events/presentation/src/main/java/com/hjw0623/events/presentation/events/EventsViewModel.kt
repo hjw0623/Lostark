@@ -1,10 +1,11 @@
 package com.hjw0623.events.presentation.events
 
-import androidx.compose.runtime.traceEventEnd
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hjw0623.core.domain.util.onError
 import com.hjw0623.core.domain.util.onSuccess
+import com.hjw0623.core.presentation.ui.UiText
+import com.hjw0623.core.presentation.ui.asUiText
 import com.hjw0623.events.domain.EventsRepository
 import com.hjw0623.events.domain.Islands
 import com.hjw0623.events.presentation.events.model.toEventUi
@@ -13,7 +14,6 @@ import com.hjw0623.events.presentation.events.model.toNoticeUi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
@@ -27,8 +27,8 @@ class EventsViewModel(
     private val eventsRepository: EventsRepository
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(EventState())
-    val state = _state
+    private var _state = MutableStateFlow(EventState())
+    var state = _state
         .onStart { loadAllData() }
         .stateIn(
             viewModelScope,
@@ -36,8 +36,11 @@ class EventsViewModel(
             EventState()
         )
 
-    private val _events = Channel<EventsEvent>()
+    private val _events = Channel<EventsEvent>(Channel.BUFFERED)
     val events = _events.receiveAsFlow()
+
+
+    private var hasErrorOccurred = false
 
     fun onAction(action: EventsAction) {
         when (action) {
@@ -55,77 +58,81 @@ class EventsViewModel(
 
     private fun loadIslands() {
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true) }
             Timber.d("Loading islands...")
-
-            eventsRepository
-                .getIslands()
+            _state.update { it.copy(isIslandsLoading = true) }
+            eventsRepository.getIslands()
                 .onSuccess { islands ->
                     val filteredIslands = filterEventsByCurrentDate(islands)
                     _state.update {
                         it.copy(
-                            isLoading = false,
+                            isIslandsLoading = false,
                             currentIslands = filteredIslands.map { it.toIslandUi() }
                         )
                     }
                     Timber.d("Successfully loaded islands: $filteredIslands")
                 }
                 .onError { error ->
-                    _state.update { it.copy(isLoading = false) }
-                    _events.send(EventsEvent.Error(error))
-                    Timber.e("$error", "Failed to load islands")
+                    Timber.e("$error", "Failed to load Events")
+                    sendError(error.asUiText())
                 }
         }
     }
 
     private fun loadEvents() {
         viewModelScope.launch {
-            _state.update { it.copy( isLoading = true) }
             Timber.d("Loading events...")
+            _state.update { it.copy(isEventsLoading = true) }
 
             eventsRepository
                 .getEvents()
                 .onSuccess { events ->
                     _state.update {
                         it.copy(
-                            isLoading = false,
+                            isEventsLoading = false,
                             events = events.map { it.toEventUi() }
                         )
                     }
                     Timber.d("Successfully loaded events: $events")
                 }
                 .onError { error ->
-                    _state.update { it.copy(isLoading = false) }
-                    _events.send(EventsEvent.Error(error))
                     Timber.e("$error", "Failed to load Events")
+                    sendError(error.asUiText())
                 }
         }
     }
 
     private fun loadNotices() {
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true) }
+            _state.update { it.copy(isNoticesLoading = true) }
 
             eventsRepository
                 .getNotices()
                 .onSuccess { notices ->
                     _state.update {
                         it.copy(
-                            isLoading = false,
+                            isNoticesLoading = false,
                             notices = notices.map { it.toNoticeUi() }
                         )
                     }
                     Timber.d("Successfully loaded Notices: $notices")
                 }
                 .onError { error ->
-                    _state.update { it.copy(isLoading = false) }
-                    _events.send(EventsEvent.Error(error))
-                    Timber.e("$error", "Failed to load Notices")
+                    Timber.e("$error", "Failed to load Events")
+                    sendError(error.asUiText())
                 }
         }
     }
 
-    fun filterEventsByCurrentDate(islands: List<Islands>): List<Islands> {
+    private fun sendError(message: UiText) {
+        viewModelScope.launch {
+            if (!hasErrorOccurred) {
+                hasErrorOccurred = true
+                _events.send(EventsEvent.Error(message))
+            }
+        }
+    }
+
+    private fun filterEventsByCurrentDate(islands: List<Islands>): List<Islands> {
         val currentDate = LocalDate.now()
         return islands.mapNotNull { island ->
             val filteredStartTimes = island.startTimes.filter { startTime ->
@@ -140,5 +147,4 @@ class EventsViewModel(
             }
         }
     }
-
 }

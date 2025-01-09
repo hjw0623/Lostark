@@ -7,9 +7,14 @@ import com.hjw0623.events.presentation.events.model.NoticeUi
 
 @Immutable
 data class EventState(
-    val isLoading: Boolean = false,
+    val isIslandsLoading: Boolean = false,
+    val isEventsLoading: Boolean = false,
+    val isNoticesLoading: Boolean = false,
     val currentIslands: List<IslandUi> = emptyList(),
     val selectedIsland: IslandUi? = null,
     val events: List<EventUi> = emptyList(),
     val notices: List<NoticeUi> = emptyList()
-)
+) {
+    val isLoading: Boolean
+        get() = isIslandsLoading || isEventsLoading || isNoticesLoading
+}
