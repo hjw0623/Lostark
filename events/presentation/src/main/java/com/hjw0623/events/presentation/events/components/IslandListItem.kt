@@ -60,10 +60,8 @@ fun IslandListItem(
             modifier = Modifier.size(60.dp),
         )
 
-        Spacer(modifier = Modifier.width(16.dp))
-
         Column(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f).padding(8.dp)
         ) {
             Text(
                 text = islandUi.name,
@@ -75,29 +73,18 @@ fun IslandListItem(
                 overflow = TextOverflow.Ellipsis,
             )
             Spacer(modifier = Modifier.height(4.dp))
-            Box(
-                Modifier.background(
-                    when (islandUi.mainRewardItem) {
-                        "실링" -> LostArkGray
-                        "해적 주화" -> LostArkOrange
-                        "골드" -> LostArkYellow
-                        else -> LostArkPurple
-                    },
-                    RoundedCornerShape(10.dp)
-                )
-            ) {
 
-            }
         }
 
         Column(
             modifier = Modifier
                 .background(
-                    when (islandUi.mainRewardItem) {
-                        "실링" -> LostArkGray
-                        "해적 주화" -> LostArkOrange
-                        "골드" -> LostArkYellow
-                        else -> LostArkPurple
+                    when {
+                        islandUi.mainRewardItem.contains("실링") -> LostArkGray
+                        islandUi.mainRewardItem.contains("주화") -> LostArkOrange
+                        islandUi.mainRewardItem.contains("골드") -> LostArkYellow
+                        islandUi.mainRewardItem.contains("카드") -> LostArkPurple
+                        else -> LostArkGray
                     },
                     RoundedCornerShape(8.dp)
                 )
@@ -106,11 +93,12 @@ fun IslandListItem(
             horizontalAlignment = Alignment.End
         ) {
             Text(
-                text = when (islandUi.mainRewardItem) {
-                    "실링" -> "실링"
-                    "해적 주화" -> "주화"
-                    "골드" -> "골드"
-                    else -> "카드"
+                text = when {
+                    islandUi.mainRewardItem.contains("실링") -> "실링"
+                    islandUi.mainRewardItem.contains("주화") -> "주화"
+                    islandUi.mainRewardItem.contains("골드") -> "골드"
+                    islandUi.mainRewardItem.contains("카드") -> "카드"
+                    else -> "없음"
                 },
                 fontSize = 16.sp,
                 style = Typography.bodyMedium,

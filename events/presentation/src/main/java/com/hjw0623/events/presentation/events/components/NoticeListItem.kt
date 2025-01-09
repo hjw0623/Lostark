@@ -9,11 +9,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,8 +32,10 @@ fun NoticeListItem(
     Row(
         modifier = modifier
             .padding(8.dp)
-            .background(Color.White)
-            .border(width = 1.dp, color = Color.Black)
+            .background(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                RoundedCornerShape(12.dp)
+            )
             .clickable { onClick() },
         verticalAlignment = Alignment.CenterVertically // Row 내 세로 정렬
     ) {
@@ -41,9 +43,10 @@ fun NoticeListItem(
         Text(
             modifier = Modifier
                 .padding(8.dp)
-                .border(width = 2.dp, color = Color.Black, shape = RoundedCornerShape(16.dp))
+                .border(width = 2.dp, color = MaterialTheme.colorScheme.onSurface, shape = RoundedCornerShape(16.dp))
                 .padding(horizontal = 12.dp, vertical = 6.dp),
             text = noticeUi.type,
+            color = MaterialTheme.colorScheme.onSurface,
             textAlign = TextAlign.Center // 가로로 중앙 정렬
         )
 
@@ -57,7 +60,8 @@ fun NoticeListItem(
             text = noticeUi.title,
             textAlign = TextAlign.Start, // 텍스트를 왼쪽 정렬
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis
+            overflow = TextOverflow.Ellipsis,
+            color = MaterialTheme.colorScheme.onSurface
         )
     }
 }
