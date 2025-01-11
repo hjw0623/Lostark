@@ -11,9 +11,8 @@ val LostArkBlack = Color(0xFF000000)     // 어두운 회색
 val LostArkGreen = Color(0xFF48C65B)
 
 
-
-
-
 val LostArkOrange = Color(0xFFFB8C00)
 val LostArkPurple = Color(0xFF5E35B1)
 val LostArkYellow = Color(0xFFFDD835)
+
+val LostArkDarkGray = Color(0xFF15181D)
