@@ -9,4 +9,8 @@ android {
 dependencies {
     implementation(projects.character.domain)
     implementation(projects.core.domain)
+
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.timber)
 }
