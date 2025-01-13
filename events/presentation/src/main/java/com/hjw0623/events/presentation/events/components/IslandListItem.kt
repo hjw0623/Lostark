@@ -67,7 +67,7 @@ fun IslandListItem(
                 text = islandUi.name,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurface,
+                color = MaterialTheme.colorScheme.onBackground,
                 style = Typography.bodyLarge,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,

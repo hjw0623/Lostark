@@ -43,10 +43,10 @@ fun NoticeListItem(
         Text(
             modifier = Modifier
                 .padding(8.dp)
-                .border(width = 2.dp, color = MaterialTheme.colorScheme.onSurface, shape = RoundedCornerShape(16.dp))
+                .border(width = 2.dp, color = MaterialTheme.colorScheme.onBackground, shape = RoundedCornerShape(16.dp))
                 .padding(horizontal = 12.dp, vertical = 6.dp),
             text = noticeUi.type,
-            color = MaterialTheme.colorScheme.onSurface,
+            color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center // 가로로 중앙 정렬
         )
 
@@ -61,7 +61,7 @@ fun NoticeListItem(
             textAlign = TextAlign.Start, // 텍스트를 왼쪽 정렬
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onBackground
         )
     }
 }
