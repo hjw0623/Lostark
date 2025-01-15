@@ -42,7 +42,7 @@ fun NoticeListItem(
         // Type 텍스트: 중앙 정렬
         Text(
             modifier = Modifier
-                .padding(8.dp)
+                .padding(5.dp)
                 .border(width = 2.dp, color = MaterialTheme.colorScheme.onBackground, shape = RoundedCornerShape(16.dp))
                 .padding(horizontal = 12.dp, vertical = 6.dp),
             text = noticeUi.type,
