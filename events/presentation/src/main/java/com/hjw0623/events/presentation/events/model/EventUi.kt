@@ -1,6 +1,6 @@
 package com.hjw0623.events.presentation.events.model
 
-import com.hjw0623.events.domain.Event
+import com.hjw0623.events.domain.model.Event
 
 data class EventUi(
     val link: String,

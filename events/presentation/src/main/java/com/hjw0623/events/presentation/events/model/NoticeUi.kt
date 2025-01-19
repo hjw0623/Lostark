@@ -1,6 +1,6 @@
 package com.hjw0623.events.presentation.events.model
 
-import com.hjw0623.events.domain.Notice
+import com.hjw0623.events.domain.model.Notice
 
 data class NoticeUi(
     val type: String,

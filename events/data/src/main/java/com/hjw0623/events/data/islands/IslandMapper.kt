@@ -3,9 +3,9 @@ package com.hjw0623.events.data.islands
 import com.hjw0623.events.data.islands.model.IslandsSerializable
 import com.hjw0623.events.data.islands.model.ItemSerializable
 import com.hjw0623.events.data.islands.model.IslandRewardItemsSerializable
-import com.hjw0623.events.domain.IslandRewardItems
-import com.hjw0623.events.domain.Islands
-import com.hjw0623.events.domain.Item
+import com.hjw0623.events.domain.model.IslandRewardItems
+import com.hjw0623.events.domain.model.Islands
+import com.hjw0623.events.domain.model.Item
 
 fun IslandsSerializable.toDomain(): Islands {
     return Islands(

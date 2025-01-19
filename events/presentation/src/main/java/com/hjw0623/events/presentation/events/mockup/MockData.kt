@@ -1,10 +1,10 @@
 package com.hjw0623.events.presentation.events.mockup
 
-import com.hjw0623.events.domain.Event
-import com.hjw0623.events.domain.IslandRewardItems
-import com.hjw0623.events.domain.Islands
-import com.hjw0623.events.domain.Item
-import com.hjw0623.events.domain.Notice
+import com.hjw0623.events.domain.model.Event
+import com.hjw0623.events.domain.model.IslandRewardItems
+import com.hjw0623.events.domain.model.Islands
+import com.hjw0623.events.domain.model.Item
+import com.hjw0623.events.domain.model.Notice
 
 fun mockIslandContent(
     name: String = "하모니 섬",

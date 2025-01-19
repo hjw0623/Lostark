@@ -1,7 +1,7 @@
 package com.hjw0623.events.presentation.events.model
 
-import com.hjw0623.events.domain.Islands
-import com.hjw0623.events.domain.Item
+import com.hjw0623.events.domain.model.Islands
+import com.hjw0623.events.domain.model.Item
 import java.time.LocalDate
 
 data class IslandUi(

@@ -11,10 +11,10 @@ import com.hjw0623.events.data.islands.model.IslandsSerializable
 import com.hjw0623.events.data.islands.toDomain
 import com.hjw0623.events.data.notices.model.NoticeSerializable
 import com.hjw0623.events.data.notices.toDomain
-import com.hjw0623.events.domain.Event
+import com.hjw0623.events.domain.model.Event
 import com.hjw0623.events.domain.EventsRepository
-import com.hjw0623.events.domain.Islands
-import com.hjw0623.events.domain.Notice
+import com.hjw0623.events.domain.model.Islands
+import com.hjw0623.events.domain.model.Notice
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 

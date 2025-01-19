@@ -7,7 +7,7 @@ import com.hjw0623.core.domain.util.onSuccess
 import com.hjw0623.core.presentation.ui.UiText
 import com.hjw0623.core.presentation.ui.asUiText
 import com.hjw0623.events.domain.EventsRepository
-import com.hjw0623.events.domain.Islands
+import com.hjw0623.events.domain.model.Islands
 import com.hjw0623.events.presentation.events.model.toEventUi
 import com.hjw0623.events.presentation.events.model.toIslandUi
 import com.hjw0623.events.presentation.events.model.toNoticeUi
