@@ -36,7 +36,7 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         lineHeight = 20.sp,
-        color = LostArkGray
+        color = LostArkBlack
     ),
     bodyMedium = TextStyle(
         fontFamily = Poppins,
