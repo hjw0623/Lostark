@@ -1,4 +1,4 @@
-package com.hjw0623.data.model
+package com.hjw0623.data.model.profile
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
