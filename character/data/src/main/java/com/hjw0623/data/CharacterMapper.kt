@@ -1,8 +1,10 @@
 package com.hjw0623.data
 
+import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.domain.model.profile.CharacterProfile
 import com.hjw0623.character.domain.model.profile.Stat
 import com.hjw0623.character.domain.model.profile.Tendency
+import com.hjw0623.data.model.gear.GearSerializable
 import com.hjw0623.data.model.profile.CharacterProfileSerializable
 
 fun CharacterProfileSerializable.toDomain(): CharacterProfile {
@@ -25,5 +27,14 @@ fun CharacterProfileSerializable.toDomain(): CharacterProfile {
         characterClassName = this.characterClassName,
         itemAvgLevel = this.itemAvgLevel,
         itemMaxLevel = this.itemMaxLevel
+    )
+}
+fun GearSerializable.toDomain(): Gear {
+    return Gear(
+        type = this.type,
+        name = this.name,
+        icon = this.icon,
+        grade = this.grade,
+        tooltip = this.tooltip
     )
 }
