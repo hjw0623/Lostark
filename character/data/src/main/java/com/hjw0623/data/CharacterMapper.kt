@@ -1,9 +1,9 @@
 package com.hjw0623.data
 
-import com.hjw0623.character.domain.model.CharacterProfile
-import com.hjw0623.character.domain.model.Stat
-import com.hjw0623.character.domain.model.Tendency
-import com.hjw0623.data.model.CharacterProfileSerializable
+import com.hjw0623.character.domain.model.profile.CharacterProfile
+import com.hjw0623.character.domain.model.profile.Stat
+import com.hjw0623.character.domain.model.profile.Tendency
+import com.hjw0623.data.model.profile.CharacterProfileSerializable
 
 fun CharacterProfileSerializable.toDomain(): CharacterProfile {
     return CharacterProfile(
