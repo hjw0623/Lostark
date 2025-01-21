@@ -32,6 +32,7 @@ work = "2.9.0"
 kotlinx-serialization = "1.6.3"
 secretsPlugin = "2.0.1"
 annotation = "1.7.1"
+gson = "2.11.0"
 
 # Project versions
 projectApplicationId = "com.hjw0623.Lostark"
@@ -88,7 +89,7 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
-
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 # Gradle
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
