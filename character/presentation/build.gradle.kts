@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.lostark.android.feature.ui)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -9,7 +10,6 @@ android {
 dependencies {
     implementation(projects.character.domain)
     implementation(projects.core.domain)
-
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.gson)
     implementation(libs.coil.compose)
