@@ -10,7 +10,7 @@ dependencies {
     implementation(projects.character.domain)
     implementation(projects.core.domain)
 
-
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.gson)
     implementation(libs.coil.compose)
     implementation(libs.androidx.activity.compose)
