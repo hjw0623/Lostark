@@ -1,6 +1,11 @@
 package com.hjw0623.character.presentation.mockup
 
-import com.hjw0623.character.presentation.model.CharacterProfileUi
+import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
+import com.hjw0623.character.presentation.model.gear.BraceletUi
+import com.hjw0623.character.presentation.model.profile.CharacterProfileUi
+import com.hjw0623.character.presentation.model.gear.GearUi
+import com.hjw0623.character.presentation.model.gear.AccessoriesUi
+
 
 fun mockCharacterProfileContent(): CharacterProfileUi {
     return CharacterProfileUi(
@@ -16,5 +21,58 @@ fun mockCharacterProfileContent(): CharacterProfileUi {
         pvpGradeName = "20급",
         townLevel = 70,
         townName = "택티컬"
+    )
+}
+fun mockEquipmentContent(): GearUi {
+    return GearUi(
+        iconUri = "https://cdn-lostark.game.onstove.com/efui_iconatlas/smw_item/smw_item_136.png",
+        quality = 30,
+        grade = "유물",
+        transcendence = 21,
+        transcendenceGrade = 7,
+        advancedUpgradeStep = 10,
+        upgradeStep = 11,
+        type = "무기",
+        equipmentName = "운명의 결단 창",
+        elixirList = listOf("회피의 달인 Lv2", "회심(혼돈) Lv5")
+    )
+}
+
+fun mockJewelryContent(): AccessoriesUi {
+    return AccessoriesUi(
+        iconUri = "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_215.png",
+        quality = 30,
+        grade = "고대",
+        enlightenment = "13",
+        name = "도래한 결전의 목걸이",
+        type = "목걸이",
+        polishingEffectList = listOf("적에게 주는 피해 +1.20%", "추가 피해 +0.70%", "상태이상 공격 지속시간 +1.00%")
+    )
+}
+fun mockAbilityStoneContent(): AbilityStoneUi {
+    return AbilityStoneUi(
+        type = "어빌리티 스톤",
+        name = "위대한 비상의 돌",
+        iconUri = "https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_246.png",
+        grade = "고대",
+        hp = 23481,
+        bonusHp = 3525,
+        engravingList = listOf("[원한] Lv.1", "[아드레날린] Lv.4", "[이동속도 감소] Lv.0"),
+        levelBonus = "기본 공격력 +1.50%"
+    )
+}
+
+fun mockBraceletContent(): BraceletUi {
+    return BraceletUi(
+        type = "팔찌",
+        name = "찬란한 구원자의 팔찌",
+        iconUri = "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png",
+        grade = "고대",
+        stats = listOf("신속 +100", "치명 +115"),
+        specialEffect = listOf(
+            "공격 적중 시 매 초마다 10초 동안 무기 공격력 +1160, 공격 및 이동 속도 +1% 증가한다.(최대 6중첩)",
+            "치명타 피해가 6.8% 증가한다. 공격이 치명타로 적중 시 적에게 준느 피해가 1.5% 증가한다.",
+            "적에게 주는 피해가 2% 증가하며, 무력화 상태의 적에게 주는 피해가 4% 증가한다."
+        )
     )
 }
