@@ -1,34 +1,45 @@
-@file:OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalFoundationApi::class)
 
 package com.hjw0623.character.presentation.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ScrollableTabRow
-import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.hjw0623.character.presentation.CharacterState
+import com.hjw0623.character.presentation.CharacterViewModel
+import com.hjw0623.character.presentation.components.tab.gear.GearList
+import com.hjw0623.character.presentation.mockup.mockAbilityStoneContent
+import com.hjw0623.character.presentation.mockup.mockBraceletContent
+import com.hjw0623.character.presentation.mockup.mockEquipmentContent
+import com.hjw0623.character.presentation.mockup.mockJewelryContent
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostArkGray
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
-fun CharacterDetailTab() {
+fun CharacterDetailTab(
+    modifier: Modifier = Modifier,
+    state: CharacterState,
+    viewModel: CharacterViewModel = koinViewModel()
+) {
     val coroutineScope = rememberCoroutineScope()
     val tabs = listOf("장비", "아크패시브", "스킬", "아바타", "보유 캐릭터", "수집형포인트")
     val pagerState = rememberPagerState(
@@ -39,11 +50,11 @@ fun CharacterDetailTab() {
     val tabIndex = pagerState.currentPage
 
     Column(modifier = Modifier.fillMaxSize()) {
-        // 스크롤 가능한 TabRow with Custom Colors
         ScrollableTabRow(
             selectedTabIndex = tabIndex,
             edgePadding = 16.dp,
-            containerColor = MaterialTheme.colorScheme.primaryContainer // TabRow 배경색을 흰색으로 설정
+            containerColor = LostArkGray,
+            modifier = Modifier.fillMaxWidth()
         ) {
             tabs.forEachIndexed { index, title ->
                 Tab(
@@ -56,11 +67,13 @@ fun CharacterDetailTab() {
                 ) {
                     Text(
                         text = title,
-                        maxLines = 1, // 한 줄로 제한
-                        overflow = TextOverflow.Ellipsis, // 길 경우 줄임표 처리
-                        color = if (tabIndex == index) LostArkBlack else LostArkGray, // 선택 상태에 따른 글자 색상 변경
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            color = LostArkBlack,
+                            fontWeight = if (tabIndex == index) FontWeight.Bold else FontWeight.Normal
+                        )
                     )
                 }
             }
@@ -72,8 +85,9 @@ fun CharacterDetailTab() {
             modifier = Modifier.fillMaxSize(),
             userScrollEnabled = true
         ) { page ->
+
             when (page) {
-                0 -> Text("장비 내용", Modifier.padding(16.dp))
+                0 -> GearList(state.gearList, state.accessoriesList, mockAbilityStoneContent(), mockBraceletContent())
                 1 -> Text("아크패시브 내용", Modifier.padding(16.dp))
                 2 -> Text("스킬 내용", Modifier.padding(16.dp))
                 3 -> Text("아바타 내용", Modifier.padding(16.dp))
@@ -91,7 +105,9 @@ fun CharacterDetailTab() {
 @Composable
 private fun CharacterDetailTabPreview() {
     LostarkTheme {
-        CharacterDetailTab()
+        CharacterDetailTab(
+            state = CharacterState()
+        )
     }
 }
 

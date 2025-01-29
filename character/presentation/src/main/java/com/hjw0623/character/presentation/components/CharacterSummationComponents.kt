@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.hjw0623.character.presentation.mockup.mockCharacterProfileContent
-import com.hjw0623.character.presentation.model.CharacterProfileUi
+import com.hjw0623.character.presentation.model.profile.CharacterProfileUi
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable

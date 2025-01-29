@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.hjw0623.character.presentation.mockup.mockCharacterProfileContent
-import com.hjw0623.character.presentation.model.CharacterProfileUi
+import com.hjw0623.character.presentation.model.profile.CharacterProfileUi
 import com.hjw0623.core.presentation.designsystem.LostArkDarkGray
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 

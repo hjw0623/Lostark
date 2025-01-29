@@ -1,4 +1,4 @@
-package com.hjw0623.character.presentation.model
+package com.hjw0623.character.presentation.model.profile
 
 data class CharacterProfileUi(
     val characterImage: String,
