@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.hjw0623.character.presentation.mockup.mockJewelryContent
 import com.hjw0623.character.presentation.model.gear.AccessoriesUi
+import com.hjw0623.character.presentation.util.getEffectLevel
 import com.hjw0623.character.presentation.util.shortPolishingEffect
 import com.hjw0623.core.presentation.designsystem.LostArkBlue
 import com.hjw0623.core.presentation.designsystem.LostArkDarkRed
@@ -110,16 +111,22 @@ fun AccessoriesListItem(accessoriesUi: AccessoriesUi) {
                 )
             } else {
                 accessoriesUi.polishingEffectList?.forEach { item ->
+
                     Row(
                         modifier = Modifier
                             .fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        val text = "중"
+                        val text = getEffectLevel(item)
                         val annotatedText = buildAnnotatedString {
                             append(text)
                             addStyle(
-                                style = SpanStyle(background = LostArkPurple),
+                                style = SpanStyle(background =  when (text) {
+                                    "상" -> LostArkYellow
+                                    "중" -> LostArkPurple
+                                    "하" -> LostArkBlue
+                                    else -> LostArkDarkRed
+                                },),
                                 start = 0,
                                 end = text.length
                             )
@@ -128,7 +135,12 @@ fun AccessoriesListItem(accessoriesUi: AccessoriesUi) {
                         Box(
                             modifier = Modifier
                                 .background(
-                                    color = LostArkPurple,
+                                    color = when (text) {
+                                        "상" -> LostArkYellow
+                                        "중" -> LostArkPurple
+                                        "하" -> LostArkBlue
+                                        else -> LostArkDarkRed
+                                    },
                                     shape = RoundedCornerShape(3.dp)
                                 )
                                 .padding(horizontal = 4.dp, vertical = 2.dp)
