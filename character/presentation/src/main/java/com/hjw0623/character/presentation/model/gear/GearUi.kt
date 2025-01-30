@@ -8,7 +8,6 @@ data class GearUi(
     val transcendence: Int,
     val transcendenceGrade: Int,
     val advancedUpgradeStep: Int?,
-    val upgradeStep: Int,
     val equipmentName: String,
     val type: String,
     val elixirList: List<String>?,

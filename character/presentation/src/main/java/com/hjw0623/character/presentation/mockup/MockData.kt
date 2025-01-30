@@ -31,7 +31,6 @@ fun mockEquipmentContent(): GearUi {
         transcendence = 21,
         transcendenceGrade = 7,
         advancedUpgradeStep = 10,
-        upgradeStep = 11,
         type = "무기",
         equipmentName = "운명의 결단 창",
         elixirList = listOf("회피의 달인 Lv2", "회심(혼돈) Lv5")
