@@ -38,6 +38,7 @@ import com.hjw0623.core.presentation.designsystem.LostArkPurple
 import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostArkYellow
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
+import com.hjw0623.core.presentation.designsystem.Poppins
 import kotlin.math.round
 
 @Composable
@@ -145,20 +146,24 @@ fun EquipmentListItem(gearUi: GearUi) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 4.dp)
+                        .padding(top = 3.dp)
                 ) {
                     gearUi.elixirList.forEach { elixir ->
                         Text(
                             text = elixir,
-                            style = MaterialTheme.typography.bodyMedium.copy(fontSize = 13.sp),
+                            style = MaterialTheme.typography.bodySmall
+                                .copy(fontSize = 11.sp, fontWeight = FontWeight.SemiBold),
+                            maxLines = 1,
                             modifier = Modifier
-                                .padding(5.dp)
+                                .padding(horizontal = 3.dp)
                                 .border(
                                     width = 1.dp,
                                     color = MaterialTheme.colorScheme.onBackground,
                                     shape = RoundedCornerShape(16.dp)
                                 )
-                                .padding(horizontal = 5.dp)
+                                .padding(5.dp)
+
+
                         )
                     }
                 }
