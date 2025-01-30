@@ -42,6 +42,7 @@ fun mockJewelryContent(): AccessoriesUi {
         iconUri = "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_215.png",
         quality = 30,
         grade = "고대",
+        tier = 3,
         enlightenment = "13",
         name = "도래한 결전의 목걸이",
         type = "목걸이",

@@ -4,6 +4,7 @@ data class AccessoriesUi(
     val iconUri: String,
     val quality: Int,
     val grade: String?,
+    val tier: Int,
     val enlightenment: String,
     val name: String,
     val type: String,
