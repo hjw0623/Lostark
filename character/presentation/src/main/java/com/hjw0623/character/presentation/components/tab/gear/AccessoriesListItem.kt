@@ -122,7 +122,7 @@ fun AccessoriesListItem(accessoriesUi: AccessoriesUi) {
                             append(text)
                             addStyle(
                                 style = SpanStyle(background =  when (text) {
-                                    "상" -> LostArkYellow
+                                    "상" -> LostArkOrange
                                     "중" -> LostArkPurple
                                     "하" -> LostArkBlue
                                     else -> LostArkDarkRed
@@ -136,7 +136,7 @@ fun AccessoriesListItem(accessoriesUi: AccessoriesUi) {
                             modifier = Modifier
                                 .background(
                                     color = when (text) {
-                                        "상" -> LostArkYellow
+                                        "상" -> LostArkOrange
                                         "중" -> LostArkPurple
                                         "하" -> LostArkBlue
                                         else -> LostArkDarkRed
