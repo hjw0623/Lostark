@@ -36,6 +36,7 @@ import com.hjw0623.core.presentation.designsystem.LostArkPurple
 import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostArkYellow
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
+import com.hjw0623.core.presentation.designsystem.Typography
 
 @Composable
 fun AccessoriesListItem(accessoriesUi: AccessoriesUi) {
@@ -97,49 +98,60 @@ fun AccessoriesListItem(accessoriesUi: AccessoriesUi) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            accessoriesUi.polishingEffectList?.forEach { item ->
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    val text = "중"
-                    val annotatedText = buildAnnotatedString {
-                        append(text)
-                        addStyle(
-                            style = SpanStyle(background = LostArkPurple),
-                            start = 0,
-                            end = text.length
-                        )
-                    }
-
-                    Box(
-                        modifier = Modifier
-                            .background(
-                                color = LostArkPurple,
-                                shape = RoundedCornerShape(3.dp)
-                            )
-                            .padding(horizontal = 4.dp, vertical = 2.dp)
-                            .align(Alignment.CenterVertically)
-                    ) {
-                        Text(
-                            text = annotatedText,
-                            fontSize = 10.sp,
-                            color = LostArkWhite,
-                            textAlign = TextAlign.Center,
-                            lineHeight = 12.sp
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.width(3.dp))
-
-                    Text(
-                        text = shortPolishingEffect(item),
-                        fontSize = 10.sp,
-                        maxLines = 1,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.align(Alignment.CenterVertically)
+            if (accessoriesUi.polishingEffectList?.isEmpty() == true) {
+                Text(
+                    text = accessoriesUi.name,
+                    style = Typography.bodyMedium.copy(
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 13.sp,
+                        color = LostArkOrange
                     )
+                )
+            } else {
+                accessoriesUi.polishingEffectList?.forEach { item ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        val text = "중"
+                        val annotatedText = buildAnnotatedString {
+                            append(text)
+                            addStyle(
+                                style = SpanStyle(background = LostArkPurple),
+                                start = 0,
+                                end = text.length
+                            )
+                        }
+
+                        Box(
+                            modifier = Modifier
+                                .background(
+                                    color = LostArkPurple,
+                                    shape = RoundedCornerShape(3.dp)
+                                )
+                                .padding(horizontal = 4.dp, vertical = 2.dp)
+                                .align(Alignment.CenterVertically)
+                        ) {
+                            Text(
+                                text = annotatedText,
+                                fontSize = 10.sp,
+                                color = LostArkWhite,
+                                textAlign = TextAlign.Center,
+                                lineHeight = 12.sp
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.width(3.dp))
+
+                        Text(
+                            text = shortPolishingEffect(item),
+                            fontSize = 10.sp,
+                            maxLines = 1,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.align(Alignment.CenterVertically)
+                        )
+                    }
                 }
             }
         }
