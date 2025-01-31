@@ -100,7 +100,11 @@ fun AbilityStoneItem(abilityStoneUi: AbilityStoneUi) {
         ) {
             Text(
                 text = abilityStoneUi.name,
-                color = LostArkYellow,
+                color = when {
+                    abilityStoneUi.grade.contains("고대") -> LostArkYellow
+                    abilityStoneUi.grade.contains("유물") -> LostArkOrange
+                    else -> LostArkPurple
+                },
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontSize = 13.sp
                 ),
