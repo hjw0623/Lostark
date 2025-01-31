@@ -63,6 +63,38 @@ fun Gear.toAccessoriesUi(): AccessoriesUi {
     )
 }
 
+fun Gear.toAbilityStoneUi(): AbilityStoneUi {
+    val tooltip = removeHtmlTags(this.tooltip)
+
+    val hpRegex = """체력 \+(\d+)""".toRegex()
+    val hpValues = hpRegex.findAll(tooltip).map { it.groupValues[1].toInt() }.toList()
+
+    val hp = hpValues.getOrNull(0) ?: 0  // 기본 체력
+    val bonusHp = hpValues.getOrNull(1) ?: 0  // 보너스 체력
+
+    val engravingRegex = """\[(.+?)\] (Lv\.\d+)""".toRegex()
+    val engravingList = engravingRegex.findAll(tooltip)
+        .map { matchResult -> "${matchResult.groupValues[1]} ${matchResult.groupValues[2]}" }
+        .toList()
+
+    val levelBonusRegex = """\[레벨 보너스\] (.+)""".toRegex()
+    val levelBonus = levelBonusRegex.find(tooltip)?.groupValues?.get(1) ?: ""
+    return AbilityStoneUi(
+        type = this.type,
+        name = this.name,
+        iconUri = this.icon,
+        grade = this.grade,
+        hp = hp,
+        bonusHp = bonusHp,
+        engravingList = engravingList,
+        levelBonus = levelBonus
+    )
+}
+
+
+
+
+
 fun categorizeGears(gearList: List<Gear>): Map<String, List<Gear>> {
     val categorizedGears = gearList.groupBy { gear ->
         when (gear.type) {

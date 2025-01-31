@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.hjw0623.character.domain.CharacterRepository
 import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.presentation.model.gear.categorizeGears
+import com.hjw0623.character.presentation.model.gear.toAbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.toAccessoriesUi
 import com.hjw0623.character.presentation.model.gear.toGearUi
 import com.hjw0623.character.presentation.model.profile.toCharacterProfileUi
@@ -76,11 +77,13 @@ class CharacterViewModel(
                     val categorizedGears = categorizeGears(gearList)
                     val onlyEquipment = categorizedGears["장비"] ?: emptyList()
                     val onlyAccessories = categorizedGears["장신구"] ?: emptyList()
+                    val onlyAbilityStone = categorizedGears["어빌리티 스톤"] ?: emptyList()
                     _state.update {
                         it.copy(
                             isGearLoading = false,
                             gearList = onlyEquipment.map { it.toGearUi() },
-                            accessoriesList = onlyAccessories.map { it.toAccessoriesUi() }
+                            accessoriesList = onlyAccessories.map { it.toAccessoriesUi() },
+                            abilityStone = onlyAbilityStone.map { it.toAbilityStoneUi() }
                         )
                     }
                     Timber.d("Successfully loaded characterProfile: $gearList")
