@@ -5,6 +5,7 @@ import com.hjw0623.character.presentation.model.gear.BraceletUi
 import com.hjw0623.character.presentation.model.profile.CharacterProfileUi
 import com.hjw0623.character.presentation.model.gear.GearUi
 import com.hjw0623.character.presentation.model.gear.AccessoriesUi
+import com.hjw0623.character.presentation.model.gear.SpecialEffect
 
 
 fun mockCharacterProfileContent(): CharacterProfileUi {
@@ -70,9 +71,16 @@ fun mockBraceletContent(): BraceletUi {
         grade = "고대",
         stats = listOf("신속 +100", "치명 +115"),
         specialEffect = listOf(
-            "공격 적중 시 매 초마다 10초 동안 무기 공격력 +1160, 공격 및 이동 속도 +1% 증가한다.(최대 6중첩)",
-            "치명타 피해가 6.8% 증가한다. 공격이 치명타로 적중 시 적에게 준느 피해가 1.5% 증가한다.",
-            "적에게 주는 피해가 2% 증가하며, 무력화 상태의 적에게 주는 피해가 4% 증가한다."
+            SpecialEffect(
+            "공격 적중 시 매 초마다 10초 동안 무기 공격력 +1160, 공격 및 이동 속도 +1% 증가한다.(최대 6중첩)","하",
+                ),
+            SpecialEffect(
+            "공격 적중 시 매 초마다 10초 동안 무기 공격력 +1160, 공격 및 이동 속도 +1% 증가한다.(최대 6중첩)","하",
+                ),
+            SpecialEffect(
+    "공격 적중 시 매 초마다 10초 동안 무기 공격력 +1160, 공격 및 이동 속도 +1% 증가한다.(최대 6중첩)","하",
+                )
         )
     )
+
 }

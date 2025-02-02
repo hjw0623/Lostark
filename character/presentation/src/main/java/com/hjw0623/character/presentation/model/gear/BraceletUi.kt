@@ -6,5 +6,9 @@ data class BraceletUi(
     val iconUri: String,
     val grade: String,
     val stats: List<String>,
-    val specialEffect: List<String>
+    val specialEffect: List<SpecialEffect>
+)
+data class SpecialEffect(
+    val effect: String,
+    val grade: String
 )

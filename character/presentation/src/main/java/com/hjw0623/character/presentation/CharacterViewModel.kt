@@ -7,6 +7,7 @@ import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.presentation.model.gear.categorizeGears
 import com.hjw0623.character.presentation.model.gear.toAbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.toAccessoriesUi
+import com.hjw0623.character.presentation.model.gear.toBraceletUi
 import com.hjw0623.character.presentation.model.gear.toGearUi
 import com.hjw0623.character.presentation.model.profile.toCharacterProfileUi
 import com.hjw0623.core.domain.util.onError
@@ -78,12 +79,14 @@ class CharacterViewModel(
                     val onlyEquipment = categorizedGears["장비"] ?: emptyList()
                     val onlyAccessories = categorizedGears["장신구"] ?: emptyList()
                     val onlyAbilityStone = categorizedGears["어빌리티 스톤"] ?: emptyList()
+                    val onlyBracelet = categorizedGears["팔찌"] ?: emptyList()
                     _state.update {
                         it.copy(
                             isGearLoading = false,
                             gearList = onlyEquipment.map { it.toGearUi() },
                             accessoriesList = onlyAccessories.map { it.toAccessoriesUi() },
-                            abilityStone = onlyAbilityStone.map { it.toAbilityStoneUi() }
+                            abilityStone = onlyAbilityStone.map { it.toAbilityStoneUi() },
+                            bracelet = onlyBracelet.map { it.toBraceletUi() }
                         )
                     }
                     Timber.d("Successfully loaded characterProfile: $gearList")

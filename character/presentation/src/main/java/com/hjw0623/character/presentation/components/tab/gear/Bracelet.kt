@@ -19,7 +19,9 @@ import com.hjw0623.character.presentation.model.gear.BraceletUi
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable
-fun BraceletItem(braceletUi: BraceletUi) {
+fun BraceletItem(
+    braceletUi: BraceletUi
+) {
 
     Column(
         modifier = Modifier
