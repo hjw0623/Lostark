@@ -1,6 +1,8 @@
 package com.hjw0623.character.presentation
 
 import androidx.compose.runtime.Immutable
+import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
+import com.hjw0623.character.presentation.mockup.emptyBraceletUi
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.AccessoriesUi
 import com.hjw0623.character.presentation.model.gear.BraceletUi
@@ -15,8 +17,8 @@ data class CharacterState(
     val characterProfile: CharacterProfileUi? = null,
     val gearList: List<GearUi> = emptyList(),
     val accessoriesList: List<AccessoriesUi> = emptyList(),
-    val abilityStone: List<AbilityStoneUi> = emptyList(),
-    val bracelet: List<BraceletUi> = emptyList()
+    val abilityStone: AbilityStoneUi = emptyAbilityStoneUi,
+    val bracelet: BraceletUi = emptyBraceletUi
 ) {
     val isLoading: Boolean
         get() = isCharacterProfileLoading || isGearLoading

@@ -4,8 +4,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,7 +26,7 @@ import com.hjw0623.core.presentation.designsystem.LostarkTheme
 fun GearList(
     gearUis: List<GearUi>,
     accessoriesUis: List<AccessoriesUi>,
-    abilityStoneUi: List<AbilityStoneUi>,
+    abilityStoneUi: AbilityStoneUi,
     braceletUi: BraceletUi
 ) {
     Column(
@@ -53,9 +55,7 @@ fun GearList(
                 accessoriesUis.forEach { item ->
                     AccessoriesListItem(item)
                 }
-                abilityStoneUi.forEach { item ->
-                    AbilityStoneItem(item)
-                }
+                AbilityStoneItem(abilityStoneUi)
             }
         }
         Row(
@@ -63,7 +63,6 @@ fun GearList(
                 .fillMaxWidth()
         ) {
             BraceletItem(braceletUi)
-
         }
     }
 }
@@ -87,14 +86,12 @@ fun GearListPreview() {
         mockJewelryContent(),
         mockJewelryContent()
     )
-    val abilityStoneUiList = listOf(
-        mockAbilityStoneContent()
-    )
+
     LostarkTheme {
         GearList(
             gearUis = equipmentList,
             accessoriesUis = jewelryList,
-            abilityStoneUi = abilityStoneUiList,
+            abilityStoneUi = mockAbilityStoneContent(),
             braceletUi = mockBraceletContent()
         )
     }

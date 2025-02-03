@@ -3,7 +3,8 @@ package com.hjw0623.character.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hjw0623.character.domain.CharacterRepository
-import com.hjw0623.character.domain.model.gear.Gear
+import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
+import com.hjw0623.character.presentation.mockup.emptyBraceletUi
 import com.hjw0623.character.presentation.model.gear.categorizeGears
 import com.hjw0623.character.presentation.model.gear.toAbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.toAccessoriesUi
@@ -22,7 +23,6 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.get
 import timber.log.Timber
 
 class CharacterViewModel(
@@ -85,8 +85,8 @@ class CharacterViewModel(
                             isGearLoading = false,
                             gearList = onlyEquipment.map { it.toGearUi() },
                             accessoriesList = onlyAccessories.map { it.toAccessoriesUi() },
-                            abilityStone = onlyAbilityStone.map { it.toAbilityStoneUi() },
-                            bracelet = onlyBracelet.map { it.toBraceletUi() }
+                            abilityStone = onlyAbilityStone.firstOrNull()?.toAbilityStoneUi() ?: emptyAbilityStoneUi,
+                            bracelet = onlyBracelet.firstOrNull()?.toBraceletUi() ?: emptyBraceletUi
                         )
                     }
                     Timber.d("Successfully loaded characterProfile: $gearList")

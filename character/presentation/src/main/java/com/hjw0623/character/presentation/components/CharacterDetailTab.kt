@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
+import androidx.compose.material3.TimeInput
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -32,6 +33,7 @@ import com.hjw0623.core.presentation.designsystem.LostArkGray
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
+import timber.log.Timber
 
 
 @Composable
@@ -78,16 +80,13 @@ fun CharacterDetailTab(
                 }
             }
         }
-
-        // Pager 내용 렌더링
         HorizontalPager(
             state = pagerState,
             modifier = Modifier.fillMaxSize(),
             userScrollEnabled = true
         ) { page ->
-
             when (page) {
-                0 -> GearList(state.gearList, state.accessoriesList, state.abilityStone, mockBraceletContent())
+                0 -> GearList(state.gearList, state.accessoriesList, state.abilityStone, state.bracelet)
                 1 -> Text("아크패시브 내용", Modifier.padding(16.dp))
                 2 -> Text("스킬 내용", Modifier.padding(16.dp))
                 3 -> Text("아바타 내용", Modifier.padding(16.dp))
