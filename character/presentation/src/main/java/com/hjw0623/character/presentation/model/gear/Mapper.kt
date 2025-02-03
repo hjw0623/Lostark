@@ -1,6 +1,8 @@
 package com.hjw0623.character.presentation.model.gear
 
 import com.hjw0623.character.domain.model.gear.Gear
+import com.hjw0623.character.presentation.util.ancientEffectWithGrades
+import com.hjw0623.character.presentation.util.getEffectRank
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -39,7 +41,6 @@ fun Gear.toGearUi(): GearUi {
     )
 }
 
-
 fun Gear.toAccessoriesUi(): AccessoriesUi {
     val tooltip = removeHtmlTags(this.tooltip)
 
@@ -50,7 +51,6 @@ fun Gear.toAccessoriesUi(): AccessoriesUi {
     val polishingEffectList = extractPolishingEffects(tooltip)
 
     val tier = extractItemTier(tooltip)
-
     return AccessoriesUi(
         iconUri = this.icon,
         quality = quality.toString().toInt(),
@@ -90,6 +90,41 @@ fun Gear.toAbilityStoneUi(): AbilityStoneUi {
         levelBonus = levelBonus
     )
 }
+
+
+fun Gear.toBraceletUi(): BraceletUi {
+    val jsonObject = JSONObject(tooltip)
+    val itemEffects = jsonObject.getJSONObject("Element_004").getJSONObject("value").getString("Element_001")
+    val regex = "(<img[^>]+>)".toRegex()
+
+    val jsonSpecialEffectList = itemEffects.split(regex).filter { it.isNotBlank() }
+    val specialEffect = jsonSpecialEffectList.map { removeHtmlTags(it).trim() }
+
+    val specialEffectsList = mutableListOf<SpecialEffect>()
+    val statsList = mutableListOf<String>()
+
+    specialEffect.forEach { effectText ->
+        val (effect, grade) = getEffectRank(ancientEffectWithGrades, effectText)
+
+        if (effect == grade) {
+            statsList.add(effect)
+        } else {
+            specialEffectsList.add(SpecialEffect(effect = effect, grade = grade))
+        }
+    }
+    Timber.tag("bracelet").d(statsList.toString())
+    Timber.tag("bracelet").d(specialEffectsList.toString())
+    return BraceletUi(
+        type = this.type,
+        name = this.name,
+        iconUri = this.icon,
+        grade = this.grade,
+        stats = statsList,
+        specialEffect = specialEffectsList
+    )
+}
+
+
 
 
 
