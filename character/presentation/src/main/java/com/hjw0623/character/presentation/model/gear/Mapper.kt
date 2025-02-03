@@ -91,7 +91,6 @@ fun Gear.toAbilityStoneUi(): AbilityStoneUi {
     )
 }
 
-
 fun Gear.toBraceletUi(): BraceletUi {
     val jsonObject = JSONObject(tooltip)
     val itemEffects = jsonObject.getJSONObject("Element_004").getJSONObject("value").getString("Element_001")
@@ -112,23 +111,20 @@ fun Gear.toBraceletUi(): BraceletUi {
             specialEffectsList.add(SpecialEffect(effect = effect, grade = grade))
         }
     }
+    val tier = extractItemTier(tooltip)
     Timber.tag("bracelet").d(statsList.toString())
     Timber.tag("bracelet").d(specialEffectsList.toString())
+    Timber.tag("bracelet").d(tier.toString())
     return BraceletUi(
         type = this.type,
         name = this.name,
         iconUri = this.icon,
         grade = this.grade,
+        tier = tier ?: 0,
         stats = statsList,
         specialEffect = specialEffectsList
     )
 }
-
-
-
-
-
-
 
 fun categorizeGears(gearList: List<Gear>): Map<String, List<Gear>> {
     val categorizedGears = gearList.groupBy { gear ->

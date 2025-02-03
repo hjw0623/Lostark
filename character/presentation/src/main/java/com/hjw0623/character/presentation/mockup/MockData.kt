@@ -69,6 +69,7 @@ fun mockBraceletContent(): BraceletUi {
         name = "찬란한 구원자의 팔찌",
         iconUri = "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png",
         grade = "고대",
+        tier = 4,
         stats = listOf("신속 +100", "치명 +115"),
         specialEffect = listOf(
             SpecialEffect(
@@ -88,6 +89,7 @@ internal val emptyBraceletUi = BraceletUi(
     name = "",
     iconUri = "",
     grade = "",
+    tier = 0,
     stats = emptyList(),
     specialEffect = emptyList()
 )
