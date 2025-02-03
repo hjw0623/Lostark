@@ -1,8 +1,9 @@
 package com.hjw0623.character.presentation.model.gear
 
 import com.hjw0623.character.domain.model.gear.Gear
-import com.hjw0623.character.presentation.util.ancientEffectWithGrades
+import com.hjw0623.character.presentation.util.tierFourAncientEffectWithGrades
 import com.hjw0623.character.presentation.util.getEffectRank
+import com.hjw0623.character.presentation.util.tierFourRelicEffectWithGrades
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -103,8 +104,11 @@ fun Gear.toBraceletUi(): BraceletUi {
     val statsList = mutableListOf<String>()
 
     specialEffect.forEach { effectText ->
-        val (effect, grade) = getEffectRank(ancientEffectWithGrades, effectText)
-
+        val (effect, grade) = when {
+            this.grade == "고대" -> getEffectRank(tierFourAncientEffectWithGrades, effectText)
+            this.grade == "유물" -> getEffectRank(tierFourRelicEffectWithGrades, effectText)
+            else -> getEffectRank(tierFourAncientEffectWithGrades, effectText)
+        }
         if (effect == grade) {
             statsList.add(effect)
         } else {
@@ -291,8 +295,6 @@ fun extractElixirFromList(dataList: List<String>): List<String> {
 }
 
 fun extractEnlightenmentFromJson(jsonString: String): String {
-    val result = mutableListOf<String>()
-
     val enlightenmentPattern = """깨달음\s\+\d+""".toRegex()
 
     try {
@@ -308,7 +310,7 @@ fun extractEnlightenmentFromJson(jsonString: String): String {
                     for (key in current.keys()) {
                         val value = current.get(key)
                         if (value is String && enlightenmentPattern.containsMatchIn(value)) {
-                            result.add(value)
+                            return value //
                         } else {
                             queue.add(value)
                         }
@@ -322,13 +324,13 @@ fun extractEnlightenmentFromJson(jsonString: String): String {
                 }
             }
         }
-
     } catch (e: JSONException) {
         println("Invalid JSON format: ${e.message}")
     }
 
-    return result.first()
+    return ""
 }
+
 
 fun extractPolishingEffects(jsonString: String): List<String> {
     val result = mutableListOf<String>()
