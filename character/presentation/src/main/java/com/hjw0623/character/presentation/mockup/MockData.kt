@@ -82,5 +82,22 @@ fun mockBraceletContent(): BraceletUi {
                 )
         )
     )
-
 }
+internal val emptyBraceletUi = BraceletUi(
+    type = "",
+    name = "",
+    iconUri = "",
+    grade = "",
+    stats = emptyList(),
+    specialEffect = emptyList()
+)
+internal val emptyAbilityStoneUi = AbilityStoneUi(
+    type = "",
+    name = "",
+    iconUri = "",
+    grade = "",
+    hp = 0,
+    bonusHp = 0,
+    engravingList = emptyList(),
+    levelBonus = ""
+)
