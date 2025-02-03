@@ -71,10 +71,10 @@ fun AccessoriesListItem(accessoriesUi: AccessoriesUi) {
                     .background(
                         when {
                             accessoriesUi.quality == 100 -> LostArkOrange
-                            accessoriesUi.quality > 90 -> LostArkPurple
-                            accessoriesUi.quality > 70 -> LostArkBlue
-                            accessoriesUi.quality > 30 -> LostArkGreen
-                            accessoriesUi.quality > 10 -> LostArkYellow
+                            accessoriesUi.quality >= 90 -> LostArkPurple
+                            accessoriesUi.quality >= 70 -> LostArkBlue
+                            accessoriesUi.quality >= 30 -> LostArkGreen
+                            accessoriesUi.quality >= 10 -> LostArkYellow
                             else -> LostArkDarkRed
                         },
                         shape = RoundedCornerShape(15.dp)
@@ -111,7 +111,6 @@ fun AccessoriesListItem(accessoriesUi: AccessoriesUi) {
                 )
             } else {
                 accessoriesUi.polishingEffectList?.forEach { item ->
-
                     Row(
                         modifier = Modifier
                             .fillMaxWidth(),
@@ -131,32 +130,32 @@ fun AccessoriesListItem(accessoriesUi: AccessoriesUi) {
                                 end = text.length
                             )
                         }
-
-                        Box(
-                            modifier = Modifier
-                                .background(
-                                    color = when (text) {
-                                        "상" -> LostArkOrange
-                                        "중" -> LostArkPurple
-                                        "하" -> LostArkBlue
-                                        else -> LostArkDarkRed
-                                    },
-                                    shape = RoundedCornerShape(3.dp)
+                        if (accessoriesUi.tier == 4) {
+                            Box(
+                                modifier = Modifier
+                                    .background(
+                                        color = when (text) {
+                                            "상" -> LostArkOrange
+                                            "중" -> LostArkPurple
+                                            "하" -> LostArkBlue
+                                            else -> LostArkDarkRed
+                                        },
+                                        shape = RoundedCornerShape(3.dp)
+                                    )
+                                    .padding(horizontal = 4.dp, vertical = 2.dp)
+                                    .align(Alignment.CenterVertically)
+                            ) {
+                                Text(
+                                    text = annotatedText,
+                                    fontSize = 10.sp,
+                                    color = LostArkWhite,
+                                    textAlign = TextAlign.Center,
+                                    lineHeight = 12.sp
                                 )
-                                .padding(horizontal = 4.dp, vertical = 2.dp)
-                                .align(Alignment.CenterVertically)
-                        ) {
-                            Text(
-                                text = annotatedText,
-                                fontSize = 10.sp,
-                                color = LostArkWhite,
-                                textAlign = TextAlign.Center,
-                                lineHeight = 12.sp
-                            )
+                            }
+
+                            Spacer(modifier = Modifier.width(3.dp))
                         }
-
-                        Spacer(modifier = Modifier.width(3.dp))
-
                         Text(
                             text = shortPolishingEffect(item),
                             fontSize = 10.sp,
