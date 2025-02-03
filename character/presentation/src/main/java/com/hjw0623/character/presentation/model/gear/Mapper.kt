@@ -4,6 +4,8 @@ import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.presentation.util.tierFourAncientEffectWithGrades
 import com.hjw0623.character.presentation.util.getEffectRank
 import com.hjw0623.character.presentation.util.tierFourRelicEffectWithGrades
+import com.hjw0623.character.presentation.util.tierThreeAncientEffectWithGrades
+import com.hjw0623.character.presentation.util.tierThreeRelicEffectWithGrades
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -103,10 +105,14 @@ fun Gear.toBraceletUi(): BraceletUi {
     val specialEffectsList = mutableListOf<SpecialEffect>()
     val statsList = mutableListOf<String>()
 
+    val tier = extractItemTier(tooltip)
+
     specialEffect.forEach { effectText ->
         val (effect, grade) = when {
-            this.grade == "고대" -> getEffectRank(tierFourAncientEffectWithGrades, effectText)
-            this.grade == "유물" -> getEffectRank(tierFourRelicEffectWithGrades, effectText)
+            this.grade == "고대" && tier == 4 -> getEffectRank(tierFourAncientEffectWithGrades, effectText)
+            this.grade == "유물" && tier == 4-> getEffectRank(tierFourRelicEffectWithGrades, effectText)
+            this.grade == "고대" && tier == 3-> getEffectRank(tierThreeAncientEffectWithGrades, effectText)
+            this.grade == "유물" && tier == 3-> getEffectRank(tierThreeRelicEffectWithGrades, effectText)
             else -> getEffectRank(tierFourAncientEffectWithGrades, effectText)
         }
         if (effect == grade) {
@@ -115,10 +121,6 @@ fun Gear.toBraceletUi(): BraceletUi {
             specialEffectsList.add(SpecialEffect(effect = effect, grade = grade))
         }
     }
-    val tier = extractItemTier(tooltip)
-    Timber.tag("bracelet").d(statsList.toString())
-    Timber.tag("bracelet").d(specialEffectsList.toString())
-    Timber.tag("bracelet").d(tier.toString())
     return BraceletUi(
         type = this.type,
         name = this.name,
@@ -330,7 +332,6 @@ fun extractEnlightenmentFromJson(jsonString: String): String {
 
     return ""
 }
-
 
 fun extractPolishingEffects(jsonString: String): List<String> {
     val result = mutableListOf<String>()
