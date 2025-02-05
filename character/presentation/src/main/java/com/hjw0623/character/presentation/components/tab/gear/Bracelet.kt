@@ -93,11 +93,10 @@ fun BraceletItem(
                             else -> LostArkDarkRed
                         }
 
-                        // `shortSpecialEffect`와 `grade`를 다른 스타일로 적용
                         val annotatedText = buildAnnotatedString {
-                            append(shortSpecialEffect) // 기본 스타일 적용
+                            append(shortSpecialEffect)
                             withStyle(style = SpanStyle(color = gradeColor)) {
-                                append(" ${it.grade}") // `it.grade`만 색상 변경
+                                append(" ${it.grade}")
                             }
                         }
 
