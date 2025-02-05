@@ -71,7 +71,7 @@ fun GearList(
         ) {
             Box(
                 modifier = Modifier
-                    .weight(1f)
+                    .weight(1.4f)
             ) {
                 BraceletItem(braceletUi)
             }
