@@ -7,6 +7,7 @@ import com.hjw0623.character.presentation.model.gear.GearUi
 import com.hjw0623.character.presentation.model.gear.AccessoriesUi
 import com.hjw0623.character.presentation.model.gear.ElixirUi
 import com.hjw0623.character.presentation.model.gear.SpecialEffect
+import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 
 
 fun mockCharacterProfileContent(): CharacterProfileUi {
@@ -89,6 +90,12 @@ fun mockElixirContent(): ElixirUi {
 
         total = 50,
         activeEffect = "회심 2단계"
+    )
+}
+fun mockTranscendenceUi(): TranscendenceUi {
+    return TranscendenceUi(
+        total = 111,
+        avgLevel = 6.8
     )
 }
 internal val emptyBraceletUi = BraceletUi(

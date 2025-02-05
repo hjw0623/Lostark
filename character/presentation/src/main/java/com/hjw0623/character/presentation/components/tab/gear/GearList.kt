@@ -18,11 +18,13 @@ import com.hjw0623.character.presentation.mockup.mockBraceletContent
 import com.hjw0623.character.presentation.mockup.mockElixirContent
 import com.hjw0623.character.presentation.mockup.mockEquipmentContent
 import com.hjw0623.character.presentation.mockup.mockJewelryContent
+import com.hjw0623.character.presentation.mockup.mockTranscendenceUi
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.BraceletUi
 import com.hjw0623.character.presentation.model.gear.GearUi
 import com.hjw0623.character.presentation.model.gear.AccessoriesUi
 import com.hjw0623.character.presentation.model.gear.ElixirUi
+import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable
@@ -31,7 +33,8 @@ fun GearList(
     accessoriesUis: List<AccessoriesUi>,
     abilityStoneUi: AbilityStoneUi,
     braceletUi: BraceletUi,
-    elixirUi: ElixirUi
+    elixirUi: ElixirUi,
+    transcendenceUi: TranscendenceUi
 ) {
     Column(
         modifier = Modifier
@@ -82,7 +85,7 @@ fun GearList(
                 modifier = Modifier
                     .weight(1f)
             ) {
-                BraceletItem(braceletUi)
+                TranscendenceItem(transcendenceUi)
             }
         }
     }
@@ -114,7 +117,8 @@ fun GearListPreview() {
             accessoriesUis = jewelryList,
             abilityStoneUi = mockAbilityStoneContent(),
             braceletUi = mockBraceletContent(),
-            elixirUi = mockElixirContent()
+            elixirUi = mockElixirContent(),
+            transcendenceUi = mockTranscendenceUi()
         )
     }
 }

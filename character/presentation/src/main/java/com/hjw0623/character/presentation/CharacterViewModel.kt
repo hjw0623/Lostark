@@ -6,6 +6,7 @@ import com.hjw0623.character.domain.CharacterRepository
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
 import com.hjw0623.character.presentation.model.gear.ElixirUi
+import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.gear.categorizeGears
 import com.hjw0623.character.presentation.model.gear.toAbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.toAccessoriesUi
@@ -85,10 +86,8 @@ class CharacterViewModel(
                     val gearUiList = onlyEquipment.map { it.toGearUi() }
 
                     val elixirList = gearUiList.map { it.elixirList }
-                    Timber.tag("elixir").d(elixirList.toString())
                     val allElixirs = gearUiList.flatMap { it.elixirList ?: emptyList() }
                         .filter { it.isNotBlank() }
-
                     val totalElixirSum = gearUiList.sumOf { it.elixirSum }
                     val elixirEffect = findElixirEffect(allElixirs)
                     val effectLevel = when {
@@ -102,6 +101,11 @@ class CharacterViewModel(
                         ""
                     }
 
+                    val totalTranscendenceSum = gearUiList.sumOf { it.transcendence }
+                    val avgTranscendenceGrade = (gearUiList.sumOf { it.transcendenceGrade }.toDouble() / 6.0)
+                        .let { String.format("%.1f", it).toDouble() }
+
+
                     _state.update {
                         it.copy(
                             isGearLoading = false,
@@ -114,9 +118,14 @@ class CharacterViewModel(
                             elixir = ElixirUi(
                                 total = totalElixirSum,
                                 activeEffect = activeEffect
+                            ),
+                            transcendence = TranscendenceUi(
+                                total = totalTranscendenceSum,
+                                avgLevel = avgTranscendenceGrade
                             )
                         )
                     }
+                    Timber.tag("fdfd").d(state.value.transcendence.toString())
                     Timber.d("Successfully loaded characterProfile: $gearList")
                 }
         }
