@@ -5,6 +5,7 @@ import com.hjw0623.character.presentation.model.gear.BraceletUi
 import com.hjw0623.character.presentation.model.profile.CharacterProfileUi
 import com.hjw0623.character.presentation.model.gear.GearUi
 import com.hjw0623.character.presentation.model.gear.AccessoriesUi
+import com.hjw0623.character.presentation.model.gear.ElixirUi
 import com.hjw0623.character.presentation.model.gear.SpecialEffect
 
 
@@ -34,10 +35,10 @@ fun mockEquipmentContent(): GearUi {
         advancedUpgradeStep = 10,
         type = "무기",
         equipmentName = "운명의 결단 창",
-        elixirList = listOf("회피의 달인 Lv2", "회심(혼돈) Lv5")
+        elixirList = listOf("회피의 달인 Lv2", "회심(혼돈) Lv5"),
+        elixirSum = 50
     )
 }
-
 fun mockJewelryContent(): AccessoriesUi {
     return AccessoriesUi(
         iconUri = "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_215.png",
@@ -62,7 +63,6 @@ fun mockAbilityStoneContent(): AbilityStoneUi {
         levelBonus = "기본 공격력 +1.50%"
     )
 }
-
 fun mockBraceletContent(): BraceletUi {
     return BraceletUi(
         type = "팔찌",
@@ -82,6 +82,13 @@ fun mockBraceletContent(): BraceletUi {
     "공격 적중 시 매 초마다 10초 동안 무기 공격력 +1160, 공격 및 이동 속도 +1% 증가한다.(최대 6중첩)","하",
                 )
         )
+    )
+}
+fun mockElixirContent(): ElixirUi {
+    return ElixirUi(
+
+        total = 50,
+        activeEffect = "회심 2단계"
     )
 }
 internal val emptyBraceletUi = BraceletUi(

@@ -30,7 +30,7 @@ fun Gear.toGearUi(): GearUi {
     val pattern = """^\[(${type}|공용)\]""".toRegex()
     val extractedElixirListByPattern = extractFilteredContentByPattern(tooltip, pattern)
     val elixirList = extractElixirFromList(extractedElixirListByPattern)
-
+    val elixirSum = sumLevels(elixirList)
     return GearUi(
         iconUri = this.icon,
         quality = quality.toString().toInt(),
@@ -40,7 +40,8 @@ fun Gear.toGearUi(): GearUi {
         advancedUpgradeStep = extractFirstNumber(advancedUpgradeStep) ?: 0,
         equipmentName = this.name,
         type = this.type,
-        elixirList = elixirList
+        elixirList = elixirList,
+        elixirSum = elixirSum
     )
 }
 
@@ -419,5 +420,12 @@ fun extractItemTier(jsonString: String): Int? {
     return null
 }
 
+fun sumLevels(effectList: List<String>): Int {
+    val levelPattern = """Lv\.(\d+)""".toRegex() // "Lv.X" 패턴 정규식
+
+    return effectList.sumOf { effect ->
+        levelPattern.find(effect)?.groupValues?.get(1)?.toIntOrNull() ?: 0
+    }
+}
 
 

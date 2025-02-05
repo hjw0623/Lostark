@@ -11,6 +11,7 @@ data class GearUi(
     val equipmentName: String,
     val type: String,
     val elixirList: List<String>?,
+    val elixirSum: Int
 )
 
 

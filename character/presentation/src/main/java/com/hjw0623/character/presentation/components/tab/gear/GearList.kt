@@ -1,6 +1,7 @@
 package com.hjw0623.character.presentation.components.tab.gear
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,12 +15,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.hjw0623.character.presentation.mockup.mockAbilityStoneContent
 import com.hjw0623.character.presentation.mockup.mockBraceletContent
+import com.hjw0623.character.presentation.mockup.mockElixirContent
 import com.hjw0623.character.presentation.mockup.mockEquipmentContent
 import com.hjw0623.character.presentation.mockup.mockJewelryContent
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.BraceletUi
 import com.hjw0623.character.presentation.model.gear.GearUi
 import com.hjw0623.character.presentation.model.gear.AccessoriesUi
+import com.hjw0623.character.presentation.model.gear.ElixirUi
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable
@@ -27,7 +30,8 @@ fun GearList(
     gearUis: List<GearUi>,
     accessoriesUis: List<AccessoriesUi>,
     abilityStoneUi: AbilityStoneUi,
-    braceletUi: BraceletUi
+    braceletUi: BraceletUi,
+    elixirUi: ElixirUi
 ) {
     Column(
         modifier = Modifier
@@ -62,7 +66,24 @@ fun GearList(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            BraceletItem(braceletUi)
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                BraceletItem(braceletUi)
+            }
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                ElixirItem(elixirUi)
+            }
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                BraceletItem(braceletUi)
+            }
         }
     }
 }
@@ -92,7 +113,8 @@ fun GearListPreview() {
             gearUis = equipmentList,
             accessoriesUis = jewelryList,
             abilityStoneUi = mockAbilityStoneContent(),
-            braceletUi = mockBraceletContent()
+            braceletUi = mockBraceletContent(),
+            elixirUi = mockElixirContent()
         )
     }
 }
