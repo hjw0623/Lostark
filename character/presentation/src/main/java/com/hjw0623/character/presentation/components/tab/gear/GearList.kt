@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -50,9 +48,11 @@ fun GearList(
                     .weight(1f),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                gearUis.forEach { item ->
-                    EquipmentListItem(item)
-                }
+                val order = listOf("투구", "어깨", "상의", "하의", "장갑", "무기")
+                gearUis.sortedBy { order.indexOf(it.type) }
+                    .forEach { item ->
+                        EquipmentListItem(item)
+                    }
             }
             Column(
                 modifier = Modifier
