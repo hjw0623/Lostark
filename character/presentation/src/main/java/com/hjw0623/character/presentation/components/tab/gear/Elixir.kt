@@ -51,13 +51,13 @@ fun ElixirItem(elixirUi: ElixirUi) {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-           GradientBackgroundItem(
-               icon = elixirUi.icon,
-               color1 = 0xFF362003,
-               color2 = 0xFF9E5F04,
-               bottomStart = 8,
-               bottomEnd = 8
-           )
+            GradientBackgroundItem(
+                icon = elixirUi.icon,
+                color1 = 0xFF362003,
+                color2 = 0xFF9E5F04,
+                bottomStart = 8,
+                bottomEnd = 8
+            )
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -72,7 +72,8 @@ fun ElixirItem(elixirUi: ElixirUi) {
                     color = Color.Black
                 )
                 Text(
-                    text = elixirUi.activeEffect,
+                    text = if (elixirUi.activeEffect == "") "없음"
+                    else elixirUi.activeEffect,
                     maxLines = 1,
                     style = MaterialTheme.typography.bodySmall
                         .copy(fontSize = 10.sp, fontWeight = FontWeight.SemiBold),
