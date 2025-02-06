@@ -4,6 +4,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -71,15 +72,21 @@ fun BraceletItem(
                     .padding(start = 5.dp),
 
             ) {
-                // 스탯 텍스트 정렬
-                Row {
-                    braceletUi.stats.forEach {
-                        Text(
-                            text = it,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 10.sp,
-                            color = Color.Black
-                        )
+
+                Column {
+                    braceletUi.stats.chunked(2).forEach { rowStats ->
+                        Row {
+                            rowStats.forEach {
+                                Text(
+                                    text = it,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 10.sp,
+                                    color = Color.Black,
+                                    modifier = Modifier
+                                        .padding(horizontal = 3.dp)
+                                )
+                            }
+                        }
                     }
                 }
                 Row {
