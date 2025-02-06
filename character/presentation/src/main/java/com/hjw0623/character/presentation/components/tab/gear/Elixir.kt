@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.hjw0623.character.presentation.components.GradientBackgroundItem
 import com.hjw0623.character.presentation.mockup.mockBraceletContent
 import com.hjw0623.character.presentation.mockup.mockElixirContent
 import com.hjw0623.character.presentation.model.gear.BraceletUi
@@ -50,13 +51,13 @@ fun ElixirItem(elixirUi: ElixirUi) {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            AsyncImage(
-                model = elixirUi.icon,
-                contentDescription = "엘릭서 이미지",
-                modifier = Modifier
-                    .size(40.dp)
-                    .padding(5.dp)
-            )
+           GradientBackgroundItem(
+               icon = elixirUi.icon,
+               color1 = 0xFF362003,
+               color2 = 0xFF9E5F04,
+               bottomStart = 8,
+               bottomEnd = 8
+           )
             Column(
                 modifier = Modifier
                     .fillMaxWidth()

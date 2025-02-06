@@ -20,18 +20,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.RootGroupName
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.hjw0623.character.presentation.components.GradientBackgroundItem
 import com.hjw0623.character.presentation.mockup.mockAbilityStoneContent
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
+import com.hjw0623.core.presentation.designsystem.LostArkAncient
+import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostArkBlue
 import com.hjw0623.core.presentation.designsystem.LostArkDarkRed
 import com.hjw0623.core.presentation.designsystem.LostArkGreen
 import com.hjw0623.core.presentation.designsystem.LostArkOrange
 import com.hjw0623.core.presentation.designsystem.LostArkPurple
+import com.hjw0623.core.presentation.designsystem.LostArkRelic
 import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostArkYellow
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
@@ -47,72 +52,73 @@ fun AbilityStoneItem(abilityStoneUi: AbilityStoneUi) {
     ) {
         Column(
             modifier = Modifier
-                .width(60.dp)
+                .weight(0.6f)
+                .fillMaxWidth()
                 .padding(5.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            AsyncImage(
-                model = abilityStoneUi.iconUri,
-                contentDescription = "어빌리티스톤 이미지",
-                modifier = Modifier.size(40.dp).padding(3.dp),
-                contentScale = ContentScale.Fit
+            GradientBackgroundItem(
+                icon = abilityStoneUi.iconUri,
+                color1 = when (abilityStoneUi.grade) {
+                    "고대" -> 0xFF3D3325
+                    "유물" -> 0xFF341A09
+                    else -> 0xFFFAFAFA
+                },
+                color2 = when (abilityStoneUi.grade) {
+                    "고대" -> 0xFFDCC999
+                    "유물" -> 0xFFA24006
+                    else -> 0xFFFAFAFA
+                }
             )
             Box(
                 modifier = Modifier
-                    .width(40.dp)
+                    .width(45.dp)
                     .height(18.dp)
                     .background(
-                        when {
-                            abilityStoneUi.grade.contains("고대") -> LostArkYellow
-                            abilityStoneUi.grade.contains("유물") -> LostArkOrange
-                            else -> LostArkPurple
+                        when (abilityStoneUi.grade) {
+                            "고대" -> LostArkAncient
+                            "유물" -> LostArkRelic
+                            else -> LostArkBlack
                         },
-                        shape = RoundedCornerShape(15.dp)
+                        shape = RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp)
                     ),
+                contentAlignment = Alignment.Center
             ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxWidth()
-                        .background(
-                            when {
-                                abilityStoneUi.grade.contains("고대") -> LostArkYellow
-                                abilityStoneUi.grade.contains("유물") -> LostArkOrange
-                                else -> LostArkPurple
-                            }
-                        , shape = RoundedCornerShape(15.dp)
-                        ),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = abilityStoneUi.grade,
-                        style = MaterialTheme.typography.bodySmall.copy(
-                            color = LostArkWhite,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 13.sp
-                        )
-                    )
-                }
+                Text(
+                    text = abilityStoneUi.grade,
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = LostArkWhite
+                    ),
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center
+
+                )
             }
         }
         Column(
-            modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(2.dp)
-        ) {
-            Text(
-                text = abilityStoneUi.name,
-                color = when {
-                    abilityStoneUi.grade.contains("고대") -> LostArkYellow
-                    abilityStoneUi.grade.contains("유물") -> LostArkOrange
-                    else -> LostArkPurple
-                },
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontSize = 13.sp
-                ),
-                maxLines = 2
-            )
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth()
+                .padding(5.dp),
+        ){
+            abilityStoneUi.engravingList.forEach {
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontSize = 8.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = LostArkBlack
+                    ),
+                    maxLines = 1
+                )
+            }
         }
     }
 }
+
 
 @Preview
 @Composable

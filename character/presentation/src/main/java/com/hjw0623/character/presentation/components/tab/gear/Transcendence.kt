@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.hjw0623.character.presentation.components.GradientBackgroundItem
 import com.hjw0623.character.presentation.mockup.mockElixirContent
 import com.hjw0623.character.presentation.mockup.mockTranscendenceUi
 import com.hjw0623.character.presentation.model.gear.ElixirUi
@@ -42,12 +43,12 @@ fun TranscendenceItem(transcendenceUi: TranscendenceUi) {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            AsyncImage(
-                model = transcendenceUi.icon,
-                contentDescription = "초월 이미지",
-                modifier = Modifier
-                    .size(40.dp)
-                    .padding(5.dp)
+            GradientBackgroundItem(
+                icon = transcendenceUi.icon,
+                color1 = 0xFF362003,
+                color2 = 0xFF9E5F04,
+                bottomStart = 8,
+                bottomEnd = 8
             )
             Column(
                 modifier = Modifier

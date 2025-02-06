@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.hjw0623.character.presentation.components.GradientBackgroundItem
 import com.hjw0623.character.presentation.mockup.mockBraceletContent
 import com.hjw0623.character.presentation.model.gear.BraceletUi
 import com.hjw0623.character.presentation.util.normalizeText
@@ -49,12 +50,20 @@ fun BraceletItem(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            AsyncImage(
-                model = braceletUi.iconUri,
-                contentDescription = "팔찌 이미지",
-                modifier = Modifier
-                    .size(40.dp)
-                    .padding(5.dp)
+            GradientBackgroundItem(
+                icon = braceletUi.iconUri,
+                color1 = when (braceletUi.grade) {
+                    "고대" -> 0xFF3D3325
+                    "유물" -> 0xFF341A09
+                    else -> 0xFFFAFAFA
+                },
+                color2 = when (braceletUi.grade) {
+                    "고대" -> 0xFFDCC999
+                    "유물" -> 0xFFA24006
+                    else -> 0xFFFAFAFA
+                },
+                bottomStart = 8,
+                bottomEnd = 8
             )
             Column(
                 modifier = Modifier
