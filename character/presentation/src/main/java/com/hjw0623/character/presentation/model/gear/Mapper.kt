@@ -2,15 +2,15 @@ package com.hjw0623.character.presentation.model.gear
 
 import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.domain.model.gems.Gem
-import com.hjw0623.character.domain.model.gems.Gems
 import com.hjw0623.character.presentation.util.tierFourAncientEffectWithGrades
 import com.hjw0623.character.presentation.util.getEffectRank
 import com.hjw0623.character.presentation.util.tierFourRelicEffectWithGrades
 import com.hjw0623.character.presentation.util.tierThreeAncientEffectWithGrades
 import com.hjw0623.character.presentation.util.tierThreeRelicEffectWithGrades
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -140,7 +140,6 @@ fun Gear.toBraceletUi(): BraceletUi {
 
 fun Gem.toGemsUi(): GemsUi {
     val skillAndEffect = extractGemEffectAndSkill(this.tooltip.toString())
-    Timber.tag("Fdfdfd").d(skillAndEffect.toString())
     return GemsUi(
         name = this.name,
         icon = this.icon,
@@ -447,26 +446,45 @@ fun sumLevels(effectList: List<String>): Int {
 }
 
 fun extractGemEffectAndSkill(jsonString: String): Pair<String, String>? {
-    val json = Json.parseToJsonElement(jsonString).jsonObject
+    return try {
+        val jsonElement = Json.parseToJsonElement(jsonString)
+        val jsonObject = jsonElement.jsonObjectSafe() ?: return null
 
+        val effectDetails = findEffectDetails(jsonObject) ?: return null
 
-    val element006 = json["Element_006"]?.jsonObject
-    val value = element006?.get("value")?.jsonObject
-    val effectDetails = value?.get("Element_001")?.jsonPrimitive?.content
+        val skillNameRegex = Regex("<FONT COLOR='.*?'>(.*?)</FONT>")
+        val effectRegex = Regex("(재사용 대기시간|피해) [\\d.]+% (증가|감소)")
 
+        val skillName = skillNameRegex.find(effectDetails)?.groupValues?.get(1) ?: "Unknown"
+        val effect = effectRegex.find(effectDetails)?.value ?: "Unknown"
 
-    val skillNameRegex = Regex("<FONT COLOR='.*?'>(.*?)</FONT>")
-    val effectRegex = Regex("(재사용 대기시간|피해) [\\d.]+% (증가|감소)")
+        return Pair(skillName, effect)
+    } catch (e: Exception) {
+        Timber.e(e, "extractGemEffectAndSkill: Error parsing JSON")
+        null
+    }
+}
 
-    if (effectDetails != null) {
-        val skillName = skillNameRegex.find(effectDetails)?.groupValues?.get(1)
-        val effect = effectRegex.find(effectDetails)?.value
+fun JsonElement.jsonObjectSafe(): JsonObject? {
+    return this as? JsonObject
+}
 
-        if (skillName != null && effect != null) {
-            return Pair(skillName, effect)
+fun findEffectDetails(jsonObject: JsonObject): String? {
+    for ((_, value) in jsonObject) {
+        if (value is JsonPrimitive && value.isString) {
+            val content = value.content
+            if (content.contains("재사용 대기시간") || content.contains("피해")) {
+                return content
+            }
+        }
+        if (value is JsonObject) {
+            val found = findEffectDetails(value)
+            if (found != null) return found
         }
     }
     return null
 }
+
+
 
 
