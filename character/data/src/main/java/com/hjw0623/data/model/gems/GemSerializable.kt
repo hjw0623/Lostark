@@ -10,5 +10,5 @@ data class GemSerializable(
     @SerialName("Level") val level: Int,
     @SerialName("Name") val name: String,
     @SerialName("Slot") val slot: Int,
-    @SerialName("Tooltip") val tooltip: String
+    @SerialName("Tooltip") val tooltip: String?
 )

@@ -6,6 +6,7 @@ import com.hjw0623.character.presentation.model.profile.CharacterProfileUi
 import com.hjw0623.character.presentation.model.gear.GearUi
 import com.hjw0623.character.presentation.model.gear.AccessoriesUi
 import com.hjw0623.character.presentation.model.gear.ElixirUi
+import com.hjw0623.character.presentation.model.gear.GemsUi
 import com.hjw0623.character.presentation.model.gear.SpecialEffect
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 
@@ -96,6 +97,16 @@ fun mockTranscendenceUi(): TranscendenceUi {
     return TranscendenceUi(
         total = 111,
         avgLevel = 6.8
+    )
+}
+fun mockGemContent(): GemsUi {
+    return GemsUi(
+        name = "10레벨 겁화의 보석",
+        icon = "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_105.png",
+        level = 10,
+        grade = "고대",
+        skillName = "피니쉬 스트라이크",
+        effect = "피해 44.00% 증가"
     )
 }
 internal val emptyBraceletUi = BraceletUi(

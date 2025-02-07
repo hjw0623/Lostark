@@ -15,6 +15,7 @@ import com.hjw0623.character.presentation.mockup.mockAbilityStoneContent
 import com.hjw0623.character.presentation.mockup.mockBraceletContent
 import com.hjw0623.character.presentation.mockup.mockElixirContent
 import com.hjw0623.character.presentation.mockup.mockEquipmentContent
+import com.hjw0623.character.presentation.mockup.mockGemContent
 import com.hjw0623.character.presentation.mockup.mockJewelryContent
 import com.hjw0623.character.presentation.mockup.mockTranscendenceUi
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
@@ -22,6 +23,7 @@ import com.hjw0623.character.presentation.model.gear.BraceletUi
 import com.hjw0623.character.presentation.model.gear.GearUi
 import com.hjw0623.character.presentation.model.gear.AccessoriesUi
 import com.hjw0623.character.presentation.model.gear.ElixirUi
+import com.hjw0623.character.presentation.model.gear.GemsUi
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
@@ -32,7 +34,8 @@ fun GearList(
     abilityStoneUi: AbilityStoneUi,
     braceletUi: BraceletUi,
     elixirUi: ElixirUi,
-    transcendenceUi: TranscendenceUi
+    transcendenceUi: TranscendenceUi,
+    gemsList: List<GemsUi>
 ) {
     Column(
         modifier = Modifier
@@ -88,6 +91,7 @@ fun GearList(
                 TranscendenceItem(transcendenceUi)
             }
         }
+        GemsList(gemsList)
     }
 }
 
@@ -110,6 +114,13 @@ fun GearListPreview() {
         mockJewelryContent(),
         mockJewelryContent()
     )
+    val gemList = listOf(
+        mockGemContent(),
+        mockGemContent(),
+        mockGemContent(),
+        mockGemContent(),
+        mockGemContent()
+    )
 
     LostarkTheme {
         GearList(
@@ -118,7 +129,8 @@ fun GearListPreview() {
             abilityStoneUi = mockAbilityStoneContent(),
             braceletUi = mockBraceletContent(),
             elixirUi = mockElixirContent(),
-            transcendenceUi = mockTranscendenceUi()
+            transcendenceUi = mockTranscendenceUi(),
+            gemsList = gemList
         )
     }
 }

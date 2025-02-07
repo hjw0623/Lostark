@@ -6,5 +6,5 @@ data class Skill(
     val icon: String,
     val name: String,
     val option: String,
-    val tooltip: String
+    val tooltip: String? = null
 )

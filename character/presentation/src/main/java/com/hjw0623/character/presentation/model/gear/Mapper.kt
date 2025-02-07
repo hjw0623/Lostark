@@ -1,11 +1,16 @@
 package com.hjw0623.character.presentation.model.gear
 
 import com.hjw0623.character.domain.model.gear.Gear
+import com.hjw0623.character.domain.model.gems.Gem
+import com.hjw0623.character.domain.model.gems.Gems
 import com.hjw0623.character.presentation.util.tierFourAncientEffectWithGrades
 import com.hjw0623.character.presentation.util.getEffectRank
 import com.hjw0623.character.presentation.util.tierFourRelicEffectWithGrades
 import com.hjw0623.character.presentation.util.tierThreeAncientEffectWithGrades
 import com.hjw0623.character.presentation.util.tierThreeRelicEffectWithGrades
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -130,6 +135,19 @@ fun Gear.toBraceletUi(): BraceletUi {
         tier = tier ?: 0,
         stats = statsList,
         specialEffect = specialEffectsList
+    )
+}
+
+fun Gem.toGemsUi(): GemsUi {
+    val skillAndEffect = extractGemEffectAndSkill(this.tooltip.toString())
+    Timber.tag("Fdfdfd").d(skillAndEffect.toString())
+    return GemsUi(
+        name = this.name,
+        icon = this.icon,
+        level = this.level,
+        grade = this.grade,
+        skillName = skillAndEffect?.first ?: "",
+        effect = skillAndEffect?.second ?: ""
     )
 }
 
@@ -426,6 +444,29 @@ fun sumLevels(effectList: List<String>): Int {
     return effectList.sumOf { effect ->
         levelPattern.find(effect)?.groupValues?.get(1)?.toIntOrNull() ?: 0
     }
+}
+
+fun extractGemEffectAndSkill(jsonString: String): Pair<String, String>? {
+    val json = Json.parseToJsonElement(jsonString).jsonObject
+
+
+    val element006 = json["Element_006"]?.jsonObject
+    val value = element006?.get("value")?.jsonObject
+    val effectDetails = value?.get("Element_001")?.jsonPrimitive?.content
+
+
+    val skillNameRegex = Regex("<FONT COLOR='.*?'>(.*?)</FONT>")
+    val effectRegex = Regex("(재사용 대기시간|피해) [\\d.]+% (증가|감소)")
+
+    if (effectDetails != null) {
+        val skillName = skillNameRegex.find(effectDetails)?.groupValues?.get(1)
+        val effect = effectRegex.find(effectDetails)?.value
+
+        if (skillName != null && effect != null) {
+            return Pair(skillName, effect)
+        }
+    }
+    return null
 }
 
 

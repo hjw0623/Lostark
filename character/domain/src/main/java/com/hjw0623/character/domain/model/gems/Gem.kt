@@ -6,5 +6,5 @@ data class Gem(
     val level: Int,
     val name: String,
     val slot: Int,
-    val tooltip: String
+    val tooltip: String? = null
 )

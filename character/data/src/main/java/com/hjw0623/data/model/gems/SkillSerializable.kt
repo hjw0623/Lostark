@@ -10,5 +10,5 @@ data class SkillSerializable(
     @SerialName("Icon") val icon: String,
     @SerialName("Name") val name: String,
     @SerialName("Option") val option: String,
-    @SerialName("Tooltip") val tooltip: String
+    @SerialName("Tooltip") val tooltip: String?
 )

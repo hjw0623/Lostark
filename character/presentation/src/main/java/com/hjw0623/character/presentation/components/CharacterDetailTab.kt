@@ -86,7 +86,15 @@ fun CharacterDetailTab(
             userScrollEnabled = true
         ) { page ->
             when (page) {
-                0 -> GearList(state.gearList, state.accessoriesList, state.abilityStone, state.bracelet, state.elixir, state.transcendence)
+                0 -> GearList(
+                    gearUis = state.gearList,
+                    accessoriesUis = state.accessoriesList,
+                    abilityStoneUi = state.abilityStone,
+                    braceletUi = state.bracelet,
+                    elixirUi = state.elixir,
+                    transcendenceUi = state.transcendence,
+                    gemsList  = state.gemsList
+                )
                 1 -> Text("아크패시브 내용", Modifier.padding(16.dp))
                 2 -> Text("스킬 내용", Modifier.padding(16.dp))
                 3 -> Text("아바타 내용", Modifier.padding(16.dp))

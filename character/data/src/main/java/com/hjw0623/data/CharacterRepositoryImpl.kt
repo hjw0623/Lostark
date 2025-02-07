@@ -2,13 +2,16 @@ package com.hjw0623.data
 
 import com.hjw0623.character.domain.CharacterRepository
 import com.hjw0623.character.domain.model.gear.Gear
+import com.hjw0623.character.domain.model.gems.Gems
 import com.hjw0623.character.domain.model.profile.CharacterProfile
 import com.hjw0623.core.data.networking.constructRoute
+import com.hjw0623.core.data.networking.responseToResult
 import com.hjw0623.core.data.networking.safeCall
 import com.hjw0623.core.domain.util.DataError
 import com.hjw0623.core.domain.util.Result
 import com.hjw0623.core.domain.util.map
 import com.hjw0623.data.model.gear.GearSerializable
+import com.hjw0623.data.model.gems.GemsSerializable
 import com.hjw0623.data.model.profile.CharacterProfileSerializable
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
@@ -34,6 +37,16 @@ class CharacterRepositoryImpl(
             )
         }.map { response ->
             response.map { it.toDomain() }
+        }
+    }
+
+    override suspend fun getGems(characterName: String): Result<Gems, DataError.Network> {
+        return safeCall<GemsSerializable> {
+            httpClient.get(
+                urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/gems")
+            )
+        }.map { response ->
+            response.toDomain()
         }
     }
 }

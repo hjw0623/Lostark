@@ -12,6 +12,7 @@ import com.hjw0623.character.presentation.model.gear.toAbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.toAccessoriesUi
 import com.hjw0623.character.presentation.model.gear.toBraceletUi
 import com.hjw0623.character.presentation.model.gear.toGearUi
+import com.hjw0623.character.presentation.model.gear.toGemsUi
 import com.hjw0623.character.presentation.model.profile.toCharacterProfileUi
 import com.hjw0623.core.domain.util.onError
 import com.hjw0623.core.domain.util.onSuccess
@@ -49,6 +50,7 @@ class CharacterViewModel(
     private fun loadAllData() {
         loadCharacterProfile()
         loadGear()
+        loadGem()
     }
 
     private fun loadCharacterProfile() {
@@ -125,8 +127,23 @@ class CharacterViewModel(
                             )
                         )
                     }
-                    Timber.tag("fdfd").d(state.value.transcendence.toString())
+
                     Timber.d("Successfully loaded characterProfile: $gearList")
+                }
+        }
+    }
+    private fun loadGem() {
+        viewModelScope.launch {
+            _state.update { it.copy(isGemLoading = true) }
+            characterRepository.getGems(state.value.searchedCharacterName)
+                .onSuccess { gemsList ->
+                    _state.update {
+                        it.copy(
+                            isGemLoading = false,
+                            gemsList = gemsList.gems.map { it.toGemsUi() }
+                        )
+                    }
+                    Timber.d("Successfully loaded Gems $gemsList")
                 }
         }
     }

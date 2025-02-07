@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GemsSerializable(
     @SerialName("Effects") val effects: EffectsSerializable,
-    @SerialName("Gems") val gems: List<GemSerializable>
+    @SerialName("Gems") val gems: List<GemSerializable>? = emptyList()
 )
