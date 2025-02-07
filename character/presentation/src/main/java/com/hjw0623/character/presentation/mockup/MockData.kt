@@ -9,6 +9,7 @@ import com.hjw0623.character.presentation.model.gear.ElixirUi
 import com.hjw0623.character.presentation.model.gear.GemsUi
 import com.hjw0623.character.presentation.model.gear.SpecialEffect
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
+import com.hjw0623.character.presentation.model.profile.StatsUi
 
 
 fun mockCharacterProfileContent(): CharacterProfileUi {
@@ -107,6 +108,18 @@ fun mockGemContent(): GemsUi {
         grade = "고대",
         skillName = "피니쉬 스트라이크",
         effect = "피해 44.00% 증가"
+    )
+}
+fun mockStatsContent(): StatsUi {
+    return StatsUi(
+        attackPoint = 120671,
+        hp = 278559,
+        critical = 662,
+        specialty = 1809,
+        agility = 72,
+        subdue = 75,
+        endurance = 69,
+        proficiency = 71
     )
 }
 internal val emptyBraceletUi = BraceletUi(

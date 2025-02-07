@@ -14,6 +14,7 @@ import com.hjw0623.character.presentation.model.gear.toBraceletUi
 import com.hjw0623.character.presentation.model.gear.toGearUi
 import com.hjw0623.character.presentation.model.gear.toGemsUi
 import com.hjw0623.character.presentation.model.profile.toCharacterProfileUi
+import com.hjw0623.character.presentation.model.profile.toCharacterStatsUi
 import com.hjw0623.core.domain.util.onError
 import com.hjw0623.core.domain.util.onSuccess
 import com.hjw0623.core.presentation.ui.UiText
@@ -26,7 +27,6 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.selects.whileSelect
 import timber.log.Timber
 
 class CharacterViewModel(
@@ -60,12 +60,15 @@ class CharacterViewModel(
             characterRepository
                 .getCharacterProfile(state.value.searchedCharacterName)
                 .onSuccess { profile ->
+                    val stats = profile.toCharacterStatsUi()
                     _state.update {
                         it.copy(
                             isCharacterProfileLoading = false,
-                            characterProfile = profile.toCharacterProfileUi()
+                            characterProfile = profile.toCharacterProfileUi(),
+                            stats = stats
                         )
                     }
+                    Timber.tag("stats12").d(stats.toString())
                     Timber.d("Successfully loaded characterProfile: $profile")
                 }
                 .onError { error ->

@@ -1,7 +1,6 @@
 package com.hjw0623.character.presentation
 
 import androidx.compose.runtime.Immutable
-import com.hjw0623.character.domain.model.gems.Gems
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
@@ -12,6 +11,7 @@ import com.hjw0623.character.presentation.model.gear.GearUi
 import com.hjw0623.character.presentation.model.gear.GemsUi
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.profile.CharacterProfileUi
+import com.hjw0623.character.presentation.model.profile.StatsUi
 
 @Immutable
 data class CharacterState(
@@ -26,7 +26,8 @@ data class CharacterState(
     val bracelet: BraceletUi = emptyBraceletUi,
     val elixir: ElixirUi = ElixirUi(),
     val transcendence: TranscendenceUi = TranscendenceUi(),
-    val gemsList: List<GemsUi> = emptyList()
+    val gemsList: List<GemsUi> = emptyList(),
+    val stats: StatsUi = StatsUi()
 ) {
     val isLoading: Boolean
         get() = isCharacterProfileLoading || isGearLoading || isGemLoading
