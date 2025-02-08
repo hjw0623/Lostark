@@ -23,6 +23,7 @@ import com.hjw0623.character.presentation.model.profile.StatsUi
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostArkGray
 import com.hjw0623.core.presentation.designsystem.LostArkLightBlue
+import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import com.hjw0623.core.presentation.designsystem.Typography
 
@@ -48,7 +49,7 @@ fun StatsList(
                 .fillMaxWidth()
                 .padding(10.dp)
                 .background(
-                    color = LostArkLightBlue,
+                    color = LostArkWhite,
                     shape = RoundedCornerShape(4.dp)
                 ),
             verticalArrangement = Arrangement.SpaceEvenly,
@@ -93,7 +94,7 @@ fun StatsList(
                 .fillMaxWidth()
                 .padding(10.dp)
                 .background(
-                    color = LostArkLightBlue,
+                    color = LostArkWhite,
                     shape = RoundedCornerShape(4.dp)
                 ),
         ) {

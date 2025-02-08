@@ -47,7 +47,11 @@ fun AbilityStoneItem(abilityStoneUi: AbilityStoneUi) {
         modifier = Modifier
             .fillMaxWidth()
             .height(80.dp)
-            .padding(5.dp),
+            .padding(5.dp)
+            .background(
+                color = LostArkWhite,
+                shape = RoundedCornerShape(8.dp)
+            ),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
