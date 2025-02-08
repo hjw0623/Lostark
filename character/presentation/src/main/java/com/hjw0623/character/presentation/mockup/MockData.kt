@@ -1,5 +1,6 @@
 package com.hjw0623.character.presentation.mockup
 
+import com.hjw0623.character.presentation.model.engraving.EngravingUi
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.BraceletUi
 import com.hjw0623.character.presentation.model.profile.CharacterProfileUi
@@ -122,6 +123,16 @@ fun mockStatsContent(): StatsUi {
         proficiency = 71
     )
 }
+fun mockEngravingContent(): EngravingUi {
+    return EngravingUi(
+        icon = "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_83.png",
+        level = 4,
+        name = "쉴드관통",
+        grade = "유물",
+        abilityStoneLevel = 2
+    )
+}
+
 internal val emptyBraceletUi = BraceletUi(
     type = "",
     name = "",

@@ -1,15 +1,16 @@
 package com.hjw0623.data
 
 import com.hjw0623.character.domain.CharacterRepository
+import com.hjw0623.character.domain.model.engravings.Engravings
 import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.domain.model.gems.Gems
 import com.hjw0623.character.domain.model.profile.CharacterProfile
 import com.hjw0623.core.data.networking.constructRoute
-import com.hjw0623.core.data.networking.responseToResult
 import com.hjw0623.core.data.networking.safeCall
 import com.hjw0623.core.domain.util.DataError
 import com.hjw0623.core.domain.util.Result
 import com.hjw0623.core.domain.util.map
+import com.hjw0623.data.model.engravings.EngravingsSerializable
 import com.hjw0623.data.model.gear.GearSerializable
 import com.hjw0623.data.model.gems.GemsSerializable
 import com.hjw0623.data.model.profile.CharacterProfileSerializable
@@ -49,4 +50,16 @@ class CharacterRepositoryImpl(
             response.toDomain()
         }
     }
+
+    override suspend fun getEngravings(characterName: String): Result<Engravings, DataError.Network> {
+        return safeCall<EngravingsSerializable> {
+            httpClient.get(
+                urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/engravings")
+            )
+        }. map { response ->
+            response.toDomain()
+        }
+    }
+
+
 }

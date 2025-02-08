@@ -1,5 +1,9 @@
 package com.hjw0623.data
 
+import com.hjw0623.character.domain.model.engravings.ArkPassiveEffect
+import com.hjw0623.character.domain.model.engravings.Effect
+import com.hjw0623.character.domain.model.engravings.Engraving
+import com.hjw0623.character.domain.model.engravings.Engravings
 import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.domain.model.gems.Effects
 import com.hjw0623.character.domain.model.gems.Gem
@@ -8,6 +12,10 @@ import com.hjw0623.character.domain.model.gems.Skill
 import com.hjw0623.character.domain.model.profile.CharacterProfile
 import com.hjw0623.character.domain.model.profile.Stat
 import com.hjw0623.character.domain.model.profile.Tendency
+import com.hjw0623.data.model.engravings.ArkPassiveEffectSerializable
+import com.hjw0623.data.model.engravings.EffectSerializable
+import com.hjw0623.data.model.engravings.EngravingSerializable
+import com.hjw0623.data.model.engravings.EngravingsSerializable
 import com.hjw0623.data.model.gear.GearSerializable
 import com.hjw0623.data.model.gems.EffectsSerializable
 import com.hjw0623.data.model.gems.GemSerializable
@@ -80,4 +88,40 @@ fun GemSerializable.toDomain(): Gem {
         slot = this.slot,
         tooltip = this.tooltip ?: ""
     )
+}
+
+fun EffectSerializable.toDomain(): Effect {
+    return Effect(
+        icon = this.icon,
+        name = this.name,
+        description = this.description
+    )
+}
+
+fun ArkPassiveEffectSerializable.toDomain(): ArkPassiveEffect {
+    return ArkPassiveEffect(
+        abilityStoneLevel = this.abilityStoneLevel,
+        grade = this.grade,
+        level = this.level,
+        name = this.name,
+        description = this.description
+    )
+}
+
+fun EngravingSerializable.toDomain(): Engraving {
+    return Engraving(
+        slot = this.slot,
+        name = this.name,
+        icon = this.icon,
+        tooltip = this.tooltip
+    )
+}
+
+fun EngravingsSerializable.toDomain(): Engravings {
+    return Engravings(
+        engravings = this.engravings?.map { it.toDomain() } ?: emptyList(),
+        effects = this.effects?.map { it.toDomain() } ?: emptyList(),
+        arkPassiveEffect = this.arkPassiveEffects?.map { it.toDomain() } ?: emptyList()
+    )
+
 }

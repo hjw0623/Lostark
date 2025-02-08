@@ -78,10 +78,64 @@ fun getEffectLevel(effect: String): String {
         "아군 공격력 강화 효과 +5.00%" to "상",
         "아군 피해량 강화 효과 +2.00%" to "하",
         "아군 피해량 강화 효과 +4.50%" to "중",
-        "아군 피해량 강화 효과 +7.50%" to "상" // 수정됨
+        "아군 피해량 강화 효과 +7.50%" to "상"
     )
 
     return effectMapping[effect] ?: "X"
+}
+
+fun getEngravingIconUrl(name: String): String {
+    val iconMapper = mapOf(
+        "공격력감소" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_218.png",
+        "방어력감소" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_219.png",
+        "공격속도감소" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_220.png",
+        "이동속도감소" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_221.png",
+        "안정된상태" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_105.png",
+        "원한" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_71.png",
+        "중갑착용" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_46.png",
+        "저주받은인형" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_237.png",
+        "속전속결" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_236.png",
+        "약자무시" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Achieve/achieve_04_30.png",
+        "정기흡수" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_65.png",
+        "에테르포식자" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_74.png",
+        "굳은의지" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_44.png",
+        "구슬동자" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_18.png",
+        "위기모면" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_162.png",
+        "예리한둔기" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Achieve/achieve_03_40.png",
+        "급소타격" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_168.png",
+        "최대마나증가" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_122.png",
+        "마나효율증가" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_166.png",
+        "탈출의명수" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_10.png",
+        "불굴" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_66.png",
+        "실드관통" to "",
+        "달인의저력" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_147.png",
+        "여신의가호" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_229.png",
+        "폭발물전문가" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_121.png",
+        "강화방패" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_239.png",
+        "강령술" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_29.png",
+        "부러진뼈" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_94.png",
+        "번개의분노" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_191.png",
+        "승부사" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_136.png",
+        "기습의대가" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_148.png",
+        "마나의흐름" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_63.png",
+        "바리케이드" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_170.png",
+        "각성" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_113.png",
+        "추진력" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_232.png",
+        "정밀단도" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_239.png",
+        "슈퍼차지" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Achieve/achieve_06_14.png",
+        "선수필승" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Achieve/achieve_08_62.png",
+        "돌격대장" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_210.png",
+        "전문의" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_237.png",
+        "질량증가" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_231.png",
+        "결투의대가" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_224.png",
+        "타격의대가" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_233.png",
+        "아드레날린" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_235.png",
+        "긴급구조" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_238.png",
+        "시선집중" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_234.png",
+        "분쇄의주먹" to "https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_83.png",
+
+    )
+    return iconMapper[name] ?: ""
 }
 
 val tierFourRelicEffectWithGrades = listOf(
@@ -1480,8 +1534,6 @@ val tierThreeAncientEffectWithShortName = mapOf(
     ) to "정밀"
 )
 
-
-
 fun normalizeText(text: String): String {
     return text.replace("\\s+".toRegex(), "").trim()
 }
@@ -1500,7 +1552,6 @@ fun getEffectRank(effectList: List<List<String>>, targetEffect: String): Pair<St
 
     return targetEffect to targetEffect
 }
-
 
 fun shortSpecialEffect(specialEffect: String, tier: Int, grade: String): String {
     val normalizedSpecialEffect = normalizeText(specialEffect)

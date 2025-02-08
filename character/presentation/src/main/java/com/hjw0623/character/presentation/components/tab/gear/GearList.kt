@@ -1,11 +1,17 @@
 package com.hjw0623.character.presentation.components.tab.gear
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,11 +21,13 @@ import androidx.compose.ui.unit.dp
 import com.hjw0623.character.presentation.mockup.mockAbilityStoneContent
 import com.hjw0623.character.presentation.mockup.mockBraceletContent
 import com.hjw0623.character.presentation.mockup.mockElixirContent
+import com.hjw0623.character.presentation.mockup.mockEngravingContent
 import com.hjw0623.character.presentation.mockup.mockEquipmentContent
 import com.hjw0623.character.presentation.mockup.mockGemContent
 import com.hjw0623.character.presentation.mockup.mockJewelryContent
 import com.hjw0623.character.presentation.mockup.mockStatsContent
 import com.hjw0623.character.presentation.mockup.mockTranscendenceUi
+import com.hjw0623.character.presentation.model.engraving.EngravingUi
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.BraceletUi
 import com.hjw0623.character.presentation.model.gear.GearUi
@@ -28,6 +36,7 @@ import com.hjw0623.character.presentation.model.gear.ElixirUi
 import com.hjw0623.character.presentation.model.gear.GemsUi
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.profile.StatsUi
+import com.hjw0623.core.presentation.designsystem.LostArkLightBlue
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable
@@ -39,16 +48,22 @@ fun GearList(
     elixirUi: ElixirUi,
     transcendenceUi: TranscendenceUi,
     gemsList: List<GemsUi>,
-    statsUi: StatsUi
+    statsUi: StatsUi,
+    engravingUiList: List<EngravingUi>
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(8.dp)
             .verticalScroll(rememberScrollState())
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .background(
+                    color = LostArkLightBlue,
+                    shape = RoundedCornerShape(8.dp)
+                )
         ) {
             Column(
                 modifier = Modifier
@@ -72,9 +87,18 @@ fun GearList(
                 AbilityStoneItem(abilityStoneUi)
             }
         }
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(5.dp)
+        )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .background(
+                    color = LostArkLightBlue,
+                    shape = RoundedCornerShape(8.dp)
+                )
         ) {
             Box(
                 modifier = Modifier
@@ -95,26 +119,48 @@ fun GearList(
                 TranscendenceItem(transcendenceUi)
             }
         }
-        GemsList(gemsList)
-
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(5.dp)
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    color = LostArkLightBlue,
+                    shape = RoundedCornerShape(8.dp)
+                )
+        ) {
+            GemsList(gemsList)
+        }
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(5.dp)
+        )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .background(
+                    color = LostArkLightBlue,
+                    shape = RoundedCornerShape(8.dp)
+                )
         ) {
             Box(
                 modifier = Modifier
                     .weight(1f)
+                    .fillMaxHeight()
             ) {
                 StatsList(statsUi)
             }
             Box(
                 modifier = Modifier
                     .weight(1f)
+                    .fillMaxHeight()
             )
             {
-                Text(
-                    text = "각인"
-                )
+                EngravingsList(engravingUiList)
             }
         }
     }
@@ -146,6 +192,13 @@ fun GearListPreview() {
         mockGemContent(),
         mockGemContent()
     )
+    val engravingList = listOf(
+        mockEngravingContent(),
+        mockEngravingContent(),
+        mockEngravingContent(),
+        mockEngravingContent(),
+        mockEngravingContent()
+    )
 
     LostarkTheme {
         GearList(
@@ -156,7 +209,8 @@ fun GearListPreview() {
             elixirUi = mockElixirContent(),
             transcendenceUi = mockTranscendenceUi(),
             gemsList = gemList,
-            statsUi = mockStatsContent()
+            statsUi = mockStatsContent(),
+            engravingUiList = engravingList
         )
     }
 }

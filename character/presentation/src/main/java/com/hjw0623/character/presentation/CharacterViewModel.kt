@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.hjw0623.character.domain.CharacterRepository
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
+import com.hjw0623.character.presentation.model.engraving.toEngravingUi
 import com.hjw0623.character.presentation.model.gear.ElixirUi
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.gear.categorizeGears
@@ -51,6 +52,7 @@ class CharacterViewModel(
         loadCharacterProfile()
         loadGear()
         loadGem()
+        loadEngraving()
     }
 
     private fun loadCharacterProfile() {
@@ -68,7 +70,6 @@ class CharacterViewModel(
                             stats = stats
                         )
                     }
-                    Timber.tag("stats12").d(stats.toString())
                     Timber.d("Successfully loaded characterProfile: $profile")
                 }
                 .onError { error ->
@@ -135,6 +136,7 @@ class CharacterViewModel(
                 }
         }
     }
+
     private fun loadGem() {
         viewModelScope.launch {
             _state.update { it.copy(isGemLoading = true) }
@@ -151,7 +153,28 @@ class CharacterViewModel(
         }
     }
 
+    private fun loadEngraving() {
+        viewModelScope.launch {
+            _state.update { it.copy(isEngravingLoading = true) }
 
+            characterRepository
+                .getEngravings(state.value.searchedCharacterName)
+                .onSuccess { engravingsList ->
+                    _state.update {
+                        it.copy(
+                            isEngravingLoading = false,
+                            engraving = engravingsList.arkPassiveEffect?.map { it.toEngravingUi() }
+                                ?: emptyList()
+                        )
+                    }
+
+                }
+                .onError { error ->
+                    Timber.e("$error", "Failed to load engraving")
+                    sendError(error.asUiText())
+                }
+        }
+    }
     private fun sendError(message: UiText) {
         viewModelScope.launch {
             if (!hasErrorOccurred) {
