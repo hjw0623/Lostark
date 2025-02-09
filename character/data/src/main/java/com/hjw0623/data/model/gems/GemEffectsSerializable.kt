@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class EffectsSerializable(
+data class GemEffectsSerializable(
     @SerialName("Description") val description: String,
     @SerialName("Skills") val skills: List<SkillSerializable>
 )
