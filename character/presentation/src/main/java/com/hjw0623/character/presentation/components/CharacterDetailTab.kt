@@ -95,7 +95,9 @@ fun CharacterDetailTab(
                     transcendenceUi = state.transcendence,
                     gemsList  = state.gemsList,
                     statsUi = state.stats,
-                    engravingUiList = state.engraving
+                    engravingUiList = state.engraving,
+                    card = state.card,
+                    cardEffectList = state.cardEffect
                 )
                 1 -> Text("아크패시브 내용", Modifier.padding(16.dp))
                 2 -> Text("스킬 내용", Modifier.padding(16.dp))

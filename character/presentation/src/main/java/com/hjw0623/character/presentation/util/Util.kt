@@ -138,6 +138,22 @@ fun getEngravingIconUrl(name: String): String {
     return iconMapper[name] ?: ""
 }
 
+fun shortCardEffect(cardEffect: String): String {
+    return when {
+        cardEffect.contains("계획") -> "너계획"
+        cardEffect.contains("남겨진") -> "남바절"
+        cardEffect.contains("군단장") -> "암구빛"
+        cardEffect.contains("거인의") -> "침거숲"
+        cardEffect.contains("살아서") -> "살다보"
+        cardEffect.contains("우마르") -> "세우"
+        cardEffect.contains("화염의") -> "화구빛"
+        cardEffect.contains("대지의") -> "토구빛"
+        cardEffect.contains("라제니스의") -> "라제"
+        cardEffect.contains("뇌전의") -> "뇌구빛"
+        else -> cardEffect
+    }
+}
+
 val tierFourRelicEffectWithGrades = listOf(
     listOf(
         "마법 방어력 +4000", "마법 방어력 +5000", "마법 방어력 +6000"

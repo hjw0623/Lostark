@@ -17,8 +17,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.hjw0623.character.domain.model.card.CardEffect
 import com.hjw0623.character.presentation.mockup.mockAbilityStoneContent
 import com.hjw0623.character.presentation.mockup.mockBraceletContent
+import com.hjw0623.character.presentation.mockup.mockCardContent
+import com.hjw0623.character.presentation.mockup.mockCardEffectContent
 import com.hjw0623.character.presentation.mockup.mockElixirContent
 import com.hjw0623.character.presentation.mockup.mockEngravingContent
 import com.hjw0623.character.presentation.mockup.mockEquipmentContent
@@ -26,6 +29,8 @@ import com.hjw0623.character.presentation.mockup.mockGemContent
 import com.hjw0623.character.presentation.mockup.mockJewelryContent
 import com.hjw0623.character.presentation.mockup.mockStatsContent
 import com.hjw0623.character.presentation.mockup.mockTranscendenceUi
+import com.hjw0623.character.presentation.model.card.CardEffectUi
+import com.hjw0623.character.presentation.model.card.CardUi
 import com.hjw0623.character.presentation.model.engraving.EngravingUi
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.BraceletUi
@@ -49,7 +54,9 @@ fun GearList(
     transcendenceUi: TranscendenceUi,
     gemsList: List<GemsUi>,
     statsUi: StatsUi,
-    engravingUiList: List<EngravingUi>
+    engravingUiList: List<EngravingUi>,
+    card: List<CardUi>,
+    cardEffectList: List<CardEffectUi>
 ) {
     Column(
         modifier = Modifier
@@ -172,6 +179,15 @@ fun GearList(
                 EngravingsList(engravingUiList)
             }
         }
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(5.dp)
+        )
+        CardList(
+            cardList = card,
+            cardEffectList = cardEffectList,
+        )
     }
 }
 
@@ -208,6 +224,17 @@ fun GearListPreview() {
         mockEngravingContent(),
         mockEngravingContent()
     )
+    val cardList = listOf(
+        mockCardContent(),
+        mockCardContent(),
+        mockCardContent(),
+        mockCardContent(),
+        mockCardContent(),
+    )
+    val cardEffectList = listOf(
+        mockCardEffectContent(),
+        mockCardEffectContent()
+    )
 
     LostarkTheme {
         GearList(
@@ -219,7 +246,9 @@ fun GearListPreview() {
             transcendenceUi = mockTranscendenceUi(),
             gemsList = gemList,
             statsUi = mockStatsContent(),
-            engravingUiList = engravingList
+            engravingUiList = engravingList,
+            card = cardList,
+            cardEffectList = cardEffectList
         )
     }
 }

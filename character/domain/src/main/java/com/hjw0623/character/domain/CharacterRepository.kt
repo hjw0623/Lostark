@@ -1,5 +1,6 @@
 package com.hjw0623.character.domain
 
+import com.hjw0623.character.domain.model.card.CardList
 import com.hjw0623.character.domain.model.engravings.Engravings
 import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.domain.model.gems.Gems
@@ -13,4 +14,5 @@ interface CharacterRepository {
 
     suspend fun getGems(characterName: String): Result<Gems, DataError.Network>
     suspend fun getEngravings(characterName: String): Result<Engravings, DataError.Network>
+    suspend fun getCards(characterName: String): Result<CardList, DataError.Network>
 }

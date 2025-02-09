@@ -1,6 +1,7 @@
 package com.hjw0623.data
 
 import com.hjw0623.character.domain.CharacterRepository
+import com.hjw0623.character.domain.model.card.CardList
 import com.hjw0623.character.domain.model.engravings.Engravings
 import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.domain.model.gems.Gems
@@ -10,10 +11,16 @@ import com.hjw0623.core.data.networking.safeCall
 import com.hjw0623.core.domain.util.DataError
 import com.hjw0623.core.domain.util.Result
 import com.hjw0623.core.domain.util.map
+import com.hjw0623.data.model.card.CardsSerializable
+import com.hjw0623.data.model.card.toDomain
 import com.hjw0623.data.model.engravings.EngravingsSerializable
+import com.hjw0623.data.model.engravings.toDomain
 import com.hjw0623.data.model.gear.GearSerializable
+import com.hjw0623.data.model.gear.toDomain
 import com.hjw0623.data.model.gems.GemsSerializable
+import com.hjw0623.data.model.gems.toDomain
 import com.hjw0623.data.model.profile.CharacterProfileSerializable
+import com.hjw0623.data.model.profile.toDomain
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.http.encodeURLPath
@@ -56,7 +63,17 @@ class CharacterRepositoryImpl(
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/engravings")
             )
-        }. map { response ->
+        }.map { response ->
+            response.toDomain()
+        }
+    }
+
+    override suspend fun getCards(characterName: String): Result<CardList, DataError.Network> {
+        return safeCall<CardsSerializable> {
+            httpClient.get(
+                urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/cards")
+            )
+        }.map { response ->
             response.toDomain()
         }
     }

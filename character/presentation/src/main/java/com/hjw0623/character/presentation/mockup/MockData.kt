@@ -1,5 +1,8 @@
 package com.hjw0623.character.presentation.mockup
 
+import androidx.compose.material3.Card
+import com.hjw0623.character.presentation.model.card.CardEffectUi
+import com.hjw0623.character.presentation.model.card.CardUi
 import com.hjw0623.character.presentation.model.engraving.EngravingUi
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.BraceletUi
@@ -11,6 +14,7 @@ import com.hjw0623.character.presentation.model.gem.GemsUi
 import com.hjw0623.character.presentation.model.gear.SpecialEffect
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.profile.StatsUi
+import com.hjw0623.character.presentation.util.shortCardEffect
 
 
 fun mockCharacterProfileContent(): CharacterProfileUi {
@@ -130,6 +134,26 @@ fun mockEngravingContent(): EngravingUi {
         name = "쉴드관통",
         grade = "유물",
         abilityStoneLevel = 2
+    )
+}
+fun mockCardContent(): CardUi {
+    return CardUi(
+        cardIcon = "https://cdn-lostark.game.onstove.com/efui_iconatlas/card_legend/card_legend_01_0.png",
+        cardName = "웨이",
+        cardLevel = 5,
+        cardGrade = "전설"
+    )
+}
+fun mockCardEffectContent(): CardEffectUi {
+    return CardEffectUi(
+        index = 0,
+        effectName = shortCardEffect("살아서 다시 보길 바란다"),
+        effectGrade = 30,
+        effectDescriptions = mapOf(
+            "2세트" to "뇌속성 피해 감소 +10.00%",
+            "2세트" to "뇌속성 피해 감소 +10.00%",
+            "2세트" to "뇌속성 피해 감소 +10.00%"
+        )
     )
 }
 

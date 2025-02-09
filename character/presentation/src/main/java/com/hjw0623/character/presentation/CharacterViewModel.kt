@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.hjw0623.character.domain.CharacterRepository
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
+import com.hjw0623.character.presentation.model.card.toCardEffectUi
+import com.hjw0623.character.presentation.model.card.toCardUi
 import com.hjw0623.character.presentation.model.engraving.toEngravingUi
 import com.hjw0623.character.presentation.model.gear.ElixirUi
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
@@ -53,6 +55,7 @@ class CharacterViewModel(
         loadGear()
         loadGem()
         loadEngraving()
+        loadCard()
     }
 
     private fun loadCharacterProfile() {
@@ -134,6 +137,7 @@ class CharacterViewModel(
 
                     Timber.d("Successfully loaded characterProfile: $gearList")
                 }
+
         }
     }
 
@@ -175,6 +179,33 @@ class CharacterViewModel(
                 }
         }
     }
+
+    private fun loadCard() {
+        viewModelScope.launch {
+            _state.update { it.copy(isCardLoading = true) }
+
+            characterRepository.getCards(state.value.searchedCharacterName)
+                .onSuccess { cardList ->
+                    val card = cardList.cards.map { it.toCardUi() }
+                    val cardEffect = cardList.cardEffects.map { it.toCardEffectUi() }
+                    Timber.tag("fdfdf").d(card.toString())
+                    Timber.tag("fdfdf").d(cardEffect.toString())
+                    _state.update {
+                        it.copy(
+                            isCardLoading = false,
+                            card = card,
+                            cardEffect = cardEffect
+                        )
+                    }
+                    Timber.d("Successfully loaded card ${state.value.card}")
+                }
+                .onError { error ->
+                    Timber.e("$error", "Failed to load card")
+                    sendError(error.asUiText())
+                }
+        }
+    }
+
     private fun sendError(message: UiText) {
         viewModelScope.launch {
             if (!hasErrorOccurred) {

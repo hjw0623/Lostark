@@ -3,6 +3,8 @@ package com.hjw0623.character.presentation
 import androidx.compose.runtime.Immutable
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
+import com.hjw0623.character.presentation.model.card.CardEffectUi
+import com.hjw0623.character.presentation.model.card.CardUi
 import com.hjw0623.character.presentation.model.engraving.EngravingUi
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.AccessoriesUi
@@ -20,8 +22,9 @@ data class CharacterState(
     val isGearLoading: Boolean = false,
     val isGemLoading: Boolean = false,
     val isEngravingLoading: Boolean = false,
+    val isCardLoading: Boolean = false,
 
-    val searchedCharacterName: String = "이다",
+    val searchedCharacterName: String = "히후히후",
 
     val characterProfile: CharacterProfileUi? = null,
     val gearList: List<GearUi> = emptyList(),
@@ -32,8 +35,10 @@ data class CharacterState(
     val transcendence: TranscendenceUi = TranscendenceUi(),
     val gemsList: List<GemsUi> = emptyList(),
     val stats: StatsUi = StatsUi(),
-    val engraving: List<EngravingUi> = emptyList()
+    val engraving: List<EngravingUi> = emptyList(),
+    val card: List<CardUi> = emptyList(),
+    val cardEffect: List<CardEffectUi> = emptyList()
 ) {
     val isLoading: Boolean
-        get() = isCharacterProfileLoading || isGearLoading || isGemLoading || isEngravingLoading
+        get() = isCharacterProfileLoading || isGearLoading || isGemLoading || isEngravingLoading || isCardLoading
 }
