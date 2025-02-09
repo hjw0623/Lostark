@@ -1,8 +1,6 @@
 package com.hjw0623.character.presentation
 
 import androidx.compose.runtime.Immutable
-import com.hjw0623.character.domain.model.engravings.Engraving
-import com.hjw0623.character.domain.model.engravings.Engravings
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
 import com.hjw0623.character.presentation.model.engraving.EngravingUi
@@ -11,7 +9,7 @@ import com.hjw0623.character.presentation.model.gear.AccessoriesUi
 import com.hjw0623.character.presentation.model.gear.BraceletUi
 import com.hjw0623.character.presentation.model.gear.ElixirUi
 import com.hjw0623.character.presentation.model.gear.GearUi
-import com.hjw0623.character.presentation.model.gear.GemsUi
+import com.hjw0623.character.presentation.model.gem.GemsUi
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.profile.CharacterProfileUi
 import com.hjw0623.character.presentation.model.profile.StatsUi

@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.hjw0623.character.presentation.mockup.mockGemContent
-import com.hjw0623.character.presentation.model.gear.GemsUi
+import com.hjw0623.character.presentation.model.gem.GemsUi
 import com.hjw0623.core.presentation.designsystem.LostArkAncient
 import com.hjw0623.core.presentation.designsystem.LostArkLegend
 import com.hjw0623.core.presentation.designsystem.LostArkOrange

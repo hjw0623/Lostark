@@ -2,6 +2,7 @@ package com.hjw0623.character.presentation.model.gear
 
 import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.domain.model.gems.Gem
+import com.hjw0623.character.presentation.model.gem.GemsUi
 import com.hjw0623.character.presentation.util.tierFourAncientEffectWithGrades
 import com.hjw0623.character.presentation.util.getEffectRank
 import com.hjw0623.character.presentation.util.tierFourRelicEffectWithGrades

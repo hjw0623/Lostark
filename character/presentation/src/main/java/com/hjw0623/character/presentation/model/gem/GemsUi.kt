@@ -1,4 +1,4 @@
-package com.hjw0623.character.presentation.model.gear
+package com.hjw0623.character.presentation.model.gem
 
 data class GemsUi(
     val name: String,

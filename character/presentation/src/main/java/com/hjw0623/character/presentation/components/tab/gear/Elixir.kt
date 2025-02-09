@@ -1,5 +1,6 @@
 package com.hjw0623.character.presentation.components.tab.gear
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,6 +32,7 @@ import com.hjw0623.core.presentation.designsystem.LostArkBlue
 import com.hjw0623.core.presentation.designsystem.LostArkDarkRed
 import com.hjw0623.core.presentation.designsystem.LostArkGreen
 import com.hjw0623.core.presentation.designsystem.LostArkOrange
+import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable
@@ -39,7 +41,7 @@ fun ElixirItem(elixirUi: ElixirUi) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(5.dp)
+            .padding(3.dp)
     ) {
         Text(
             text = elixirUi.type,
