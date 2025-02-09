@@ -111,7 +111,7 @@ fun StatsList(
                         text = "치명",
                         style = Typography.bodyMedium.copy(
                             color = LostArkBlack,
-                            fontSize = 13.sp
+                            fontSize = 10.sp
                         ),
                         modifier = Modifier.padding(5.dp)
                     )
@@ -132,7 +132,7 @@ fun StatsList(
                         text = "특화",
                         style = Typography.bodyMedium.copy(
                             color = LostArkBlack,
-                            fontSize = 13.sp
+                            fontSize = 10.sp
                         ),
                         modifier = Modifier.padding(5.dp)
                     )
@@ -153,7 +153,7 @@ fun StatsList(
                         text = "신속",
                         style = Typography.bodyMedium.copy(
                             color = LostArkBlack,
-                            fontSize = 13.sp
+                            fontSize = 10.sp
                         ),
                         modifier = Modifier.padding(5.dp)
                     )
@@ -181,7 +181,7 @@ fun StatsList(
                         text = "제압",
                         style = Typography.bodyMedium.copy(
                             color = LostArkBlack,
-                            fontSize = 13.sp
+                            fontSize = 10.sp
                         ),
                         modifier = Modifier.padding(5.dp)
                     )
@@ -202,7 +202,7 @@ fun StatsList(
                         text = "인내",
                         style = Typography.bodyMedium.copy(
                             color = LostArkBlack,
-                            fontSize = 13.sp
+                            fontSize = 10.sp
                         ),
                         modifier = Modifier.padding(5.dp)
                     )
@@ -223,7 +223,7 @@ fun StatsList(
                         text = "숙련",
                         style = Typography.bodyMedium.copy(
                             color = LostArkBlack,
-                            fontSize = 13.sp
+                            fontSize = 10.sp
                         ),
                         modifier = Modifier.padding(5.dp)
                     )

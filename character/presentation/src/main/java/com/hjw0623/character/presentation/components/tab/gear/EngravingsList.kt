@@ -28,7 +28,6 @@ import com.hjw0623.character.presentation.model.engraving.EngravingUi
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostArkBlue
 import com.hjw0623.core.presentation.designsystem.LostArkLegend
-import com.hjw0623.core.presentation.designsystem.LostArkLightBlue
 import com.hjw0623.core.presentation.designsystem.LostArkPurple
 import com.hjw0623.core.presentation.designsystem.LostArkRelic
 import com.hjw0623.core.presentation.designsystem.LostArkWhite
@@ -77,7 +76,7 @@ fun EngravingsList(
                             .size(40.dp)
                             .clip(CircleShape)
                     )
-                    Spacer(modifier = Modifier.width(5.dp))
+                    Spacer(modifier = Modifier.width(3.dp))
                     Text(
                         "Lv."+engraving.level,
                         color = LostArkWhite,
@@ -98,7 +97,7 @@ fun EngravingsList(
                             }
                             .padding(8.dp)
                     )
-                    Spacer(modifier = Modifier.width(5.dp))
+                    Spacer(modifier = Modifier.width(3.dp))
                     Column {
                         Text(
                             text = engraving.name,

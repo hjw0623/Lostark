@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -37,6 +38,7 @@ import com.hjw0623.character.presentation.model.gear.GemsUi
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.profile.StatsUi
 import com.hjw0623.core.presentation.designsystem.LostArkLightBlue
+import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable
@@ -54,7 +56,7 @@ fun GearList(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(5.dp)
             .verticalScroll(rememberScrollState())
     ) {
         Row(
@@ -100,23 +102,32 @@ fun GearList(
                     shape = RoundedCornerShape(8.dp)
                 )
         ) {
-            Box(
+            Row(
                 modifier = Modifier
-                    .weight(1.4f)
+                    .background(
+                    color = LostArkWhite,
+                    shape = RoundedCornerShape(8.dp)
+                )
+                    .padding(10.dp)
             ) {
-                BraceletItem(braceletUi)
-            }
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-            ) {
-                ElixirItem(elixirUi)
-            }
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-            ) {
-                TranscendenceItem(transcendenceUi)
+                Box(
+                    modifier = Modifier
+                        .weight(1.4f)
+                ) {
+                    BraceletItem(braceletUi)
+                }
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                ) {
+                    ElixirItem(elixirUi)
+                }
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                ) {
+                    TranscendenceItem(transcendenceUi)
+                }
             }
         }
         Spacer(
