@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class EngravingsSerializable(
     @SerialName("Engravings") val engravings: List<EngravingSerializable>?,
-    @SerialName("Effects") val effects: List<EffectSerializable>?,
+    @SerialName("Effects") val effects: List<EngravingEffectSerializable>?,
     @SerialName("ArkPassiveEffects") val arkPassiveEffects: List<ArkPassiveEffectSerializable>?
 )

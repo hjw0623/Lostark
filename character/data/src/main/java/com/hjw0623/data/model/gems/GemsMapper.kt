@@ -1,19 +1,19 @@
 package com.hjw0623.data.model.gems
 
-import com.hjw0623.character.domain.model.gems.Effects
+import com.hjw0623.character.domain.model.gems.GemEffects
 import com.hjw0623.character.domain.model.gems.Gem
 import com.hjw0623.character.domain.model.gems.Gems
 import com.hjw0623.character.domain.model.gems.Skill
 
 fun GemsSerializable.toDomain(): Gems {
     return Gems(
-        effects = this.effects.toDomain(),
+        gemEffects = this.effects.toDomain(),
         gems = this.gems?.map { it.toDomain() } ?: emptyList()
     )
 }
 
-fun EffectsSerializable.toDomain(): Effects {
-    return Effects(
+fun GemEffectsSerializable.toDomain(): GemEffects {
+    return GemEffects(
         description = this.description,
         skills = this.skills.map { it.toDomain() }
     )
