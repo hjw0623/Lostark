@@ -17,7 +17,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.hjw0623.character.domain.model.card.CardEffect
 import com.hjw0623.character.presentation.mockup.mockAbilityStoneContent
 import com.hjw0623.character.presentation.mockup.mockBraceletContent
 import com.hjw0623.character.presentation.mockup.mockCardContent
@@ -45,7 +44,7 @@ import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable
-fun GearList(
+fun GearScreen(
     gearUis: List<GearUi>,
     accessoriesUis: List<AccessoriesUi>,
     abilityStoneUi: AbilityStoneUi,
@@ -237,7 +236,7 @@ fun GearListPreview() {
     )
 
     LostarkTheme {
-        GearList(
+        GearScreen(
             gearUis = equipmentList,
             accessoriesUis = jewelryList,
             abilityStoneUi = mockAbilityStoneContent(),
