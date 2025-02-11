@@ -21,3 +21,7 @@ val LostArkAncient = Color(0xFFE3C7A1)
 val LostArkRelic = Color(0xFFFA5D00)
 val LostArkEsther = Color(0xFF3CF2E6)
 val LostArkLegend = Color(0xFFF99200)
+
+val LostArkEvolution = Color(0xFFBD9B4C)
+val LostArkEnlightenment = Color(0xFF46ACC3)
+val LostArkLeap = Color(0xFFA4C44D)
