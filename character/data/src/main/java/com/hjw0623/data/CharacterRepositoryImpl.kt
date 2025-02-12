@@ -59,12 +59,16 @@ class CharacterRepositoryImpl(
     }
 
     override suspend fun getEngravings(characterName: String): Result<Engravings, DataError.Network> {
-        return safeCall<EngravingsSerializable> {
+        return safeCall<EngravingsSerializable?> {
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/engravings")
             )
         }.map { response ->
-            response.toDomain()
+            response?.toDomain() ?: EngravingsSerializable(
+                engravings = null,
+                effects = null,
+                arkPassiveEffects = null
+            ).toDomain()
         }
     }
 
