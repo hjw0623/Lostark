@@ -1,8 +1,11 @@
 package com.hjw0623.character.presentation
 
 import androidx.compose.runtime.Immutable
+import com.hjw0623.character.domain.model.arkpassive.ArkPassive
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
+import com.hjw0623.character.presentation.mockup.emptyArkPassiveUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
+import com.hjw0623.character.presentation.model.arkpassive.ArkPassiveUi
 import com.hjw0623.character.presentation.model.card.CardEffectUi
 import com.hjw0623.character.presentation.model.card.CardUi
 import com.hjw0623.character.presentation.model.engraving.EngravingUi
@@ -24,7 +27,9 @@ data class CharacterState(
     val isEngravingLoading: Boolean = false,
     val isCardLoading: Boolean = false,
 
-    val searchedCharacterName: String = "히후히후",
+    val isArkPassiveLoading: Boolean = false,
+
+    val searchedCharacterName: String = "버서커",
 
     val characterProfile: CharacterProfileUi? = null,
     val gearList: List<GearUi> = emptyList(),
@@ -37,8 +42,12 @@ data class CharacterState(
     val stats: StatsUi = StatsUi(),
     val engraving: List<EngravingUi> = emptyList(),
     val card: List<CardUi> = emptyList(),
-    val cardEffect: List<CardEffectUi> = emptyList()
+    val cardEffect: List<CardEffectUi> = emptyList(),
+    val arkPassive: ArkPassiveUi = emptyArkPassiveUi
+
+
 ) {
     val isLoading: Boolean
         get() = isCharacterProfileLoading || isGearLoading || isGemLoading || isEngravingLoading || isCardLoading
+                || isArkPassiveLoading
 }

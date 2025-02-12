@@ -1,6 +1,8 @@
 package com.hjw0623.character.presentation.mockup
 
 import androidx.compose.material3.Card
+import com.hjw0623.character.presentation.model.arkpassive.ArkPassiveUi
+import com.hjw0623.character.presentation.model.arkpassive.Effect
 import com.hjw0623.character.presentation.model.card.CardEffectUi
 import com.hjw0623.character.presentation.model.card.CardUi
 import com.hjw0623.character.presentation.model.engraving.EngravingUi
@@ -156,6 +158,50 @@ fun mockCardEffectContent(): CardEffectUi {
         )
     )
 }
+fun mockArkPassiveContent(): ArkPassiveUi {
+    return ArkPassiveUi(
+        evolutionPoint = 120,
+        enlightenmentPoint = 101,
+        leapPoint = 70,
+        evolutionEffectList = listOf(
+            mockArkPassiveEffectContent("진화"),
+            mockArkPassiveEffectContent("진화"),
+            mockArkPassiveEffectContent("진화"),
+            mockArkPassiveEffectContent("진화")
+        ),
+        enlightenmentEffectList = listOf(
+            mockArkPassiveEffectContent("깨달음"),
+            mockArkPassiveEffectContent("깨달음"),
+            mockArkPassiveEffectContent("깨달음"),
+            mockArkPassiveEffectContent("깨달음")
+        ),
+        leapEffectList = listOf(
+            mockArkPassiveEffectContent("도약"),
+            mockArkPassiveEffectContent("도약"),
+            mockArkPassiveEffectContent("도약"),
+            mockArkPassiveEffectContent("도약")
+        )
+    )
+}
+fun mockArkPassiveEffectContent(type: String): Effect {
+    return Effect(
+        type = type,
+        tier = "1티어",
+        icon = "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_bd/ark_passive_bd_1.png",
+        effect = "특화",
+        level = "10",
+        description = "특화가 500 증가합니다."
+    )
+}
+
+internal val emptyArkPassiveUi = ArkPassiveUi(
+    evolutionPoint = 0,
+    enlightenmentPoint = 0,
+    leapPoint = 0,
+    evolutionEffectList = emptyList(),
+    enlightenmentEffectList = emptyList(),
+    leapEffectList = emptyList()
+)
 
 internal val emptyBraceletUi = BraceletUi(
     type = "",

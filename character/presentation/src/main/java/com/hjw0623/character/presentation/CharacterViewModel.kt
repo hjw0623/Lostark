@@ -2,15 +2,19 @@ package com.hjw0623.character.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.GsonBuilder
 import com.hjw0623.character.domain.CharacterRepository
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
+import com.hjw0623.character.presentation.model.arkpassive.toArkPassiveUi
+import com.hjw0623.character.presentation.model.arkpassive.toEffect
 import com.hjw0623.character.presentation.model.card.toCardEffectUi
 import com.hjw0623.character.presentation.model.card.toCardUi
 import com.hjw0623.character.presentation.model.engraving.toEngravingUi
 import com.hjw0623.character.presentation.model.gear.ElixirUi
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.gear.categorizeGears
+import com.hjw0623.character.presentation.model.gear.removeHtmlTags
 import com.hjw0623.character.presentation.model.gear.toAbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.toAccessoriesUi
 import com.hjw0623.character.presentation.model.gear.toBraceletUi
@@ -56,6 +60,7 @@ class CharacterViewModel(
         loadGem()
         loadEngraving()
         loadCard()
+        loadArkPassive()
     }
 
     private fun loadCharacterProfile() {
@@ -201,6 +206,27 @@ class CharacterViewModel(
                 }
                 .onError { error ->
                     Timber.e("$error", "Failed to load card")
+                    sendError(error.asUiText())
+                }
+        }
+    }
+
+    private fun loadArkPassive(){
+        viewModelScope.launch {
+            _state.update { it.copy(isArkPassiveLoading = true) }
+
+            characterRepository.getArkPassive(state.value.searchedCharacterName)
+                .onSuccess { arkPassive ->
+                    _state.update {
+                        it.copy(
+                            isArkPassiveLoading = false,
+                            arkPassive = arkPassive.toArkPassiveUi()
+                        )
+                    }
+                    Timber.d("Successfully loaded ArkPassive ${state.value.card}")
+                }
+                .onError { error ->
+                    Timber.e("$error", "Failed to arkPassive")
                     sendError(error.asUiText())
                 }
         }

@@ -1,6 +1,7 @@
 package com.hjw0623.data
 
 import com.hjw0623.character.domain.CharacterRepository
+import com.hjw0623.character.domain.model.arkpassive.ArkPassive
 import com.hjw0623.character.domain.model.card.CardList
 import com.hjw0623.character.domain.model.engravings.Engravings
 import com.hjw0623.character.domain.model.gear.Gear
@@ -11,6 +12,8 @@ import com.hjw0623.core.data.networking.safeCall
 import com.hjw0623.core.domain.util.DataError
 import com.hjw0623.core.domain.util.Result
 import com.hjw0623.core.domain.util.map
+import com.hjw0623.data.model.arkpassive.ArkPassiveDto
+import com.hjw0623.data.model.arkpassive.toDomain
 import com.hjw0623.data.model.card.CardsSerializable
 import com.hjw0623.data.model.card.toDomain
 import com.hjw0623.data.model.engravings.EngravingsSerializable
@@ -76,6 +79,16 @@ class CharacterRepositoryImpl(
         return safeCall<CardsSerializable> {
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/cards")
+            )
+        }.map { response ->
+            response.toDomain()
+        }
+    }
+
+    override suspend fun getArkPassive(characterName: String): Result<ArkPassive, DataError.Network> {
+        return safeCall<ArkPassiveDto> {
+            httpClient.get(
+                urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/arkpassive")
             )
         }.map { response ->
             response.toDomain()

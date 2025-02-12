@@ -13,7 +13,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
-import androidx.compose.material3.TimeInput
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -23,19 +22,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.hjw0623.character.presentation.CharacterState
 import com.hjw0623.character.presentation.CharacterViewModel
-import com.hjw0623.character.presentation.components.tab.gear.GearList
-import com.hjw0623.character.presentation.mockup.mockAbilityStoneContent
-import com.hjw0623.character.presentation.mockup.mockBraceletContent
-import com.hjw0623.character.presentation.mockup.mockEquipmentContent
-import com.hjw0623.character.presentation.mockup.mockJewelryContent
+import com.hjw0623.character.presentation.components.tab.arkpassive.ArkPassiveScreen
+import com.hjw0623.character.presentation.components.tab.gear.GearScreen
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostArkGray
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
-import timber.log.Timber
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CharacterDetailTab(
     modifier: Modifier = Modifier,
@@ -86,7 +82,7 @@ fun CharacterDetailTab(
             userScrollEnabled = true
         ) { page ->
             when (page) {
-                0 -> GearList(
+                0 -> GearScreen(
                     gearUis = state.gearList,
                     accessoriesUis = state.accessoriesList,
                     abilityStoneUi = state.abilityStone,
@@ -99,7 +95,7 @@ fun CharacterDetailTab(
                     card = state.card,
                     cardEffectList = state.cardEffect
                 )
-                1 -> Text("아크패시브 내용", Modifier.padding(16.dp))
+                1 -> ArkPassiveScreen(state.arkPassive)
                 2 -> Text("스킬 내용", Modifier.padding(16.dp))
                 3 -> Text("아바타 내용", Modifier.padding(16.dp))
                 4 -> Text("보유 캐릭터 내용", Modifier.padding(16.dp))
