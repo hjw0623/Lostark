@@ -15,7 +15,10 @@ import com.hjw0623.character.presentation.model.gem.GemsUi
 import com.hjw0623.character.presentation.model.gear.SpecialEffect
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.profile.StatsUi
+import com.hjw0623.character.presentation.model.skill.RuneUi
+import com.hjw0623.character.presentation.model.skill.SkillInfoUi
 import com.hjw0623.character.presentation.model.skill.SkillUi
+import com.hjw0623.character.presentation.model.skill.TripodUi
 import com.hjw0623.character.presentation.util.shortCardEffect
 
 
@@ -191,6 +194,49 @@ fun mockArkPassiveEffectContent(type: String): Effect {
         effect = "특화",
         level = "10",
         description = "특화가 500 증가합니다."
+    )
+}
+fun mockSkillContent(): SkillUi {
+    return SkillUi(
+        name = "피니쉬 스트라이크",
+        icon = "https://cdn-lostark.game.onstove.com/efui_iconatlas/bk_skill/bk_skill_01_14.png",
+        rune = RuneUi(
+            name = "질풍",
+            icon = "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_194.png",
+            grade = "전설",
+            description = "스킬 시전 속도가 14% 증가"
+        ),
+        skillLevel = 14,
+        firstTripod = TripodUi(
+            name = "강화된 일격",
+            icon = "https://cdn-lostark.game.onstove.com/efui_iconatlas/tripod_tier/tripod_tier_1_0.png",
+            level = "5",
+            description = "적에게 주는 피해가 32.0% 증가한다"
+        ),
+        secondTripod = TripodUi(
+            name = "약점 포착",
+            icon = "https://cdn-lostark.game.onstove.com/efui_iconatlas/tripod_tier/tripod_tier_2_33.png",
+            level = "5",
+            description = "피격이상 면역인 적에게 주는 피해가 70.0% 증가한다."
+        ),
+        thirdTripod = TripodUi(
+            name = "확인사살",
+            icon = "https://cdn-lostark.game.onstove.com/efui_iconatlas/tripod_tier/tripod_tier_3_40.png",
+            level = "5",
+            description = "콤보 조작으로 변경된다. 2회 공격은 적에게 205.5% 피해를 주지만 재사용 대기시간이 6.0초 증가한다."
+        ),
+        skillInfo = SkillInfoUi(
+            name = "피니쉬 스트라이크",
+            skillType = "[일반 스킬]",
+            castingType = "일반",
+            cooldownTime = "재사용 대기시간 18초",
+            mana = "마나 441 소모",
+            description = "대검을 강하게 내리찍어 2,529,887의 피해를 준다.",
+            neutralize = "상",
+            partBreak = "레벨 2",
+            attackType = "백 어택",
+            superArmor = "경직 면역"
+        )
     )
 }
 
