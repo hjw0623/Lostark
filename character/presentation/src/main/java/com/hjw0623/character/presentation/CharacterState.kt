@@ -1,7 +1,6 @@
 package com.hjw0623.character.presentation
 
 import androidx.compose.runtime.Immutable
-import com.hjw0623.character.domain.model.arkpassive.ArkPassive
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyArkPassiveUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
@@ -18,6 +17,7 @@ import com.hjw0623.character.presentation.model.gem.GemsUi
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.profile.CharacterProfileUi
 import com.hjw0623.character.presentation.model.profile.StatsUi
+import com.hjw0623.character.presentation.model.skill.SkillUi
 
 @Immutable
 data class CharacterState(
@@ -28,6 +28,7 @@ data class CharacterState(
     val isCardLoading: Boolean = false,
 
     val isArkPassiveLoading: Boolean = false,
+    val isSkillLoading: Boolean = false,
 
     val searchedCharacterName: String = "버서커",
 
@@ -43,11 +44,12 @@ data class CharacterState(
     val engraving: List<EngravingUi> = emptyList(),
     val card: List<CardUi> = emptyList(),
     val cardEffect: List<CardEffectUi> = emptyList(),
-    val arkPassive: ArkPassiveUi = emptyArkPassiveUi
+    val arkPassive: ArkPassiveUi = emptyArkPassiveUi,
+    val skillList: List<SkillUi> = emptyList()
 
 
 ) {
     val isLoading: Boolean
         get() = isCharacterProfileLoading || isGearLoading || isGemLoading || isEngravingLoading || isCardLoading
-                || isArkPassiveLoading
+                || isArkPassiveLoading || isSkillLoading
 }

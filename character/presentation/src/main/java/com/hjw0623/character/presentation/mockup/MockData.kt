@@ -1,6 +1,5 @@
 package com.hjw0623.character.presentation.mockup
 
-import androidx.compose.material3.Card
 import com.hjw0623.character.presentation.model.arkpassive.ArkPassiveUi
 import com.hjw0623.character.presentation.model.arkpassive.Effect
 import com.hjw0623.character.presentation.model.card.CardEffectUi
@@ -16,6 +15,7 @@ import com.hjw0623.character.presentation.model.gem.GemsUi
 import com.hjw0623.character.presentation.model.gear.SpecialEffect
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.profile.StatsUi
+import com.hjw0623.character.presentation.model.skill.SkillUi
 import com.hjw0623.character.presentation.util.shortCardEffect
 
 

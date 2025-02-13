@@ -7,6 +7,7 @@ import com.hjw0623.character.domain.model.engravings.Engravings
 import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.domain.model.gems.Gems
 import com.hjw0623.character.domain.model.profile.CharacterProfile
+import com.hjw0623.character.domain.model.skill.Skill
 import com.hjw0623.core.data.networking.constructRoute
 import com.hjw0623.core.data.networking.safeCall
 import com.hjw0623.core.domain.util.DataError
@@ -24,6 +25,8 @@ import com.hjw0623.data.model.gems.GemsSerializable
 import com.hjw0623.data.model.gems.toDomain
 import com.hjw0623.data.model.profile.CharacterProfileSerializable
 import com.hjw0623.data.model.profile.toDomain
+import com.hjw0623.data.model.skill.SkillSerializable
+import com.hjw0623.data.model.skill.toDomain
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.http.encodeURLPath
@@ -95,5 +98,13 @@ class CharacterRepositoryImpl(
         }
     }
 
-
+    override suspend fun getSkill(characterName: String): Result<List<Skill>, DataError.Network> {
+        return safeCall<List<SkillSerializable>> {
+            httpClient.get(
+                urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/combat-skills")
+            )
+        }.map { response ->
+            response.map { it.toDomain() }
+        }
+    }
 }

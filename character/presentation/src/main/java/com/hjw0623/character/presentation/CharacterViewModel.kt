@@ -2,19 +2,16 @@ package com.hjw0623.character.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.gson.GsonBuilder
 import com.hjw0623.character.domain.CharacterRepository
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
 import com.hjw0623.character.presentation.model.arkpassive.toArkPassiveUi
-import com.hjw0623.character.presentation.model.arkpassive.toEffect
 import com.hjw0623.character.presentation.model.card.toCardEffectUi
 import com.hjw0623.character.presentation.model.card.toCardUi
 import com.hjw0623.character.presentation.model.engraving.toEngravingUi
 import com.hjw0623.character.presentation.model.gear.ElixirUi
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.gear.categorizeGears
-import com.hjw0623.character.presentation.model.gear.removeHtmlTags
 import com.hjw0623.character.presentation.model.gear.toAbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.toAccessoriesUi
 import com.hjw0623.character.presentation.model.gear.toBraceletUi
@@ -22,6 +19,7 @@ import com.hjw0623.character.presentation.model.gear.toGearUi
 import com.hjw0623.character.presentation.model.gear.toGemsUi
 import com.hjw0623.character.presentation.model.profile.toCharacterProfileUi
 import com.hjw0623.character.presentation.model.profile.toCharacterStatsUi
+import com.hjw0623.character.presentation.model.skill.toSkillUi
 import com.hjw0623.core.domain.util.onError
 import com.hjw0623.core.domain.util.onSuccess
 import com.hjw0623.core.presentation.ui.UiText
@@ -61,6 +59,7 @@ class CharacterViewModel(
         loadEngraving()
         loadCard()
         loadArkPassive()
+        loadSkill()
     }
 
     private fun loadCharacterProfile() {
@@ -211,7 +210,7 @@ class CharacterViewModel(
         }
     }
 
-    private fun loadArkPassive(){
+    private fun loadArkPassive() {
         viewModelScope.launch {
             _state.update { it.copy(isArkPassiveLoading = true) }
 
@@ -231,6 +230,37 @@ class CharacterViewModel(
                 }
         }
     }
+
+    private fun loadSkill() {
+        viewModelScope.launch {
+            _state.update { it.copy(isSkillLoading = true) }
+
+            characterRepository.getSkill(state.value.searchedCharacterName)
+                .onSuccess { skillList ->
+                    val filteredSkillList = skillList.filter { skill ->
+                        skill.level >= 2 ||
+                                state.value.gemsList.any { it.skillName == skill.name } ||
+                                skill.rune?.let { it.name.isNotBlank() } == true
+                    }
+
+                    _state.update {
+                        it.copy(
+                            isSkillLoading = false,
+                            skillList = filteredSkillList.map { it.toSkillUi() }
+
+                        )
+                    }
+                    Timber.d("Successfully loaded ArkPassive ${state.value.skillList}")
+                }
+                .onError { error ->
+                    Timber.e("$error", "Failed to skill")
+                    sendError(error.asUiText())
+                }
+        }
+    }
+
+
+
 
     private fun sendError(message: UiText) {
         viewModelScope.launch {

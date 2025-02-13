@@ -7,6 +7,7 @@ import com.hjw0623.character.domain.model.engravings.Engravings
 import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.domain.model.gems.Gems
 import com.hjw0623.character.domain.model.profile.CharacterProfile
+import com.hjw0623.character.domain.model.skill.Skill
 import com.hjw0623.core.domain.util.DataError
 import com.hjw0623.core.domain.util.Result
 
@@ -19,4 +20,6 @@ interface CharacterRepository {
     suspend fun getCards(characterName: String): Result<CardList, DataError.Network>
 
     suspend fun getArkPassive(characterName: String): Result<ArkPassive, DataError.Network>
+
+    suspend fun getSkill(characterName: String): Result<List<Skill>, DataError.Network>
 }
