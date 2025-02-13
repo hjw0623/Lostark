@@ -7,6 +7,7 @@ import com.hjw0623.character.presentation.model.gear.removeHtmlTags
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
+import timber.log.Timber
 
 fun Skill.toSkillUi(): SkillUi {
     val rune = this.rune?.toRuneUi()
@@ -48,7 +49,6 @@ fun Skill.toSkillUi(): SkillUi {
         .filter { it.isSelected }.filter { it.tier == 1 }.firstOrNull()?.toTripodUi()
     val thirdTripod = this.tripods
         .filter { it.isSelected }.filter { it.tier == 2 }.firstOrNull()?.toTripodUi()
-
     return SkillUi(
         name = this.name,
         icon = this.icon,
@@ -62,7 +62,7 @@ fun Skill.toSkillUi(): SkillUi {
             skillType = removeHtmlTags(skillType),
             castingType = removeHtmlTags(castingType),
             cooldownTime = removeHtmlTags(cooldownTime),
-            mana = removeHtmlTags(mana),
+            mana = removeHtmlTags(mana).removeSuffix("|"),
             description = removeHtmlTags(description).cleanSkillDescription(),
             neutralize = removeHtmlTags(neutralize),
             attackType = removeHtmlTags(attackType),
