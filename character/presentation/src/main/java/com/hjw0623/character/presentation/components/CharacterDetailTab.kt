@@ -24,6 +24,7 @@ import com.hjw0623.character.presentation.CharacterState
 import com.hjw0623.character.presentation.CharacterViewModel
 import com.hjw0623.character.presentation.components.tab.arkpassive.ArkPassiveScreen
 import com.hjw0623.character.presentation.components.tab.gear.GearScreen
+import com.hjw0623.character.presentation.components.tab.skill.SkillScreen
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostArkGray
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
@@ -96,7 +97,7 @@ fun CharacterDetailTab(
                     cardEffectList = state.cardEffect
                 )
                 1 -> ArkPassiveScreen(state.arkPassive)
-                2 -> Text("스킬 내용", Modifier.padding(16.dp))
+                2 -> SkillScreen(state.skillList, state.gemsList)
                 3 -> Text("아바타 내용", Modifier.padding(16.dp))
                 4 -> Text("보유 캐릭터 내용", Modifier.padding(16.dp))
                 5 -> Text("수집형포인트 내용", Modifier.padding(16.dp))
