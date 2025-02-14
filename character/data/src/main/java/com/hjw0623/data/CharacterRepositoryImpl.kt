@@ -2,6 +2,7 @@ package com.hjw0623.data
 
 import com.hjw0623.character.domain.CharacterRepository
 import com.hjw0623.character.domain.model.arkpassive.ArkPassive
+import com.hjw0623.character.domain.model.avatar.Avatar
 import com.hjw0623.character.domain.model.card.CardList
 import com.hjw0623.character.domain.model.engravings.Engravings
 import com.hjw0623.character.domain.model.gear.Gear
@@ -15,6 +16,8 @@ import com.hjw0623.core.domain.util.Result
 import com.hjw0623.core.domain.util.map
 import com.hjw0623.data.model.arkpassive.ArkPassiveDto
 import com.hjw0623.data.model.arkpassive.toDomain
+import com.hjw0623.data.model.avatar.AvatarSerializable
+import com.hjw0623.data.model.avatar.toDomain
 import com.hjw0623.data.model.card.CardsSerializable
 import com.hjw0623.data.model.card.toDomain
 import com.hjw0623.data.model.engravings.EngravingsSerializable
@@ -102,6 +105,16 @@ class CharacterRepositoryImpl(
         return safeCall<List<SkillSerializable>> {
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/combat-skills")
+            )
+        }.map { response ->
+            response.map { it.toDomain() }
+        }
+    }
+
+    override suspend fun getAvatar(characterName: String): Result<List<Avatar>, DataError.Network> {
+        return safeCall<List<AvatarSerializable>> {
+            httpClient.get(
+                urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/avatars")
             )
         }.map { response ->
             response.map { it.toDomain() }

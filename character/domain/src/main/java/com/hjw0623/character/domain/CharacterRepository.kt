@@ -1,6 +1,7 @@
 package com.hjw0623.character.domain
 
 import com.hjw0623.character.domain.model.arkpassive.ArkPassive
+import com.hjw0623.character.domain.model.avatar.Avatar
 import com.hjw0623.character.domain.model.card.CardList
 import com.hjw0623.character.domain.model.engravings.ArkPassiveEffect
 import com.hjw0623.character.domain.model.engravings.Engravings
@@ -22,4 +23,6 @@ interface CharacterRepository {
     suspend fun getArkPassive(characterName: String): Result<ArkPassive, DataError.Network>
 
     suspend fun getSkill(characterName: String): Result<List<Skill>, DataError.Network>
+
+    suspend fun getAvatar(characterName: String): Result<List<Avatar>, DataError.Network>
 }
