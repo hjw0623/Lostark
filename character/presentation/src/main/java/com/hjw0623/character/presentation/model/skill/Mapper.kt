@@ -74,10 +74,30 @@ fun Skill.toSkillUi(): SkillUi {
 
 
 fun Rune.toRuneUi(): RuneUi {
-    val tooltipJson = Json.parseToJsonElement(this.tooltip).jsonObject
+    if (this.tooltip.isNullOrBlank()) {
+        return RuneUi(
+            name = this.name,
+            icon = this.icon,
+            grade = this.grade,
+            description = "정보 없음"
+        )
+    }
+
+    val tooltipJson = try {
+        Json.parseToJsonElement(this.tooltip).jsonObject
+    } catch (e: Exception) {
+        Timber.e(e, "JSON 파싱 오류: tooltip = ${this.tooltip}")
+        return RuneUi(
+            name = this.name,
+            icon = this.icon,
+            grade = this.grade,
+            description = "정보 없음"
+        )
+    }
+
     val description = tooltipJson["Element_002"]?.jsonObject
         ?.get("value")?.jsonObject
-        ?.get("Element_001")?.jsonPrimitive?.content ?: ""
+        ?.get("Element_001")?.jsonPrimitive?.content ?: "정보 없음"
 
     return RuneUi(
         name = this.name,
