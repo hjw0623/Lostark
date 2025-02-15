@@ -5,6 +5,7 @@ import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyArkPassiveUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
 import com.hjw0623.character.presentation.model.arkpassive.ArkPassiveUi
+import com.hjw0623.character.presentation.model.avatar.AvatarUi
 import com.hjw0623.character.presentation.model.card.CardEffectUi
 import com.hjw0623.character.presentation.model.card.CardUi
 import com.hjw0623.character.presentation.model.engraving.EngravingUi
@@ -29,8 +30,9 @@ data class CharacterState(
 
     val isArkPassiveLoading: Boolean = false,
     val isSkillLoading: Boolean = false,
+    val isAvatarLoading: Boolean = false,
 
-    val searchedCharacterName: String = "버서커",
+    val searchedCharacterName: String = "쫀지",
 
     val characterProfile: CharacterProfileUi? = null,
     val gearList: List<GearUi> = emptyList(),
@@ -45,8 +47,8 @@ data class CharacterState(
     val card: List<CardUi> = emptyList(),
     val cardEffect: List<CardEffectUi> = emptyList(),
     val arkPassive: ArkPassiveUi = emptyArkPassiveUi,
-    val skillList: List<SkillUi> = emptyList()
-
+    val skillList: List<SkillUi> = emptyList(),
+    val avatarList: List<AvatarUi> = emptyList()
 
 ) {
     val isLoading: Boolean
