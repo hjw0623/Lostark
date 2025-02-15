@@ -9,7 +9,6 @@ fun Avatar.toAvatarUi(): AvatarUi {
     } else {
         this.type
     }
-    Timber.tag("fdfdf").d(type)
     return AvatarUi(
         type = type,
         name = this.name,
