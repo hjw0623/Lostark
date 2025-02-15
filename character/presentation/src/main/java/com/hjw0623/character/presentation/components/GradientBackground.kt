@@ -17,6 +17,7 @@ import coil.compose.AsyncImage
 
 @Composable
 fun GradientBackgroundItem(
+    modifier: Modifier,
     icon: String,
     color1: Long,
     color2: Long,
@@ -27,7 +28,7 @@ fun GradientBackgroundItem(
 ) {
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(45.dp)
             .background(
                 brush = Brush.linearGradient(
