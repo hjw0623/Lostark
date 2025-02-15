@@ -2,6 +2,7 @@ package com.hjw0623.character.presentation.mockup
 
 import com.hjw0623.character.presentation.model.arkpassive.ArkPassiveUi
 import com.hjw0623.character.presentation.model.arkpassive.Effect
+import com.hjw0623.character.presentation.model.avatar.AvatarUi
 import com.hjw0623.character.presentation.model.card.CardEffectUi
 import com.hjw0623.character.presentation.model.card.CardUi
 import com.hjw0623.character.presentation.model.engraving.EngravingUi
@@ -239,6 +240,16 @@ fun mockSkillContent(): SkillUi {
         )
     )
 }
+fun mockAvatarContent(type: String = "무기 아바타", isInner: Boolean = true): AvatarUi {
+    return AvatarUi(
+        type = type,
+        name = "유연한 영원 헤비 건틀릿",
+        icon = "https://cdn-lostark.game.onstove.com/efui_iconatlas/shop_icon/shop_icon_7910.png",
+        grade = "전설",
+        isInner = isInner
+    )
+}
+
 
 internal val emptyArkPassiveUi = ArkPassiveUi(
     evolutionPoint = 0,

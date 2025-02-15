@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.hjw0623.character.presentation.CharacterState
 import com.hjw0623.character.presentation.CharacterViewModel
 import com.hjw0623.character.presentation.components.tab.arkpassive.ArkPassiveScreen
+import com.hjw0623.character.presentation.components.tab.avatar.AvatarScreen
 import com.hjw0623.character.presentation.components.tab.gear.GearScreen
 import com.hjw0623.character.presentation.components.tab.skill.SkillScreen
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
@@ -98,7 +99,7 @@ fun CharacterDetailTab(
                 )
                 1 -> ArkPassiveScreen(state.arkPassive)
                 2 -> SkillScreen(state.skillList, state.gemsList)
-                3 -> Text("아바타 내용", Modifier.padding(16.dp))
+                3 -> AvatarScreen(state.avatarList)
                 4 -> Text("보유 캐릭터 내용", Modifier.padding(16.dp))
                 5 -> Text("수집형포인트 내용", Modifier.padding(16.dp))
                 else -> Text("알 수 없는 페이지")

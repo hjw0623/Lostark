@@ -6,6 +6,7 @@ import com.hjw0623.character.domain.CharacterRepository
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
 import com.hjw0623.character.presentation.model.arkpassive.toArkPassiveUi
+import com.hjw0623.character.presentation.model.avatar.toAvatarUi
 import com.hjw0623.character.presentation.model.card.toCardEffectUi
 import com.hjw0623.character.presentation.model.card.toCardUi
 import com.hjw0623.character.presentation.model.engraving.toEngravingUi
@@ -60,6 +61,7 @@ class CharacterViewModel(
         loadCard()
         loadArkPassive()
         loadSkill()
+        loadAvatar()
     }
 
     private fun loadCharacterProfile() {
@@ -259,7 +261,26 @@ class CharacterViewModel(
         }
     }
 
+    private fun loadAvatar() {
+        viewModelScope.launch {
+            _state.update { it.copy(isAvatarLoading = true) }
 
+            characterRepository.getAvatar(state.value.searchedCharacterName)
+                .onSuccess { avatarList ->
+                    _state.update {
+                        it.copy(
+                            isAvatarLoading = false,
+                            avatarList = avatarList.map { it.toAvatarUi() }
+                        )
+                    }
+                    Timber.d("Successfully loaded Avatar ${state.value.avatarList}")
+                }
+                .onError { error ->
+                    Timber.e("$error", "Failed to Avatar")
+                    sendError(error.asUiText())
+                }
+        }
+    }
 
 
     private fun sendError(message: UiText) {
