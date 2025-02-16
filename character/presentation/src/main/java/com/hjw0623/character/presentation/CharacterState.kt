@@ -18,6 +18,7 @@ import com.hjw0623.character.presentation.model.gem.GemsUi
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.profile.CharacterProfileUi
 import com.hjw0623.character.presentation.model.profile.StatsUi
+import com.hjw0623.character.presentation.model.siblings.SiblingUi
 import com.hjw0623.character.presentation.model.skill.SkillUi
 
 @Immutable
@@ -31,8 +32,9 @@ data class CharacterState(
     val isArkPassiveLoading: Boolean = false,
     val isSkillLoading: Boolean = false,
     val isAvatarLoading: Boolean = false,
+    val isSiblingLoading: Boolean = false,
 
-    val searchedCharacterName: String = "쫀지",
+    val searchedCharacterName: String = "택티컬맘마통",
 
     val characterProfile: CharacterProfileUi? = null,
     val gearList: List<GearUi> = emptyList(),
@@ -48,10 +50,10 @@ data class CharacterState(
     val cardEffect: List<CardEffectUi> = emptyList(),
     val arkPassive: ArkPassiveUi = emptyArkPassiveUi,
     val skillList: List<SkillUi> = emptyList(),
-    val avatarList: List<AvatarUi> = emptyList()
-
+    val avatarList: List<AvatarUi> = emptyList(),
+    val siblingList: List<SiblingUi> = emptyList()
 ) {
     val isLoading: Boolean
         get() = isCharacterProfileLoading || isGearLoading || isGemLoading || isEngravingLoading || isCardLoading
-                || isArkPassiveLoading || isSkillLoading
+                || isArkPassiveLoading || isSkillLoading || isAvatarLoading || isSiblingLoading
 }

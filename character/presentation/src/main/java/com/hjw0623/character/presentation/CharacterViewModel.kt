@@ -20,6 +20,7 @@ import com.hjw0623.character.presentation.model.gear.toGearUi
 import com.hjw0623.character.presentation.model.gear.toGemsUi
 import com.hjw0623.character.presentation.model.profile.toCharacterProfileUi
 import com.hjw0623.character.presentation.model.profile.toCharacterStatsUi
+import com.hjw0623.character.presentation.model.siblings.toSiblingUi
 import com.hjw0623.character.presentation.model.skill.toSkillUi
 import com.hjw0623.core.domain.util.onError
 import com.hjw0623.core.domain.util.onSuccess
@@ -62,6 +63,7 @@ class CharacterViewModel(
         loadArkPassive()
         loadSkill()
         loadAvatar()
+        loadSibling()
     }
 
     private fun loadCharacterProfile() {
@@ -194,8 +196,6 @@ class CharacterViewModel(
                 .onSuccess { cardList ->
                     val card = cardList.cards.map { it.toCardUi() }
                     val cardEffect = cardList.cardEffects.map { it.toCardEffectUi() }
-                    Timber.tag("fdfdf").d(card.toString())
-                    Timber.tag("fdfdf").d(cardEffect.toString())
                     _state.update {
                         it.copy(
                             isCardLoading = false,
@@ -281,6 +281,43 @@ class CharacterViewModel(
                 }
         }
     }
+
+    private fun loadSibling() {
+        viewModelScope.launch {
+            _state.update { it.copy(isSiblingLoading = true) }
+
+            characterRepository.getSibling(state.value.searchedCharacterName)
+                .onSuccess { siblingList ->
+                    val updatedSiblingList = siblingList.map { sibling ->
+
+                        characterRepository.getCharacterProfile(sibling.characterName)
+                            .onSuccess { profile ->
+
+                            }
+                            .onError { error ->
+                                Timber.e("Failed to load guild name for ${sibling.characterName}: $error")
+                            }
+
+                        sibling.toSiblingUi()
+                    }
+
+                    _state.update {
+                        it.copy(
+                            isSiblingLoading = false,
+                            siblingList = updatedSiblingList
+                        )
+                    }
+
+                    Timber.d("Successfully loaded Sibling with Guild Names: $updatedSiblingList")
+                }
+                .onError { error ->
+                    Timber.e("$error", "Failed to load sibling")
+                    sendError(error.asUiText())
+                }
+        }
+    }
+
+
 
 
     private fun sendError(message: UiText) {

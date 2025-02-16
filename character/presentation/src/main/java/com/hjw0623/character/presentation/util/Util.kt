@@ -154,6 +154,48 @@ fun shortCardEffect(cardEffect: String): String {
     }
 }
 
+fun getClassImg(className: String): String {
+    return when(className) {
+        "디스트로이어" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/destroyer.png"
+        "워로드" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/warlord.png"
+        "버서커" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/berserker.png"
+        "홀리나이트" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/holyknight.png"
+
+        "슬레이어" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/berserker_female.png"
+
+        "브레이커" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/infighter_male.png"
+        "스트라이커" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/battle_master_male.png"
+
+        "배틀마스터" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/battle_master.png"
+        "인파이터" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/infighter.png"
+        "기공사" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/force_master.png"
+        "창술사" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/lance_master.png"
+
+        "데빌헌터" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/devil_hunter.png"
+        "블래스터" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/blaster.png"
+        "호크아이" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/hawk_eye.png"
+        "스카우터" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/scouter.png"
+
+        "건슬링어" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/devil_hunter_female.png"
+
+        "바드" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/bard.png"
+        "소서리스" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/elemental_master.png"
+        "아르카나" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/arcana.png"
+        "서머너" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/summoner.png"
+
+        "블레이드" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/blade.png"
+        "리퍼" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/reaper_s.png"
+        "데모닉" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/demonic.png"
+        "소울이터" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/soul_eater.png"
+
+
+        "도화가" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/yinyangshi.png"
+        "기상술사" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/weather_artist.png"
+        "환수사" -> "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/alchemist.png"
+        else -> ""
+    }
+}
+
 val tierFourRelicEffectWithGrades = listOf(
     listOf(
         "마법 방어력 +4000", "마법 방어력 +5000", "마법 방어력 +6000"

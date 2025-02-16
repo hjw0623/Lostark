@@ -8,6 +8,7 @@ import com.hjw0623.character.domain.model.engravings.Engravings
 import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.domain.model.gems.Gems
 import com.hjw0623.character.domain.model.profile.CharacterProfile
+import com.hjw0623.character.domain.model.siblings.Sibling
 import com.hjw0623.character.domain.model.skill.Skill
 import com.hjw0623.core.data.networking.constructRoute
 import com.hjw0623.core.data.networking.safeCall
@@ -28,6 +29,8 @@ import com.hjw0623.data.model.gems.GemsSerializable
 import com.hjw0623.data.model.gems.toDomain
 import com.hjw0623.data.model.profile.CharacterProfileSerializable
 import com.hjw0623.data.model.profile.toDomain
+import com.hjw0623.data.model.siblings.SiblingSerializable
+import com.hjw0623.data.model.siblings.toDomain
 import com.hjw0623.data.model.skill.SkillSerializable
 import com.hjw0623.data.model.skill.toDomain
 import io.ktor.client.HttpClient
@@ -115,6 +118,16 @@ class CharacterRepositoryImpl(
         return safeCall<List<AvatarSerializable>> {
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/avatars")
+            )
+        }.map { response ->
+            response.map { it.toDomain() }
+        }
+    }
+
+    override suspend fun getSibling(characterName: String): Result<List<Sibling>, DataError.Network> {
+        return safeCall<List<SiblingSerializable>> {
+            httpClient.get(
+                urlString = constructRoute("/characters/${characterName.encodeURLPath()}/siblings")
             )
         }.map { response ->
             response.map { it.toDomain() }

@@ -16,10 +16,12 @@ import com.hjw0623.character.presentation.model.gem.GemsUi
 import com.hjw0623.character.presentation.model.gear.SpecialEffect
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.model.profile.StatsUi
+import com.hjw0623.character.presentation.model.siblings.SiblingUi
 import com.hjw0623.character.presentation.model.skill.RuneUi
 import com.hjw0623.character.presentation.model.skill.SkillInfoUi
 import com.hjw0623.character.presentation.model.skill.SkillUi
 import com.hjw0623.character.presentation.model.skill.TripodUi
+import com.hjw0623.character.presentation.util.getClassImg
 import com.hjw0623.character.presentation.util.shortCardEffect
 
 
@@ -249,7 +251,15 @@ fun mockAvatarContent(type: String = "무기 아바타", isInner: Boolean = true
         isInner = isInner
     )
 }
-
+fun mockSiblingContent(): SiblingUi {
+    return SiblingUi(
+        classIcon = getClassImg("창술사"),
+        serverName = "카단",
+        characterName = "택티컬맘마통",
+        characterClassName = "창술사",
+        itemAvgLevel = "1,644.17"
+    )
+}
 
 internal val emptyArkPassiveUi = ArkPassiveUi(
     evolutionPoint = 0,
