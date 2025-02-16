@@ -288,27 +288,14 @@ class CharacterViewModel(
 
             characterRepository.getSibling(state.value.searchedCharacterName)
                 .onSuccess { siblingList ->
-                    val updatedSiblingList = siblingList.map { sibling ->
-
-                        characterRepository.getCharacterProfile(sibling.characterName)
-                            .onSuccess { profile ->
-
-                            }
-                            .onError { error ->
-                                Timber.e("Failed to load guild name for ${sibling.characterName}: $error")
-                            }
-
-                        sibling.toSiblingUi()
-                    }
-
                     _state.update {
                         it.copy(
                             isSiblingLoading = false,
-                            siblingList = updatedSiblingList
+                            siblingList = siblingList.map { it.toSiblingUi() }
                         )
                     }
 
-                    Timber.d("Successfully loaded Sibling with Guild Names: $updatedSiblingList")
+                    Timber.d("Successfully loaded Sibling with Guild Names: ${siblingList}")
                 }
                 .onError { error ->
                     Timber.e("$error", "Failed to load sibling")
