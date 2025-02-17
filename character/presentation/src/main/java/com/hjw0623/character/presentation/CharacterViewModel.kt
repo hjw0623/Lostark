@@ -3,6 +3,7 @@ package com.hjw0623.character.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hjw0623.character.domain.CharacterRepository
+import com.hjw0623.character.domain.model.collectibles.Collectible
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
 import com.hjw0623.character.presentation.model.arkpassive.toArkPassiveUi
@@ -64,6 +65,7 @@ class CharacterViewModel(
         loadSkill()
         loadAvatar()
         loadSibling()
+        loadCollectible()
     }
 
     private fun loadCharacterProfile() {
@@ -304,7 +306,26 @@ class CharacterViewModel(
         }
     }
 
+    private fun loadCollectible() {
+        viewModelScope.launch {
+            _state.update { it.copy(isCollectibleLoading = true) }
 
+            characterRepository.getCollectibles(state.value.searchedCharacterName)
+                .onSuccess { collectibleList ->
+                    _state.update {
+                        it.copy(
+                            isCollectibleLoading = false,
+                            collectibleList = collectibleList
+                        )
+                    }
+                    Timber.d("Successfully loaded Sibling with Guild Names: ${collectibleList}")
+                }
+                .onError { error ->
+                    Timber.e("$error", "Failed to load collectible")
+                    sendError(error.asUiText())
+                }
+        }
+    }
 
 
     private fun sendError(message: UiText) {

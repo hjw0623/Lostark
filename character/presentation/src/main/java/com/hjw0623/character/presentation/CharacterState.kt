@@ -1,6 +1,7 @@
 package com.hjw0623.character.presentation
 
 import androidx.compose.runtime.Immutable
+import com.hjw0623.character.domain.model.collectibles.Collectible
 import com.hjw0623.character.presentation.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.mockup.emptyArkPassiveUi
 import com.hjw0623.character.presentation.mockup.emptyBraceletUi
@@ -28,6 +29,7 @@ data class CharacterState(
     val isGemLoading: Boolean = false,
     val isEngravingLoading: Boolean = false,
     val isCardLoading: Boolean = false,
+    val isCollectibleLoading: Boolean = false,
 
     val isArkPassiveLoading: Boolean = false,
     val isSkillLoading: Boolean = false,
@@ -51,9 +53,10 @@ data class CharacterState(
     val arkPassive: ArkPassiveUi = emptyArkPassiveUi,
     val skillList: List<SkillUi> = emptyList(),
     val avatarList: List<AvatarUi> = emptyList(),
-    val siblingList: List<SiblingUi> = emptyList()
+    val siblingList: List<SiblingUi> = emptyList(),
+    val collectibleList: List<Collectible> = emptyList()
 ) {
     val isLoading: Boolean
         get() = isCharacterProfileLoading || isGearLoading || isGemLoading || isEngravingLoading || isCardLoading
-                || isArkPassiveLoading || isSkillLoading || isAvatarLoading || isSiblingLoading
+                || isArkPassiveLoading || isSkillLoading || isAvatarLoading || isSiblingLoading || isCollectibleLoading
 }
