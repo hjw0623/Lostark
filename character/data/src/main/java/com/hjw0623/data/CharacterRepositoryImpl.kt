@@ -140,7 +140,7 @@ class CharacterRepositoryImpl(
     override suspend fun getCollectibles(characterName: String): Result<List<Collectible>, DataError.Network> {
         return safeCall<List<CollectibleSerializable>> {
             httpClient.get(
-                urlString = constructRoute("/characters/${characterName.encodeURLPath()}/collectibles")
+                urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/collectibles")
             )
         }.map { response ->
             response.map { it.toDomain() }
