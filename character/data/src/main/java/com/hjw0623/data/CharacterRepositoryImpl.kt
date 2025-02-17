@@ -4,6 +4,7 @@ import com.hjw0623.character.domain.CharacterRepository
 import com.hjw0623.character.domain.model.arkpassive.ArkPassive
 import com.hjw0623.character.domain.model.avatar.Avatar
 import com.hjw0623.character.domain.model.card.CardList
+import com.hjw0623.character.domain.model.collectibles.Collectible
 import com.hjw0623.character.domain.model.engravings.Engravings
 import com.hjw0623.character.domain.model.gear.Gear
 import com.hjw0623.character.domain.model.gems.Gems
@@ -21,6 +22,8 @@ import com.hjw0623.data.model.avatar.AvatarSerializable
 import com.hjw0623.data.model.avatar.toDomain
 import com.hjw0623.data.model.card.CardsSerializable
 import com.hjw0623.data.model.card.toDomain
+import com.hjw0623.data.model.collectibles.CollectibleSerializable
+import com.hjw0623.data.model.collectibles.toDomain
 import com.hjw0623.data.model.engravings.EngravingsSerializable
 import com.hjw0623.data.model.engravings.toDomain
 import com.hjw0623.data.model.gear.GearSerializable
@@ -128,6 +131,16 @@ class CharacterRepositoryImpl(
         return safeCall<List<SiblingSerializable>> {
             httpClient.get(
                 urlString = constructRoute("/characters/${characterName.encodeURLPath()}/siblings")
+            )
+        }.map { response ->
+            response.map { it.toDomain() }
+        }
+    }
+
+    override suspend fun getCollectibles(characterName: String): Result<List<Collectible>, DataError.Network> {
+        return safeCall<List<CollectibleSerializable>> {
+            httpClient.get(
+                urlString = constructRoute("/characters/${characterName.encodeURLPath()}/collectibles")
             )
         }.map { response ->
             response.map { it.toDomain() }

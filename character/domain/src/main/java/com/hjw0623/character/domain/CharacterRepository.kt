@@ -3,6 +3,7 @@ package com.hjw0623.character.domain
 import com.hjw0623.character.domain.model.arkpassive.ArkPassive
 import com.hjw0623.character.domain.model.avatar.Avatar
 import com.hjw0623.character.domain.model.card.CardList
+import com.hjw0623.character.domain.model.collectibles.Collectible
 import com.hjw0623.character.domain.model.engravings.ArkPassiveEffect
 import com.hjw0623.character.domain.model.engravings.Engravings
 import com.hjw0623.character.domain.model.gear.Gear
@@ -28,4 +29,6 @@ interface CharacterRepository {
     suspend fun getAvatar(characterName: String): Result<List<Avatar>, DataError.Network>
 
     suspend fun getSibling(characterName: String): Result<List<Sibling>, DataError.Network>
+
+    suspend fun getCollectibles(characterName: String): Result<List<Collectible>, DataError.Network>
 }
