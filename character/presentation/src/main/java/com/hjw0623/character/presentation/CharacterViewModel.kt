@@ -226,7 +226,7 @@ class CharacterViewModel(
                             arkPassive = arkPassive.toArkPassiveUi()
                         )
                     }
-                    Timber.d("Successfully loaded ArkPassive ${state.value.card}")
+                    Timber.d("Successfully loaded ArkPassive ${state.value.arkPassive}")
                 }
                 .onError { error ->
                     Timber.e("$error", "Failed to arkPassive")
@@ -297,7 +297,7 @@ class CharacterViewModel(
                         )
                     }
 
-                    Timber.d("Successfully loaded Sibling with Guild Names: ${siblingList}")
+                    Timber.d("Successfully loaded Sibling: ${siblingList}")
                 }
                 .onError { error ->
                     Timber.e("$error", "Failed to load sibling")
@@ -318,7 +318,7 @@ class CharacterViewModel(
                             collectibleList = collectibleList
                         )
                     }
-                    Timber.d("Successfully loaded Sibling with Guild Names: ${collectibleList}")
+                    Timber.d("Successfully loaded collectible: ${collectibleList}")
                 }
                 .onError { error ->
                     Timber.e("$error", "Failed to load collectible")
