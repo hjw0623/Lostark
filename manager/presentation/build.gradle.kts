@@ -8,7 +8,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.character.domain)
+    implementation(projects.manager.domain)
     implementation(projects.core.domain)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.gson)
