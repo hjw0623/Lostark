@@ -1,10 +1,15 @@
 package com.hjw0623.character.presentation.mockup
 
+import androidx.compose.ui.util.trace
+import com.hjw0623.character.domain.model.collectibles.CollectiblePoints
+import com.hjw0623.character.presentation.R
 import com.hjw0623.character.presentation.model.arkpassive.ArkPassiveUi
 import com.hjw0623.character.presentation.model.arkpassive.Effect
 import com.hjw0623.character.presentation.model.avatar.AvatarUi
 import com.hjw0623.character.presentation.model.card.CardEffectUi
 import com.hjw0623.character.presentation.model.card.CardUi
+import com.hjw0623.character.presentation.model.collectibles.CollectibleDetailUi
+import com.hjw0623.character.presentation.model.collectibles.CollectibleSummationUi
 import com.hjw0623.character.presentation.model.engraving.EngravingUi
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.BraceletUi
@@ -258,6 +263,33 @@ fun mockSiblingContent(): SiblingUi {
         characterName = "택티컬맘마통",
         characterClassName = "창술사",
         itemAvgLevel = "1,644.17"
+    )
+}
+fun mockCollectibleSummationContent(): CollectibleSummationUi {
+    val collectiblePointList = listOf(
+        mockCollectiblePointsContent(),
+        mockCollectiblePointsContent(),
+        mockCollectiblePointsContent(),
+        mockCollectiblePointsContent(),
+        mockCollectiblePointsContent(),
+        mockCollectiblePointsContent(),
+        mockCollectiblePointsContent(),
+    )
+    return CollectibleSummationUi(
+        icon = R.drawable.islands_heart,
+        title = "섬의 마음",
+        progress = 0.709f,
+        current = 73,
+        total = 103,
+        collectibleDetailList = collectiblePointList,
+    )
+}
+fun mockCollectiblePointsContent(): CollectibleDetailUi {
+    return CollectibleDetailUi(
+        name = "토토이크 섬의 마음",
+        point = 1,
+        maxPoint = 1,
+        obtained = true
     )
 }
 

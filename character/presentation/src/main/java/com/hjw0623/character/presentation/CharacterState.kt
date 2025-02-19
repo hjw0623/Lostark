@@ -9,6 +9,7 @@ import com.hjw0623.character.presentation.model.arkpassive.ArkPassiveUi
 import com.hjw0623.character.presentation.model.avatar.AvatarUi
 import com.hjw0623.character.presentation.model.card.CardEffectUi
 import com.hjw0623.character.presentation.model.card.CardUi
+import com.hjw0623.character.presentation.model.collectibles.CollectibleSummationUi
 import com.hjw0623.character.presentation.model.engraving.EngravingUi
 import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
 import com.hjw0623.character.presentation.model.gear.AccessoriesUi
@@ -54,7 +55,7 @@ data class CharacterState(
     val skillList: List<SkillUi> = emptyList(),
     val avatarList: List<AvatarUi> = emptyList(),
     val siblingList: List<SiblingUi> = emptyList(),
-    val collectibleList: List<Collectible> = emptyList()
+    val collectibleSummationList: List<CollectibleSummationUi> = emptyList()
 ) {
     val isLoading: Boolean
         get() = isCharacterProfileLoading || isGearLoading || isGemLoading || isEngravingLoading || isCardLoading

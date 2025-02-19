@@ -24,8 +24,8 @@ import com.hjw0623.character.presentation.CharacterState
 import com.hjw0623.character.presentation.CharacterViewModel
 import com.hjw0623.character.presentation.components.tab.arkpassive.ArkPassiveScreen
 import com.hjw0623.character.presentation.components.tab.avatar.AvatarScreen
+import com.hjw0623.character.presentation.components.tab.collectibles.CollectibleScreen
 import com.hjw0623.character.presentation.components.tab.gear.GearScreen
-import com.hjw0623.character.presentation.components.tab.siblings.SiblingListItem
 import com.hjw0623.character.presentation.components.tab.siblings.SiblingScreen
 import com.hjw0623.character.presentation.components.tab.skill.SkillScreen
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
@@ -103,7 +103,7 @@ fun CharacterDetailTab(
                 2 -> SkillScreen(state.skillList, state.gemsList)
                 3 -> AvatarScreen(state.avatarList)
                 4 -> SiblingScreen(state.siblingList)
-                5 -> Text("수집형포인트 내용", Modifier.padding(16.dp))
+                5 -> CollectibleScreen(state.collectibleSummationList)
                 else -> Text("알 수 없는 페이지")
             }
         }

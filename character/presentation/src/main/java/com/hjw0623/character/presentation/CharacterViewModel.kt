@@ -10,6 +10,7 @@ import com.hjw0623.character.presentation.model.arkpassive.toArkPassiveUi
 import com.hjw0623.character.presentation.model.avatar.toAvatarUi
 import com.hjw0623.character.presentation.model.card.toCardEffectUi
 import com.hjw0623.character.presentation.model.card.toCardUi
+import com.hjw0623.character.presentation.model.collectibles.toCollectibleSummationUi
 import com.hjw0623.character.presentation.model.engraving.toEngravingUi
 import com.hjw0623.character.presentation.model.gear.ElixirUi
 import com.hjw0623.character.presentation.model.gear.TranscendenceUi
@@ -315,7 +316,7 @@ class CharacterViewModel(
                     _state.update {
                         it.copy(
                             isCollectibleLoading = false,
-                            collectibleList = collectibleList
+                            collectibleSummationList = collectibleList.map { it.toCollectibleSummationUi() }
                         )
                     }
                     Timber.d("Successfully loaded collectible: ${collectibleList}")
