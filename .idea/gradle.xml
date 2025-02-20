@@ -40,6 +40,10 @@
             <option value="$PROJECT_DIR$/events/data" />
             <option value="$PROJECT_DIR$/events/domain" />
             <option value="$PROJECT_DIR$/events/presentation" />
+            <option value="$PROJECT_DIR$/manager" />
+            <option value="$PROJECT_DIR$/manager/data" />
+            <option value="$PROJECT_DIR$/manager/domain" />
+            <option value="$PROJECT_DIR$/manager/presentation" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
