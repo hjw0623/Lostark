@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.hjw0623.character.presentation.character_overview.mockup.mockEngravingContent
-import com.hjw0623.character.presentation.model.engraving.EngravingUi
+import com.hjw0623.character.presentation.character_overview.model.engraving.EngravingUi
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostArkBlue
 import com.hjw0623.core.presentation.designsystem.LostArkLegend

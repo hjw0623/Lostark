@@ -18,7 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.hjw0623.character.presentation.character_overview.mockup.mockCollectiblePointsContent
-import com.hjw0623.character.presentation.model.collectibles.CollectibleDetailUi
+import com.hjw0623.character.presentation.character_overview.model.collectibles.CollectibleDetailUi
 import com.hjw0623.core.presentation.designsystem.LostArkBlue
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 

@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.hjw0623.character.presentation.character_overview.mockup.mockCollectibleSummationContent
-import com.hjw0623.character.presentation.model.collectibles.CollectibleSummationUi
+import com.hjw0623.character.presentation.character_overview.model.collectibles.CollectibleSummationUi
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable

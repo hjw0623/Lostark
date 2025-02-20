@@ -23,9 +23,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.hjw0623.character.presentation.components.GradientBackgroundItem
+import com.hjw0623.character.presentation.character_overview.components.GradientBackgroundItem
 import com.hjw0623.character.presentation.character_overview.mockup.mockJewelryContent
-import com.hjw0623.character.presentation.model.gear.AccessoriesUi
+import com.hjw0623.character.presentation.character_overview.model.gear.AccessoriesUi
 import com.hjw0623.character.presentation.character_overview.util.getEffectLevel
 import com.hjw0623.character.presentation.character_overview.util.shortPolishingEffect
 import com.hjw0623.core.presentation.designsystem.LostArkAncient

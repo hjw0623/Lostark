@@ -23,8 +23,8 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.hjw0623.character.presentation.character_overview.mockup.mockGemContent
 import com.hjw0623.character.presentation.character_overview.mockup.mockSkillContent
-import com.hjw0623.character.presentation.model.gem.GemsUi
-import com.hjw0623.character.presentation.model.skill.SkillUi
+import com.hjw0623.character.presentation.character_overview.model.gem.GemsUi
+import com.hjw0623.character.presentation.character_overview.model.skill.SkillUi
 import com.hjw0623.core.presentation.designsystem.LostArkBlue
 import com.hjw0623.core.presentation.designsystem.LostArkGray
 import com.hjw0623.core.presentation.designsystem.LostArkGreen
@@ -33,7 +33,6 @@ import com.hjw0623.core.presentation.designsystem.LostArkPurple
 import com.hjw0623.core.presentation.designsystem.LostArkRelic
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import com.hjw0623.core.presentation.designsystem.Typography
-import timber.log.Timber
 
 @Composable
 fun SkillListItem(

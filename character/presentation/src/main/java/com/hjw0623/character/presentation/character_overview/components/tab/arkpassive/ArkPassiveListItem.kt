@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.hjw0623.character.presentation.character_overview.mockup.mockArkPassiveEffectContent
-import com.hjw0623.character.presentation.model.arkpassive.Effect
+import com.hjw0623.character.presentation.character_overview.model.arkpassive.Effect
 import com.hjw0623.core.presentation.designsystem.LostArkEnlightenment
 import com.hjw0623.core.presentation.designsystem.LostArkEvolution
 import com.hjw0623.core.presentation.designsystem.LostArkLeap

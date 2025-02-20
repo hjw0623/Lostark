@@ -24,9 +24,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.hjw0623.character.presentation.components.GradientBackgroundItem
+import com.hjw0623.character.presentation.character_overview.components.GradientBackgroundItem
 import com.hjw0623.character.presentation.character_overview.mockup.mockEquipmentContent
-import com.hjw0623.character.presentation.model.gear.GearUi
+import com.hjw0623.character.presentation.character_overview.model.gear.GearUi
 import com.hjw0623.core.presentation.designsystem.LostArkAncient
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostArkBlue

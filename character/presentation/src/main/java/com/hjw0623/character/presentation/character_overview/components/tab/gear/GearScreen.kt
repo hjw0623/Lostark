@@ -28,17 +28,16 @@ import com.hjw0623.character.presentation.character_overview.mockup.mockGemConte
 import com.hjw0623.character.presentation.character_overview.mockup.mockJewelryContent
 import com.hjw0623.character.presentation.character_overview.mockup.mockStatsContent
 import com.hjw0623.character.presentation.character_overview.mockup.mockTranscendenceUi
-import com.hjw0623.character.presentation.model.card.CardEffectUi
-import com.hjw0623.character.presentation.model.card.CardUi
-import com.hjw0623.character.presentation.model.engraving.EngravingUi
-import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
-import com.hjw0623.character.presentation.model.gear.BraceletUi
-import com.hjw0623.character.presentation.model.gear.GearUi
-import com.hjw0623.character.presentation.model.gear.AccessoriesUi
-import com.hjw0623.character.presentation.character_overview.model.gear.ElixirUi
-import com.hjw0623.character.presentation.model.gem.GemsUi
-import com.hjw0623.character.presentation.character_overview.model.gear.TranscendenceUi
-import com.hjw0623.character.presentation.model.profile.StatsUi
+import com.hjw0623.character.presentation.character_overview.model.card.CardEffectUi
+import com.hjw0623.character.presentation.character_overview.model.card.CardUi
+import com.hjw0623.character.presentation.character_overview.model.engraving.EngravingUi
+import com.hjw0623.character.presentation.character_overview.model.gear.AbilityStoneUi
+import com.hjw0623.character.presentation.character_overview.model.gear.AccessoriesUi
+import com.hjw0623.character.presentation.character_overview.model.gear.BraceletUi
+import com.hjw0623.character.presentation.character_overview.model.gear.GearUi
+import com.hjw0623.character.presentation.character_overview.model.gem.GemsUi
+import com.hjw0623.character.presentation.character_overview.model.profile.StatsUi
+
 import com.hjw0623.core.presentation.designsystem.LostArkLightBlue
 import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostarkTheme

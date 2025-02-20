@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.hjw0623.character.presentation.R
 import com.hjw0623.character.presentation.character_overview.mockup.mockCollectiblePointsContent
-import com.hjw0623.character.presentation.model.collectibles.CollectibleSummationUi
+import com.hjw0623.character.presentation.character_overview.model.collectibles.CollectibleSummationUi
 import com.hjw0623.core.presentation.designsystem.LostArkBlue
 import com.hjw0623.core.presentation.designsystem.LostArkGray
 import com.hjw0623.core.presentation.designsystem.LostarkTheme

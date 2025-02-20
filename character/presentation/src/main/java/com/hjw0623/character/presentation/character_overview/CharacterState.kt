@@ -4,20 +4,21 @@ import androidx.compose.runtime.Immutable
 import com.hjw0623.character.presentation.character_overview.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.character_overview.mockup.emptyArkPassiveUi
 import com.hjw0623.character.presentation.character_overview.mockup.emptyBraceletUi
-import com.hjw0623.character.presentation.model.arkpassive.ArkPassiveUi
-import com.hjw0623.character.presentation.model.avatar.AvatarUi
-import com.hjw0623.character.presentation.model.card.CardEffectUi
-import com.hjw0623.character.presentation.model.card.CardUi
-import com.hjw0623.character.presentation.model.collectibles.CollectibleSummationUi
-import com.hjw0623.character.presentation.model.engraving.EngravingUi
-import com.hjw0623.character.presentation.model.gear.AbilityStoneUi
-import com.hjw0623.character.presentation.model.gear.AccessoriesUi
-import com.hjw0623.character.presentation.model.gear.BraceletUi
-import com.hjw0623.character.presentation.model.gear.GearUi
-import com.hjw0623.character.presentation.model.gem.GemsUi
-import com.hjw0623.character.presentation.model.profile.CharacterProfileUi
-import com.hjw0623.character.presentation.model.profile.StatsUi
-import com.hjw0623.character.presentation.model.skill.SkillUi
+import com.hjw0623.character.presentation.character_overview.model.arkpassive.ArkPassiveUi
+import com.hjw0623.character.presentation.character_overview.model.avatar.AvatarUi
+import com.hjw0623.character.presentation.character_overview.model.card.CardEffectUi
+import com.hjw0623.character.presentation.character_overview.model.card.CardUi
+import com.hjw0623.character.presentation.character_overview.model.collectibles.CollectibleSummationUi
+import com.hjw0623.character.presentation.character_overview.model.engraving.EngravingUi
+import com.hjw0623.character.presentation.character_overview.model.gear.AbilityStoneUi
+import com.hjw0623.character.presentation.character_overview.model.gear.AccessoriesUi
+import com.hjw0623.character.presentation.character_overview.model.gear.BraceletUi
+import com.hjw0623.character.presentation.character_overview.model.gear.GearUi
+import com.hjw0623.character.presentation.character_overview.model.gem.GemsUi
+import com.hjw0623.character.presentation.character_overview.model.profile.CharacterProfileUi
+import com.hjw0623.character.presentation.character_overview.model.profile.StatsUi
+import com.hjw0623.character.presentation.character_overview.model.skill.SkillUi
+
 
 @Immutable
 data class CharacterState(

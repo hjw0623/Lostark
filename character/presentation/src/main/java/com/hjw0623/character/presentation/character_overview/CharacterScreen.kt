@@ -14,8 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.hjw0623.character.presentation.components.CharacterDetailTab
-import com.hjw0623.character.presentation.components.CharacterProfile
+import com.hjw0623.character.presentation.character_overview.components.CharacterDetailTab
+import com.hjw0623.character.presentation.character_overview.components.CharacterProfile
 import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import com.hjw0623.core.presentation.ui.ObserveAsEvents

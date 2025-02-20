@@ -2,7 +2,7 @@ package com.hjw0623.character.presentation.character_overview.model.arkpassive
 
 import com.hjw0623.character.domain.model.arkpassive.ArkEffect
 import com.hjw0623.character.domain.model.arkpassive.ArkPassive
-import com.hjw0623.character.presentation.model.gear.removeHtmlTags
+import com.hjw0623.character.presentation.character_overview.model.gear.removeHtmlTags
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json

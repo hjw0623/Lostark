@@ -3,7 +3,7 @@ package com.hjw0623.character.presentation.character_overview.model.skill
 import com.hjw0623.character.domain.model.skill.Rune
 import com.hjw0623.character.domain.model.skill.Skill
 import com.hjw0623.character.domain.model.skill.Tripod
-import com.hjw0623.character.presentation.model.gear.removeHtmlTags
+import com.hjw0623.character.presentation.character_overview.model.gear.removeHtmlTags
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive

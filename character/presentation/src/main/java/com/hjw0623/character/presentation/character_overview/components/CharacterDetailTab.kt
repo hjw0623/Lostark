@@ -22,12 +22,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.hjw0623.character.presentation.character_overview.CharacterState
 import com.hjw0623.character.presentation.character_overview.CharacterViewModel
-import com.hjw0623.character.presentation.components.tab.arkpassive.ArkPassiveScreen
-import com.hjw0623.character.presentation.components.tab.avatar.AvatarScreen
-import com.hjw0623.character.presentation.components.tab.collectibles.CollectibleScreen
-import com.hjw0623.character.presentation.components.tab.gear.GearScreen
-import com.hjw0623.character.presentation.components.tab.siblings.SiblingScreen
-import com.hjw0623.character.presentation.components.tab.skill.SkillScreen
+import com.hjw0623.character.presentation.character_overview.components.tab.arkpassive.ArkPassiveScreen
+import com.hjw0623.character.presentation.character_overview.components.tab.avatar.AvatarScreen
+import com.hjw0623.character.presentation.character_overview.components.tab.collectibles.CollectibleScreen
+import com.hjw0623.character.presentation.character_overview.components.tab.gear.GearScreen
+import com.hjw0623.character.presentation.character_overview.components.tab.siblings.SiblingScreen
+import com.hjw0623.character.presentation.character_overview.components.tab.skill.SkillScreen
+
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostArkGray
 import com.hjw0623.core.presentation.designsystem.LostarkTheme

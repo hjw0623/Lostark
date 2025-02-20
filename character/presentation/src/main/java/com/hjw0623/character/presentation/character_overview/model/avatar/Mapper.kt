@@ -1,7 +1,6 @@
 package com.hjw0623.character.presentation.character_overview.model.avatar
 
 import com.hjw0623.character.domain.model.avatar.Avatar
-import timber.log.Timber
 
 fun Avatar.toAvatarUi(): AvatarUi {
     val type = if (this.isInner) {

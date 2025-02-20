@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.hjw0623.character.presentation.character_overview.mockup.mockArkPassiveContent
-import com.hjw0623.character.presentation.model.arkpassive.ArkPassiveUi
+import com.hjw0623.character.presentation.character_overview.model.arkpassive.ArkPassiveUi
 import com.hjw0623.core.presentation.designsystem.LostArkEnlightenment
 import com.hjw0623.core.presentation.designsystem.LostArkEvolution
 import com.hjw0623.core.presentation.designsystem.LostArkLeap

@@ -1,13 +1,11 @@
 package com.hjw0623.character.presentation.character_overview.components.tab.gear
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -18,14 +16,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import com.hjw0623.character.presentation.components.GradientBackgroundItem
-import com.hjw0623.character.presentation.character_overview.mockup.mockElixirContent
+import com.hjw0623.character.presentation.character_overview.components.GradientBackgroundItem
 import com.hjw0623.character.presentation.character_overview.mockup.mockTranscendenceUi
-import com.hjw0623.character.presentation.character_overview.model.gear.ElixirUi
-import com.hjw0623.character.presentation.character_overview.model.gear.TranscendenceUi
-import com.hjw0623.core.presentation.designsystem.LostArkLightBlue
-import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable

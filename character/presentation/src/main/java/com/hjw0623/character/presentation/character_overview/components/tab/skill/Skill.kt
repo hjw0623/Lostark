@@ -11,8 +11,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.hjw0623.character.presentation.character_overview.mockup.mockGemContent
 import com.hjw0623.character.presentation.character_overview.mockup.mockSkillContent
-import com.hjw0623.character.presentation.model.gem.GemsUi
-import com.hjw0623.character.presentation.model.skill.SkillUi
+import com.hjw0623.character.presentation.character_overview.model.gem.GemsUi
+import com.hjw0623.character.presentation.character_overview.model.skill.SkillUi
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable

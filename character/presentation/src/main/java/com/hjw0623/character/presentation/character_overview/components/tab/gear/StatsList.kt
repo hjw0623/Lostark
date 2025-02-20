@@ -19,10 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.hjw0623.character.presentation.character_overview.mockup.mockStatsContent
-import com.hjw0623.character.presentation.model.profile.StatsUi
+import com.hjw0623.character.presentation.character_overview.model.profile.StatsUi
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
-import com.hjw0623.core.presentation.designsystem.LostArkGray
-import com.hjw0623.core.presentation.designsystem.LostArkLightBlue
 import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import com.hjw0623.core.presentation.designsystem.Typography
