@@ -90,6 +90,8 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+kotlinx-parcelize = { module = "org.jetbrains.kotlinx:kotlin-parcelize", version.ref = "kotlin" }
+
 # Gradle
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }

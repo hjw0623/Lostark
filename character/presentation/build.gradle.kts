@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.lostark.android.feature.ui)
     alias(libs.plugins.kotlin.serialization)
+    id("kotlin-parcelize")
 }
 
 android {
