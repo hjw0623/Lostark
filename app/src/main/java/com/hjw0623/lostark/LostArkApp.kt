@@ -3,6 +3,7 @@ package com.hjw0623.lostark
 import android.app.Application
 import com.hjw0623.character.presentation.di.characterPresentationModule
 import com.hjw0623.core.data.di.coreDataModule
+import com.hjw0623.core.database.di.databaseModule
 import com.hjw0623.data.di.characterDataModule
 import com.hjw0623.events.data.di.eventsDataModule
 import com.hjw0623.events.presentation.events.di.eventsPresentationModule
@@ -35,7 +36,8 @@ class LostArkApp: Application() {
                 eventsDataModule,
                 eventsPresentationModule,
                 characterDataModule,
-                characterPresentationModule
+                characterPresentationModule,
+                databaseModule
             )
         }
     }
