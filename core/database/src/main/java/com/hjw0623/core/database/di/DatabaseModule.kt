@@ -17,11 +17,9 @@ val databaseModule = module {
             "character.db"
         ).build()
     }
-    single { get<CharacterDataBase>()
-        .apply {
-            characterDao()
-            selectedRaidDao()
-        }
-    }
+
+    single { get<CharacterDataBase>().characterDao() }
+    single { get<CharacterDataBase>().selectedRaidDao() }
+
     singleOf(::RoomLocalCharacterDataSource).bind<LocalCharacterDataSource>()
 }
