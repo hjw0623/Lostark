@@ -17,7 +17,7 @@ ktor = "2.3.8"
 ktorClientLogging = "2.3.8"
 koin = "3.5.3"
 lifecycleRuntimeKtx = "2.7.0"
-composeBom = "2024.02.02"
+composeBom = "2025.02.00"
 materialIconsExtended = "1.6.3"
 navigationCompose = "2.7.7"
 securityCryptoKtx = "1.1.0-alpha06"
@@ -33,15 +33,18 @@ kotlinx-serialization = "1.6.3"
 secretsPlugin = "2.0.1"
 annotation = "1.7.1"
 gson = "2.11.0"
+androidx-datastore = "1.1.2"
 
 # Project versions
 projectApplicationId = "com.hjw0623.Lostark"
 projectVersionName = "1.0"
 projectMinSdkVersion = "25"
-projectTargetSdkVersion = "34"
-projectCompileSdkVersion = "34"
+projectTargetSdkVersion = "35"
+projectCompileSdkVersion = "35"
 projectVersionCode = "1"
 monitor = "1.7.2"
+navigationRuntimeKtx = "2.8.7"
+navigationRuntimeAndroid = "2.9.0-alpha06"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -91,6 +94,8 @@ material = { group = "com.google.android.material", name = "material", version.r
 annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 kotlinx-parcelize = { module = "org.jetbrains.kotlinx:kotlin-parcelize", version.ref = "kotlin" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "androidx-datastore" }
+androidx-datastore-core = { module = "androidx.datastore:datastore-core", version.ref = "androidx-datastore" }
 
 # Gradle
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -99,6 +104,8 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
 androidx-monitor = { group = "androidx.test", name = "monitor", version.ref = "monitor" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
+androidx-navigation-runtime-android = { group = "androidx.navigation", name = "navigation-runtime-android", version.ref = "navigationRuntimeAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
