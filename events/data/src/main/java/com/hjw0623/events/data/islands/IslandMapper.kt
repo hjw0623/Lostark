@@ -13,7 +13,7 @@ fun IslandsSerializable.toDomain(): Islands {
         contentsName = this.contentsName,
         contentsIcon = this.contentsIcon,
         minItemLevel = this.minItemLevel,
-        startTimes = this.startTimes,
+        startTimes = this.startTimes?: emptyList(),
         location = this.location,
         rewardItems = this.rewardItems.map { it.toDomain() }
     )
