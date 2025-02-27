@@ -24,6 +24,7 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -52,9 +53,10 @@ import com.hjw0623.events.presentation.events.components.IslandBottomSheet
 @Composable
 fun EventScreen(
     modifier: Modifier = Modifier,
-    state: EventState,
     viewModel: EventsViewModel = koinViewModel()
 ) {
+    val state by viewModel.state.collectAsState()
+
     val context = LocalContext.current
     val sheetState = rememberModalBottomSheetState()
     var isSheetOpen by rememberSaveable {
@@ -197,24 +199,7 @@ fun EventScreen(
 private fun EventScreenPreview() {
     LostarkTheme {
         EventScreen(
-            state = EventState(
 
-                currentIslands = listOf(
-                    mockIslandContent().toIslandUi(),
-                    mockIslandContent("수라도", "골드").toIslandUi(),
-                    mockIslandContent("잔혹한 장난감 성", "해적 주화").toIslandUi()
-                ),
-                events = listOf(
-                    mockEventContent().toEventUi(),
-                    mockEventContent().toEventUi(),
-                    mockEventContent().toEventUi()
-                ),
-                notices = listOf(
-                    mockNoticeContent().toNoticeUi(),
-                    mockNoticeContent().toNoticeUi(),
-                    mockNoticeContent().toNoticeUi()
-                )
-            ),
         )
     }
 }
