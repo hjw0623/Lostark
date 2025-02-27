@@ -1,8 +1,5 @@
-@file:OptIn(ExperimentalFoundationApi::class)
-
 package com.hjw0623.character.presentation.character_overview.components
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,15 +25,12 @@ import com.hjw0623.character.presentation.character_overview.components.tab.coll
 import com.hjw0623.character.presentation.character_overview.components.tab.gear.GearScreen
 import com.hjw0623.character.presentation.character_overview.components.tab.siblings.SiblingScreen
 import com.hjw0623.character.presentation.character_overview.components.tab.skill.SkillScreen
-
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostArkGray
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
-
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CharacterDetailTab(
     modifier: Modifier = Modifier,
@@ -52,7 +46,9 @@ fun CharacterDetailTab(
     )
     val tabIndex = pagerState.currentPage
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
         ScrollableTabRow(
             selectedTabIndex = tabIndex,
             edgePadding = 16.dp,
