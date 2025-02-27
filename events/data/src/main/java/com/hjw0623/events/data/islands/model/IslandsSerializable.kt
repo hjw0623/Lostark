@@ -9,7 +9,7 @@ data class IslandsSerializable(
     @SerialName("ContentsName") val contentsName: String,
     @SerialName("ContentsIcon") val contentsIcon: String,
     @SerialName("MinItemLevel") val minItemLevel: Int,
-    @SerialName("StartTimes") val startTimes: List<String> = emptyList(),
+    @SerialName("StartTimes") val startTimes: List<String>? = emptyList(),
     @SerialName("Location") val location: String,
     @SerialName("RewardItems") val rewardItems: List<IslandRewardItemsSerializable> = emptyList()
 )
