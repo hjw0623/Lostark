@@ -21,6 +21,7 @@ class CharacterSearchViewModel(
         observeSearchHistory()
     }
 
+
     private fun observeSearchHistory() {
         viewModelScope.launch {
             preferences.searchHistory.collect { history ->
@@ -37,6 +38,7 @@ class CharacterSearchViewModel(
                     viewModelScope.launch {
                         preferences.addSearchHistory(searchQuery)
                         _state.update { it.copy(searchQuery = searchQuery) }
+                        _events.send(CharacterSearchEvent.NavigationToCharacterOverviewScreen(searchQuery))
                     }
                 } else {
                     viewModelScope.launch {
@@ -48,13 +50,9 @@ class CharacterSearchViewModel(
             is CharacterSearchAction.OnHistoryClick -> {
                 val historyQuery = action.historyInput.trim()
                 if (historyQuery.isNotBlank()) {
-                    viewModelScope.launch {
-                        _state.update { it.copy(searchQuery = historyQuery) }
-                    }
+                    _state.update { it.copy(searchQuery = historyQuery) }
                 }
-
             }
-
 
             CharacterSearchAction.ClearSearchQuery -> {
                 _state.update { it.copy(searchQuery = "") }

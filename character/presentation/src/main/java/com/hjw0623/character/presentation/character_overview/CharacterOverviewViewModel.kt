@@ -2,6 +2,7 @@ package com.hjw0623.character.presentation.character_overview
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.navArgument
 import com.hjw0623.character.domain.CharacterRepository
 import com.hjw0623.character.presentation.character_overview.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.character_overview.mockup.emptyBraceletUi
@@ -11,6 +12,8 @@ import com.hjw0623.character.presentation.character_overview.model.card.toCardEf
 import com.hjw0623.character.presentation.character_overview.model.card.toCardUi
 import com.hjw0623.character.presentation.character_overview.model.collectibles.toCollectibleSummationUi
 import com.hjw0623.character.presentation.character_overview.model.engraving.toEngravingUi
+import com.hjw0623.character.presentation.character_overview.model.gear.ElixirUi
+import com.hjw0623.character.presentation.character_overview.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.character_overview.model.gear.categorizeGears
 import com.hjw0623.character.presentation.character_overview.model.gear.toAbilityStoneUi
 import com.hjw0623.character.presentation.character_overview.model.gear.toAccessoriesUi
@@ -28,6 +31,7 @@ import com.hjw0623.core.presentation.ui.asUiText
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
@@ -40,16 +44,19 @@ class CharacterOverviewViewModel(
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(CharacterOverviewState())
-    var state = _state
-        .onStart { loadAllData() }
-        .stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5000L),
-            CharacterOverviewState()
-        )
+    val state: StateFlow<CharacterOverviewState> = _state
+
+    fun setCharacterName(characterName: String) {
+        viewModelScope.launch {
+            _state.update { it.copy(searchedCharacterName = characterName) }
+            loadAllData()
+        }
+    }
+
 
     private val _events = Channel<CharacterOverviewEvent>(Channel.BUFFERED)
     val events = _events.receiveAsFlow()
+
 
     private var hasErrorOccurred = false
 
@@ -132,11 +139,11 @@ class CharacterOverviewViewModel(
                                 ?: emptyAbilityStoneUi,
                             bracelet = onlyBracelet.firstOrNull()?.toBraceletUi()
                                 ?: emptyBraceletUi,
-                            elixir = com.hjw0623.character.presentation.character_overview.model.gear.ElixirUi(
+                            elixir = ElixirUi(
                                 total = totalElixirSum,
                                 activeEffect = activeEffect
                             ),
-                            transcendence = com.hjw0623.character.presentation.character_overview.model.gear.TranscendenceUi(
+                            transcendence = TranscendenceUi(
                                 total = totalTranscendenceSum,
                                 avgLevel = avgTranscendenceGrade
                             )
@@ -331,6 +338,7 @@ class CharacterOverviewViewModel(
             if (!hasErrorOccurred) {
                 hasErrorOccurred = true
                 _events.send(CharacterOverviewEvent.Error(message))
+                _events.send(CharacterOverviewEvent.NavigateBack)
             }
         }
     }

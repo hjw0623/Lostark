@@ -47,15 +47,15 @@ fun CharacterSearchScreenRoot(
                 event.error.asString(context),
                 Toast.LENGTH_LONG
             ).show()
+
+            is CharacterSearchEvent.NavigationToCharacterOverviewScreen -> {
+                onSearchClick(event.characterName)
+            }
         }
     }
     CharacterSearchScreen(
         state = state,
         onAction = { action ->
-            when (action) {
-                is CharacterSearchAction.OnSearchClick -> onSearchClick(action.searchInput)
-                else -> Unit
-            }
             viewModel.onAction(action)
         }
     )
@@ -77,9 +77,9 @@ fun CharacterSearchScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BasicTextField(
-            value = searchQuery, // ✅ UI 상태 사용
+            value = searchQuery,
             onValueChange = { newInputQuery ->
-                searchQuery = newInputQuery // ✅ UI에서 즉시 반영
+                searchQuery = newInputQuery
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -110,7 +110,7 @@ fun CharacterSearchScreen(
                     if (searchQuery.isNotEmpty()) {
                         Icon(
                             modifier = Modifier.clickable {
-                                searchQuery = "" // ✅ UI 즉시 초기화
+                                searchQuery = ""
                                 onAction(CharacterSearchAction.ClearSearchQuery)
                             },
                             imageVector = Icons.Default.Clear,
@@ -123,7 +123,7 @@ fun CharacterSearchScreen(
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
             keyboardActions = KeyboardActions(
                 onSearch = {
-                    if (searchQuery.isNotBlank()) { // ✅ searchQuery 사용
+                    if (searchQuery.isNotBlank()) {
                         onAction(CharacterSearchAction.OnSearchClick(searchQuery.trim()))
                         keyboardController?.hide()
                     }
@@ -146,14 +146,14 @@ fun CharacterSearchScreen(
                             color = LostArkBlack,
                             modifier = Modifier
                                 .clickable {
-                                    searchQuery = historyItem // ✅ UI에서 검색어 즉시 반영
-                                    onAction(CharacterSearchAction.OnSearchClick(historyItem))
+                                    searchQuery = historyItem.trim()
+                                    onAction(CharacterSearchAction.OnSearchClick(historyItem.trim()))
                                 }
                                 .weight(1f)
                         )
                         Icon(
                             modifier = Modifier.clickable {
-                                onAction(CharacterSearchAction.DeleteSearchHistory(historyItem))
+                                onAction(CharacterSearchAction.DeleteSearchHistory(historyItem.trim()))
                             },
                             imageVector = Icons.Default.Clear,
                             contentDescription = null

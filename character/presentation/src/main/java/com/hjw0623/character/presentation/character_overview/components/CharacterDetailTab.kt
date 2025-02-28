@@ -17,8 +17,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.hjw0623.character.presentation.character_overview.CharacterState
-import com.hjw0623.character.presentation.character_overview.CharacterViewModel
+import com.hjw0623.character.presentation.character_overview.CharacterOverviewState
+import com.hjw0623.character.presentation.character_overview.CharacterOverviewViewModel
 import com.hjw0623.character.presentation.character_overview.components.tab.arkpassive.ArkPassiveScreen
 import com.hjw0623.character.presentation.character_overview.components.tab.avatar.AvatarScreen
 import com.hjw0623.character.presentation.character_overview.components.tab.collectibles.CollectibleScreen
@@ -34,8 +34,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun CharacterDetailTab(
     modifier: Modifier = Modifier,
-    state: CharacterState,
-    viewModel: CharacterViewModel = koinViewModel()
+    state: CharacterOverviewState,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val tabs = listOf("장비", "아크패시브", "스킬", "아바타", "보유 캐릭터", "수집형포인트")
@@ -47,7 +46,7 @@ fun CharacterDetailTab(
     val tabIndex = pagerState.currentPage
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         ScrollableTabRow(
             selectedTabIndex = tabIndex,
@@ -114,7 +113,7 @@ fun CharacterDetailTab(
 private fun CharacterDetailTabPreview() {
     LostarkTheme {
         CharacterDetailTab(
-            state = CharacterState()
+            state = CharacterOverviewState()
         )
     }
 }

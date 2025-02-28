@@ -34,7 +34,7 @@ data class CharacterOverviewState(
     val isAvatarLoading: Boolean = false,
     val isSiblingLoading: Boolean = false,
 
-    val searchedCharacterName: String = "뷁",
+    val searchedCharacterName: String = "",
 
     val characterProfile: CharacterProfileUi? = null,
     val gearList: List<GearUi> = emptyList(),

@@ -1,13 +1,13 @@
 package com.hjw0623.character.presentation.di
 
 import com.hjw0623.character.presentation.character_manager.ManagerViewModel
-import com.hjw0623.character.presentation.character_overview.CharacterViewModel
+import com.hjw0623.character.presentation.character_overview.CharacterOverviewViewModel
 import com.hjw0623.character.presentation.character_search.CharacterSearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 val characterPresentationModule = module {
-    viewModelOf(::CharacterViewModel)
+    viewModelOf(::CharacterOverviewViewModel)
     viewModelOf(::ManagerViewModel)
     viewModelOf(::CharacterSearchViewModel)
 }
