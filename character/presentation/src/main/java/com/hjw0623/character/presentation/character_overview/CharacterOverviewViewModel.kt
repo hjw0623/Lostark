@@ -35,20 +35,20 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class CharacterViewModel(
+class CharacterOverviewViewModel(
     private val characterRepository: CharacterRepository
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(CharacterState())
+    private val _state = MutableStateFlow(CharacterOverviewState())
     var state = _state
         .onStart { loadAllData() }
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000L),
-            CharacterState()
+            CharacterOverviewState()
         )
 
-    private val _events = Channel<CharacterEvent>(Channel.BUFFERED)
+    private val _events = Channel<CharacterOverviewEvent>(Channel.BUFFERED)
     val events = _events.receiveAsFlow()
 
     private var hasErrorOccurred = false
@@ -330,7 +330,7 @@ class CharacterViewModel(
         viewModelScope.launch {
             if (!hasErrorOccurred) {
                 hasErrorOccurred = true
-                _events.send(CharacterEvent.Error(message))
+                _events.send(CharacterOverviewEvent.Error(message))
             }
         }
     }

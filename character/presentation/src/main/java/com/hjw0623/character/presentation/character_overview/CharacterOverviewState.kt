@@ -21,7 +21,7 @@ import com.hjw0623.character.presentation.character_overview.model.skill.SkillUi
 
 
 @Immutable
-data class CharacterState(
+data class CharacterOverviewState(
     val isCharacterProfileLoading: Boolean = false,
     val isGearLoading: Boolean = false,
     val isGemLoading: Boolean = false,
@@ -34,7 +34,7 @@ data class CharacterState(
     val isAvatarLoading: Boolean = false,
     val isSiblingLoading: Boolean = false,
 
-    val searchedCharacterName: String = "택티컬맘마통",
+    val searchedCharacterName: String = "뷁",
 
     val characterProfile: CharacterProfileUi? = null,
     val gearList: List<GearUi> = emptyList(),
