@@ -47,6 +47,17 @@ fun DataError.asUiText(): UiText {
         DataError.Network.SERIALIZATION -> UiText.StringResource(
             R.string.error_serialization
         )
+
+        DataError.Network.INVALID_RESPONSE -> UiText.StringResource(
+            R.string.error_invalid_response
+        )
+        DataError.Network.EMPTY_CHARACTER_RESPONSE -> UiText.StringResource(
+            R.string.error_empty_character_response
+        )
+        DataError.Network.EMPTY_RESPONSE -> UiText.StringResource(
+            R.string.error_empty_response
+        )
+
         else -> UiText.StringResource(R.string.error_unknown)
     }
 }

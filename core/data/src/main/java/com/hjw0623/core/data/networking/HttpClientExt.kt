@@ -5,6 +5,9 @@ import com.hjw0623.core.domain.util.DataError
 import com.hjw0623.core.domain.util.Result
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
+import io.ktor.client.statement.bodyAsText
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 import io.ktor.util.network.UnresolvedAddressException
 import io.ktor.utils.io.CancellationException
 import kotlinx.serialization.SerializationException
@@ -24,13 +27,22 @@ suspend inline fun <reified T> safeCall(execute: () -> HttpResponse): Result<T, 
         e.printStackTrace()
         return Result.Error(DataError.Network.UNKNOWN)
     }
+    if (response.contentType()?.match(ContentType.Application.Json) != true) {
+        return Result.Error(DataError.Network.INVALID_RESPONSE)
+    }
 
     return responseToResult(response)
 }
 
 suspend inline fun <reified T> responseToResult(response: HttpResponse): Result<T, DataError.Network> {
     return when(response.status.value) {
-        in 200..299 -> Result.Success(response.body<T>())
+        in 200..299 -> {
+            val responseBody = response.bodyAsText()
+            if (responseBody.isBlank() || responseBody == "[]") {
+                return Result.Error(DataError.Network.EMPTY_RESPONSE)
+            }
+            Result.Success(response.body<T>())
+        }
         401 -> Result.Error(DataError.Network.UNAUTHORIZED)
         403 -> Result.Error(DataError.Network.FORBIDDEN)
         404 -> Result.Error(DataError.Network.NOT_FOUND)

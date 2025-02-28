@@ -44,31 +44,43 @@ class CharacterRepositoryImpl(
     private val httpClient: HttpClient
 ): CharacterRepository {
     override suspend fun getCharacterProfile(characterName: String): Result<CharacterProfile, DataError.Network> {
-        return safeCall<CharacterProfileSerializable> {
+        return safeCall<CharacterProfileSerializable?> {
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/profiles")
             )
         }.map { response ->
+            if (response == null) {
+                return Result.Error(DataError.Network.NOT_FOUND)
+            }
             response.toDomain()
         }
     }
 
     override suspend fun getGear(characterName: String): Result<List<Gear>, DataError.Network> {
-        return safeCall<List<GearSerializable>> {
+        return safeCall<List<GearSerializable>?> {
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/equipment")
             )
         }.map { response ->
+            if (response == null) {
+                return Result.Error(DataError.Network.NOT_FOUND)
+            }
+            if (response.isEmpty()) {
+                return Result.Error(DataError.Network.EMPTY_RESPONSE)
+            }
             response.map { it.toDomain() }
         }
     }
 
     override suspend fun getGems(characterName: String): Result<Gems, DataError.Network> {
-        return safeCall<GemsSerializable> {
+        return safeCall<GemsSerializable?> {
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/gems")
             )
         }.map { response ->
+            if (response == null) {
+                return Result.Error(DataError.Network.NOT_FOUND)
+            }
             response.toDomain()
         }
     }
@@ -79,70 +91,99 @@ class CharacterRepositoryImpl(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/engravings")
             )
         }.map { response ->
-            response?.toDomain() ?: EngravingsSerializable(
-                engravings = null,
-                effects = null,
-                arkPassiveEffects = null
-            ).toDomain()
+            if (response == null) {
+                return Result.Error(DataError.Network.NOT_FOUND)
+            }
+            response.toDomain()
         }
     }
 
     override suspend fun getCards(characterName: String): Result<CardList, DataError.Network> {
-        return safeCall<CardsSerializable> {
+        return safeCall<CardsSerializable?> {
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/cards")
             )
         }.map { response ->
+            if (response == null) {
+                return Result.Error(DataError.Network.NOT_FOUND)
+            }
             response.toDomain()
         }
     }
 
     override suspend fun getArkPassive(characterName: String): Result<ArkPassive, DataError.Network> {
-        return safeCall<ArkPassiveDto> {
+        return safeCall<ArkPassiveDto?> {
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/arkpassive")
             )
         }.map { response ->
+            if (response == null) {
+                return Result.Error(DataError.Network.NOT_FOUND)
+            }
             response.toDomain()
         }
     }
 
     override suspend fun getSkill(characterName: String): Result<List<Skill>, DataError.Network> {
-        return safeCall<List<SkillSerializable>> {
+        return safeCall<List<SkillSerializable>?> {
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/combat-skills")
             )
         }.map { response ->
+            if (response == null) {
+                return Result.Error(DataError.Network.NOT_FOUND)
+            }
+            if (response.isEmpty()) {
+                return Result.Error(DataError.Network.EMPTY_RESPONSE)
+            }
             response.map { it.toDomain() }
         }
     }
 
     override suspend fun getAvatar(characterName: String): Result<List<Avatar>, DataError.Network> {
-        return safeCall<List<AvatarSerializable>> {
+        return safeCall<List<AvatarSerializable>?> {
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/avatars")
             )
         }.map { response ->
+            if (response == null) {
+                return Result.Error(DataError.Network.NOT_FOUND)
+            }
+            if (response.isEmpty()) {
+                return Result.Error(DataError.Network.EMPTY_RESPONSE)
+            }
             response.map { it.toDomain() }
         }
     }
 
     override suspend fun getSibling(characterName: String): Result<List<Sibling>, DataError.Network> {
-        return safeCall<List<SiblingSerializable>> {
+        return safeCall<List<SiblingSerializable>?> {
             httpClient.get(
                 urlString = constructRoute("/characters/${characterName.encodeURLPath()}/siblings")
             )
         }.map { response ->
+            if (response == null) {
+                return Result.Error(DataError.Network.EMPTY_CHARACTER_RESPONSE)
+            }
+            if (response.isEmpty()) {
+                return Result.Error(DataError.Network.EMPTY_RESPONSE)
+            }
             response.map { it.toDomain() }
         }
     }
 
     override suspend fun getCollectibles(characterName: String): Result<List<Collectible>, DataError.Network> {
-        return safeCall<List<CollectibleSerializable>> {
+        return safeCall<List<CollectibleSerializable>?> {
             httpClient.get(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/collectibles")
             )
         }.map { response ->
+            if (response == null) {
+                return Result.Error(DataError.Network.NOT_FOUND)
+            }
+            if (response.isEmpty()) {
+                return Result.Error(DataError.Network.EMPTY_RESPONSE)
+            }
             response.map { it.toDomain() }
         }
     }
