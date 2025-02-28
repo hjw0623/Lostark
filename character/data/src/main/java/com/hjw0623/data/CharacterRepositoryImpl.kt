@@ -50,7 +50,7 @@ class CharacterRepositoryImpl(
             )
         }.map { response ->
             if (response == null) {
-                return Result.Error(DataError.Network.NOT_FOUND)
+                return Result.Error(DataError.Network.EMPTY_CHARACTER_RESPONSE)
             }
             response.toDomain()
         }
@@ -62,11 +62,8 @@ class CharacterRepositoryImpl(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/equipment")
             )
         }.map { response ->
-            if (response == null) {
-                return Result.Error(DataError.Network.NOT_FOUND)
-            }
-            if (response.isEmpty()) {
-                return Result.Error(DataError.Network.EMPTY_RESPONSE)
+            if (response.isNullOrEmpty()) {
+                return Result.Error(DataError.Network.EMPTY_CHARACTER_RESPONSE)
             }
             response.map { it.toDomain() }
         }
@@ -79,7 +76,7 @@ class CharacterRepositoryImpl(
             )
         }.map { response ->
             if (response == null) {
-                return Result.Error(DataError.Network.NOT_FOUND)
+                return Result.Error(DataError.Network.EMPTY_CHARACTER_RESPONSE)
             }
             response.toDomain()
         }
@@ -92,7 +89,7 @@ class CharacterRepositoryImpl(
             )
         }.map { response ->
             if (response == null) {
-                return Result.Error(DataError.Network.NOT_FOUND)
+                return Result.Error(DataError.Network.EMPTY_CHARACTER_RESPONSE)
             }
             response.toDomain()
         }
@@ -105,7 +102,7 @@ class CharacterRepositoryImpl(
             )
         }.map { response ->
             if (response == null) {
-                return Result.Error(DataError.Network.NOT_FOUND)
+                return Result.Error(DataError.Network.EMPTY_CHARACTER_RESPONSE)
             }
             response.toDomain()
         }
@@ -118,7 +115,7 @@ class CharacterRepositoryImpl(
             )
         }.map { response ->
             if (response == null) {
-                return Result.Error(DataError.Network.NOT_FOUND)
+                return Result.Error(DataError.Network.EMPTY_CHARACTER_RESPONSE)
             }
             response.toDomain()
         }
@@ -130,11 +127,8 @@ class CharacterRepositoryImpl(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/combat-skills")
             )
         }.map { response ->
-            if (response == null) {
-                return Result.Error(DataError.Network.NOT_FOUND)
-            }
-            if (response.isEmpty()) {
-                return Result.Error(DataError.Network.EMPTY_RESPONSE)
+            if (response.isNullOrEmpty()) {
+                return Result.Error(DataError.Network.EMPTY_CHARACTER_RESPONSE)
             }
             response.map { it.toDomain() }
         }
@@ -146,11 +140,8 @@ class CharacterRepositoryImpl(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/avatars")
             )
         }.map { response ->
-            if (response == null) {
-                return Result.Error(DataError.Network.NOT_FOUND)
-            }
-            if (response.isEmpty()) {
-                return Result.Error(DataError.Network.EMPTY_RESPONSE)
+            if (response.isNullOrEmpty()) {
+                return Result.Error(DataError.Network.EMPTY_CHARACTER_RESPONSE)
             }
             response.map { it.toDomain() }
         }
@@ -162,11 +153,8 @@ class CharacterRepositoryImpl(
                 urlString = constructRoute("/characters/${characterName.encodeURLPath()}/siblings")
             )
         }.map { response ->
-            if (response == null) {
+            if (response.isNullOrEmpty()) {
                 return Result.Error(DataError.Network.EMPTY_CHARACTER_RESPONSE)
-            }
-            if (response.isEmpty()) {
-                return Result.Error(DataError.Network.EMPTY_RESPONSE)
             }
             response.map { it.toDomain() }
         }
@@ -178,11 +166,8 @@ class CharacterRepositoryImpl(
                 urlString = constructRoute("/armories/characters/${characterName.encodeURLPath()}/collectibles")
             )
         }.map { response ->
-            if (response == null) {
-                return Result.Error(DataError.Network.NOT_FOUND)
-            }
-            if (response.isEmpty()) {
-                return Result.Error(DataError.Network.EMPTY_RESPONSE)
+            if (response.isNullOrEmpty()) {
+                return Result.Error(DataError.Network.EMPTY_CHARACTER_RESPONSE)
             }
             response.map { it.toDomain() }
         }
