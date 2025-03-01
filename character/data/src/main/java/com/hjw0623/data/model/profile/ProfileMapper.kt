@@ -6,7 +6,7 @@ import com.hjw0623.character.domain.model.profile.Tendency
 
 fun CharacterProfileSerializable.toDomain(): CharacterProfile {
     return CharacterProfile(
-        characterImage = this.characterImage,
+        characterImage = this.characterImage ?: "",
         expeditionLevel = this.expeditionLevel,
         pvpGradeName = this.pvpGradeName,
         townLevel = this.townLevel,

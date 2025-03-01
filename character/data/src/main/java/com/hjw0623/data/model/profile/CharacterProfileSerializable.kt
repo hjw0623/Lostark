@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CharacterProfileSerializable(
-    @SerialName("CharacterImage") val characterImage: String,
+    @SerialName("CharacterImage") val characterImage: String?,
     @SerialName("ExpeditionLevel") val expeditionLevel: Int,
     @SerialName("PvpGradeName") val pvpGradeName: String,
     @SerialName("TownLevel") val townLevel: Int?,
