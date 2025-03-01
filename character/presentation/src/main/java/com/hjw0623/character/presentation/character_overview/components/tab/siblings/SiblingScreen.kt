@@ -15,9 +15,10 @@ import com.hjw0623.core.presentation.designsystem.Typography
 
 @Composable
 fun SiblingScreen(
-    siblingList: List<com.hjw0623.character.presentation.character_overview.model.siblings.SiblingUi>
+    siblingList: List<SiblingUi>,
+    onClick: (String) -> Unit
 ) {
-    val groupedSiblings: Map<String, List<com.hjw0623.character.presentation.character_overview.model.siblings.SiblingUi>> = siblingList
+    val groupedSiblings: Map<String, List<SiblingUi>> = siblingList
         .groupBy { it.serverName }
         .mapValues { (_, siblings) ->
             siblings.sortedByDescending { it.itemAvgLevel.replace(",", "").toDoubleOrNull() ?: 0.0 }
@@ -34,7 +35,7 @@ fun SiblingScreen(
             }
 
             items(characters) { sibling ->
-                SiblingListItem(sibling = sibling, onClick = {  })
+                SiblingListItem(sibling = sibling, onClick = { onClick(sibling.characterName) })
             }
         }
     }
@@ -42,35 +43,35 @@ fun SiblingScreen(
 
 
 private fun mockSiblingList() = listOf(
-    com.hjw0623.character.presentation.character_overview.model.siblings.SiblingUi(
+    SiblingUi(
         "https://example.com/image1.png",
         "카제로스",
         "택티컬맘마통",
         "창술사",
         "1644.17"
     ),
-    com.hjw0623.character.presentation.character_overview.model.siblings.SiblingUi(
+    SiblingUi(
         "https://example.com/image2.png",
         "카제로스",
         "이슈타르",
         "바드",
         "1523.45"
     ),
-    com.hjw0623.character.presentation.character_overview.model.siblings.SiblingUi(
+    SiblingUi(
         "https://example.com/image3.png",
         "니나브",
         "다크나이트",
         "데모닉",
         "1580.33"
     ),
-    com.hjw0623.character.presentation.character_overview.model.siblings.SiblingUi(
+    SiblingUi(
         "https://example.com/image4.png",
         "니나브",
         "빛의성기사",
         "홀리나이트",
         "1655.80"
     ),
-    com.hjw0623.character.presentation.character_overview.model.siblings.SiblingUi(
+    SiblingUi(
         "https://example.com/image5.png",
         "아브렐슈드",
         "섀도우헌터",
@@ -83,6 +84,6 @@ private fun mockSiblingList() = listOf(
 @Composable
 private fun SiblingScreenPreview() {
     LostarkTheme {
-        SiblingScreen(siblingList = mockSiblingList())
+        SiblingScreen(siblingList = mockSiblingList(), onClick = {})
     }
 }

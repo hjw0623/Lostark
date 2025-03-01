@@ -48,13 +48,19 @@ fun CharacterOverviewScreenRoot(
     LaunchedEffect(characterName) {
         viewModel.setCharacterName(characterName)
     }
-    CharacterOverviewScreen(state = state)
+    CharacterOverviewScreen(
+        state = state,
+        onSiblingClick = { siblingName ->
+            viewModel.setCharacterName(siblingName)
+        }
+    )
 }
 
 @Composable
 fun CharacterOverviewScreen(
     modifier: Modifier = Modifier,
-    state: CharacterOverviewState
+    state: CharacterOverviewState,
+    onSiblingClick: (String) -> Unit
 ) {
 
 
@@ -78,7 +84,8 @@ fun CharacterOverviewScreen(
                     .background(color = LostArkWhite)
             ) {
                 CharacterDetailTab(
-                    state = state
+                    state = state,
+                    onSiblingClick = onSiblingClick
                 )
             }
         }
@@ -92,7 +99,8 @@ fun CharacterOverviewScreen(
 private fun CharacterScreenPreview() {
     LostarkTheme {
         CharacterOverviewScreen(
-            state = CharacterOverviewState()
+            state = CharacterOverviewState(),
+            onSiblingClick = { }
         )
     }
 }

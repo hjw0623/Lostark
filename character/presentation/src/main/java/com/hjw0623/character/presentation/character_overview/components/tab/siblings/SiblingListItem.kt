@@ -23,7 +23,7 @@ import com.hjw0623.core.presentation.designsystem.*
 
 @Composable
 fun SiblingListItem(
-    sibling: com.hjw0623.character.presentation.character_overview.model.siblings.SiblingUi,
+    sibling: SiblingUi,
     onClick: () -> Unit
 ) {
     Card(
@@ -73,6 +73,7 @@ fun SiblingListItem(
                 contentDescription = "Go",
                 tint = LostArkBlack,
                 modifier = Modifier.size(24.dp)
+                    .clickable { onClick() }
             )
         }
     }

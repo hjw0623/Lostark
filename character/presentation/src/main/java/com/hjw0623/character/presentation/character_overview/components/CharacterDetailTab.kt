@@ -35,6 +35,7 @@ import org.koin.androidx.compose.koinViewModel
 fun CharacterDetailTab(
     modifier: Modifier = Modifier,
     state: CharacterOverviewState,
+    onSiblingClick: (String) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     val tabs = listOf("장비", "아크패시브", "스킬", "아바타", "보유 캐릭터", "수집형포인트")
@@ -98,7 +99,10 @@ fun CharacterDetailTab(
                 1 -> ArkPassiveScreen(state.arkPassive)
                 2 -> SkillScreen(state.skillList, state.gemsList)
                 3 -> AvatarScreen(state.avatarList)
-                4 -> SiblingScreen(state.siblingList)
+                4 -> SiblingScreen(
+                    siblingList = state.siblingList,
+                    onClick = onSiblingClick,
+                )
                 5 -> CollectibleScreen(state.collectibleSummationList)
                 else -> Text("알 수 없는 페이지")
             }
@@ -113,7 +117,8 @@ fun CharacterDetailTab(
 private fun CharacterDetailTabPreview() {
     LostarkTheme {
         CharacterDetailTab(
-            state = CharacterOverviewState()
+            state = CharacterOverviewState(),
+            onSiblingClick = { },
         )
     }
 }
