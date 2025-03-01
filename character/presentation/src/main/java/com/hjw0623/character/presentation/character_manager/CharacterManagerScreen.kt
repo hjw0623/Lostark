@@ -33,12 +33,12 @@ fun CharacterManagerScreenRoot(
     onCharacterDeleteClick: () -> Unit,
     onCharacterSettingClick: () -> Unit,
     onCharacterAddClick: () -> Unit,
-    viewModel: ManagerViewModel = koinViewModel()
+    viewModel: CharacterManagerViewModel = koinViewModel(),
 ) {
     val context = LocalContext.current
     ObserveAsEvents(flow = viewModel.events) { event ->
         when (event) {
-            is ManagerEvent.Error -> Toast.makeText(
+            is CharacterManagerEvent.Error -> Toast.makeText(
                 context,
                 event.error.asString(context),
                 Toast.LENGTH_LONG
@@ -50,12 +50,11 @@ fun CharacterManagerScreenRoot(
         state = viewModel.state,
         onAction = { action ->
             when (action) {
-                ManagerAction.OnCharacterAddClick -> onCharacterAddClick()
-                ManagerAction.OnCharacterDeleteClick ->  onCharacterDeleteClick()
-                ManagerAction.OnCharacterSettingClick -> onCharacterSettingClick()
+                CharacterManagerAction.OnCharacterAddClick -> onCharacterAddClick()
+                CharacterManagerAction.OnCharacterDeleteClick ->  onCharacterDeleteClick()
+                CharacterManagerAction.OnCharacterSettingClick -> onCharacterSettingClick()
 
             }
-            viewModel.onAction(action)
         }
     )
 }
@@ -63,13 +62,13 @@ fun CharacterManagerScreenRoot(
 @Composable
 fun CharacterManagerScreen(
     modifier: Modifier = Modifier,
-    state: ManagerState,
-    onAction: (ManagerAction) -> Unit
+    state: CharacterManagerState,
+    onAction: (CharacterManagerAction) -> Unit
 ) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { onAction(ManagerAction.OnCharacterAddClick) },
+                onClick = { onAction(CharacterManagerAction.OnCharacterAddClick) },
                 containerColor = LostArkBlue
             ) {
                 Text("+")
@@ -176,8 +175,8 @@ fun CharacterManagerScreen(
                 items(state.savedCharacterProgressList) { character ->
                     CharacterProgressListItem(
                         characterProgress = character,
-                        onCharacterSettingClick = { onAction(ManagerAction.OnCharacterSettingClick) },
-                        onCharacterDeleteClick = { onAction(ManagerAction.OnCharacterDeleteClick) }
+                        onCharacterSettingClick = { onAction(CharacterManagerAction.OnCharacterSettingClick) },
+                        onCharacterDeleteClick = { onAction(CharacterManagerAction.OnCharacterDeleteClick) }
                     )
                 }
             }
@@ -192,7 +191,7 @@ fun CharacterManagerScreen(
 private fun CharacterManagerScreenPreview() {
     LostarkTheme {
         CharacterManagerScreen(
-            state = ManagerState(
+            state = CharacterManagerState(
                 savedCharacterProgressList = listOf(
                     mockCharacterProgressContent(),
                     mockCharacterProgressContent(),

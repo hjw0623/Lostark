@@ -9,37 +9,16 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 
 
-class ManagerViewModel(
+class CharacterManagerViewModel(
     private val characterRepository: CharacterRepository
 ) : ViewModel() {
 
-    var state by mutableStateOf(
-        ManagerState(
-
-        )
-    )
+    var state by mutableStateOf(CharacterManagerState())
         private set
 
-    private val eventChannel = Channel<ManagerEvent>()
+    private val eventChannel = Channel<CharacterManagerEvent>()
     val events = eventChannel.receiveAsFlow()
 
-    init {
 
-    }
 
-    fun onAction(action: ManagerAction) {
-        when (action) {
-            ManagerAction.OnCharacterAddClick -> {
-
-            }
-
-            ManagerAction.OnCharacterDeleteClick -> {
-
-            }
-
-            ManagerAction.OnCharacterSettingClick -> {
-
-            }
-        }
-    }
 }
