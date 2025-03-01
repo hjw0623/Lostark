@@ -1,6 +1,7 @@
 package com.hjw0623.character.presentation.character_manager
 
 import android.widget.Toast
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -12,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,7 +56,6 @@ fun CharacterManagerScreenRoot(
                 CharacterManagerAction.OnCharacterAddClick -> onCharacterAddClick()
                 CharacterManagerAction.OnCharacterDeleteClick ->  onCharacterDeleteClick()
                 CharacterManagerAction.OnCharacterSettingClick -> onCharacterSettingClick()
-
             }
         }
     )
@@ -107,18 +109,40 @@ fun CharacterManagerScreen(
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(5.dp))
 
-            LinearProgressIndicator(
-                progress = { state.raidProgress },
+            Spacer(modifier = Modifier.height(8.dp))
+
+
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(10.dp)
-                    .clip(RoundedCornerShape(3.dp)),
-                color = LostArkBlue,
-                trackColor = LostArkGray,
-            )
-            Spacer(modifier = Modifier.height(5.dp))
+                    .height(12.dp)
+                    .padding(4.dp)
+            ) {
+                Canvas(modifier = Modifier.matchParentSize()) {
+                    val trackHeight = size.height
+                    val progressWidth = size.width * state.raidProgress
+                    val strokeThickness = 12.dp.toPx()
+
+                    drawLine(
+                        color = LostArkGray,
+                        start = Offset(0f, trackHeight / 2),
+                        end = Offset(size.width, trackHeight / 2),
+                        strokeWidth = strokeThickness,
+                        cap = StrokeCap.Butt
+                    )
+
+                    drawLine(
+                        color = LostArkBlue,
+                        start = Offset(0f, trackHeight / 2),
+                        end = Offset(progressWidth, trackHeight / 2),
+                        strokeWidth = strokeThickness,
+                        cap = StrokeCap.Butt
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
 
             Row(
                 modifier = Modifier
@@ -170,7 +194,9 @@ fun CharacterManagerScreen(
                     }
                 }
             }
+
             Spacer(modifier = Modifier.height(5.dp))
+
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
                 items(state.savedCharacterProgressList) { character ->
                     CharacterProgressListItem(
