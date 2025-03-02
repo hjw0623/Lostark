@@ -7,7 +7,7 @@ import com.hjw0623.core.database.mapper.toCharacter
 import com.hjw0623.core.database.mapper.toCharacterEntity
 import com.hjw0623.core.database.mapper.toSelectedRaid
 import com.hjw0623.core.database.mapper.toSelectedRaidEntity
-import com.hjw0623.core.domain.character.Character
+import com.hjw0623.core.domain.character.RoomCharacter
 import com.hjw0623.core.domain.character.CharacterName
 import com.hjw0623.core.domain.character.LocalCharacterDataSource
 import com.hjw0623.core.domain.character.RaidId
@@ -22,14 +22,14 @@ class RoomLocalCharacterDataSource(
     private val selectedRaidDao: SelectedRaidDao
 ) : LocalCharacterDataSource {
 
-    override fun getCharacters(): Flow<List<Character>> {
+    override fun getCharacters(): Flow<List<RoomCharacter>> {
         return characterDao.getCharacters()
             .map { entities -> entities.map { it.toCharacter() } }
     }
 
-    override suspend fun upsertCharacter(character: Character): Result<CharacterName, DataError.Local> {
+    override suspend fun upsertCharacter(roomCharacter: RoomCharacter): Result<CharacterName, DataError.Local> {
         return try {
-            val entity = character.toCharacterEntity()
+            val entity = roomCharacter.toCharacterEntity()
             characterDao.upsertCharacter(entity)
             Result.Success(entity.characterName)
         } catch (e: SQLiteFullException) {
@@ -37,7 +37,7 @@ class RoomLocalCharacterDataSource(
         }
     }
 
-    override suspend fun getCharacter(characterName: String): Character? {
+    override suspend fun getCharacter(characterName: String): RoomCharacter? {
         return characterDao.getCharacter(characterName)?.toCharacter()
     }
 
