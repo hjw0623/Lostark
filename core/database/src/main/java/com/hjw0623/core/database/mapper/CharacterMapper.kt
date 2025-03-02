@@ -2,11 +2,11 @@ package com.hjw0623.core.database.mapper
 
 import com.hjw0623.core.database.entity.CharacterEntity
 import com.hjw0623.core.database.entity.SelectedRaidEntity
-import com.hjw0623.core.domain.character.Character
+import com.hjw0623.core.domain.character.RoomCharacter
 import com.hjw0623.core.domain.character.SelectedRaid
 
-fun CharacterEntity.toCharacter(): Character {
-    return Character(
+fun CharacterEntity.toCharacter(): RoomCharacter {
+    return RoomCharacter(
         server = server,
         characterName = characterName,
         className = className,
@@ -14,7 +14,7 @@ fun CharacterEntity.toCharacter(): Character {
     )
 }
 
-fun Character.toCharacterEntity(): CharacterEntity {
+fun RoomCharacter.toCharacterEntity(): CharacterEntity {
     return CharacterEntity(
         characterName = characterName,
         className = className,
