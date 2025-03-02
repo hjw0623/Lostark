@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.hjw0623.character.presentation.character_add.CharacterAddScreenRoot
 import com.hjw0623.character.presentation.character_manager.CharacterManagerScreenRoot
 import com.hjw0623.character.presentation.character_overview.CharacterOverviewScreenRoot
 import com.hjw0623.character.presentation.character_search.CharacterSearchScreenRoot
@@ -23,7 +24,7 @@ fun NavigationRoot(navController: NavHostController) {
             CharacterManagerScreenRoot(
                 onCharacterDeleteClick = { /* 삭제 로직 */ },
                 onCharacterSettingClick = { /* 설정 로직 */ },
-                onCharacterAddClick = { navController.navigate(NavigationRoutes.CharacterSearch.route) }
+                onCharacterAddClick = { navController.navigate(NavigationRoutes.CharacterAdd.createRoute()) }
             )
         }
 
@@ -50,6 +51,17 @@ fun NavigationRoot(navController: NavHostController) {
                     }
                 },
                 viewModel = koinViewModel())
+        }
+
+        composable(NavigationRoutes.CharacterAdd.route) { backStackEntry ->
+            CharacterAddScreenRoot(
+                onBackClick = {
+                    navController.navigate(NavigationRoutes.CharacterManager.route) {
+                        popUpTo(NavigationRoutes.CharacterManager.route) { inclusive = true }
+                    }
+                },
+                viewModel = koinViewModel()
+            )
         }
     }
 }
