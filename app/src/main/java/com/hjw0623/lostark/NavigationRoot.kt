@@ -22,8 +22,7 @@ fun NavigationRoot(navController: NavHostController) {
     ) {
         composable(BottomNavItem.CHARACTER_MANAGER.route) {
             CharacterManagerScreenRoot(
-                onCharacterDeleteClick = { /* 삭제 로직 */ },
-                onCharacterSettingClick = { /* 설정 로직 */ },
+                onCharacterSettingClick = { },
                 onCharacterAddClick = { navController.navigate(NavigationRoutes.CharacterAdd.createRoute()) }
             )
         }
