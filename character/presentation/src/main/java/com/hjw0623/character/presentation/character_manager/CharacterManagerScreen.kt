@@ -1,6 +1,7 @@
 package com.hjw0623.character.presentation.character_manager
 
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -48,13 +49,19 @@ fun CharacterManagerScreenRoot(
                 event.error.asString(context),
                 Toast.LENGTH_LONG
             ).show()
+
+            is CharacterManagerEvent.OnDeleteCharacter -> Toast.makeText(
+                context,
+                event.characterName + "가 삭제되었습니다.",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
     CharacterManagerScreen(
         state = state,
-        onAction = {  action ->
-            when(action) {
+        onAction = { action ->
+            when (action) {
                 CharacterManagerAction.OnCharacterAddClick -> onCharacterAddClick()
                 CharacterManagerAction.OnCharacterSettingClick -> onCharacterSettingClick()
                 else -> viewModel.onAction(action)
@@ -90,7 +97,7 @@ fun CharacterManagerScreen(
                     .padding(paddingValues)
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().padding(6.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
@@ -221,11 +228,7 @@ fun CharacterManagerScreen(
                                 characterProgress = character,
                                 onCharacterSettingClick = { onAction(CharacterManagerAction.OnCharacterSettingClick) },
                                 onCharacterDeleteClick = {
-                                    onAction(
-                                        CharacterManagerAction.OnCharacterDeleteClick(
-                                            character
-                                        )
-                                    )
+                                    onAction(CharacterManagerAction.OnShowDialog(character.name))
                                 }
                             )
                         }
@@ -234,6 +237,25 @@ fun CharacterManagerScreen(
 
             }
         }
+    }
+    if (state.showDialog && state.savedCharacterProgressListByServer.isNotEmpty()) {
+        AlertDialog(
+            onDismissRequest = { onAction(CharacterManagerAction.OnDismissDeleteClick) },
+            title = { Text(text = "캐릭터 삭제") },
+            text = { Text(text = "\"${state.characterToDelete}\"(을)를 삭제 하시겠습니까?") },
+            confirmButton = {
+                TextButton(onClick = {
+                    onAction(CharacterManagerAction.OnCharacterDeleteClick(state.characterToDelete))
+                }) {
+                    Text("예")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { onAction(CharacterManagerAction.OnDismissDeleteClick) }) {
+                    Text("아니오")
+                }
+            }
+        )
     }
 }
 
@@ -247,7 +269,7 @@ private fun CharacterManagerScreenPreview() {
             state = CharacterManagerState(
 
             ),
-            onAction = {  },
+            onAction = { },
         )
     }
 }

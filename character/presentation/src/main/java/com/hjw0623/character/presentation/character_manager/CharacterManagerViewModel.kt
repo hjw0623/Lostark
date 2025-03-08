@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.hjw0623.character.presentation.character_manager.model.CharacterProgressUi
 import com.hjw0623.character.presentation.character_overview.util.getClassImg
 import com.hjw0623.core.domain.character.LocalCharacterDataSource
-import com.hjw0623.core.presentation.ui.UiText
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
@@ -24,26 +23,56 @@ class CharacterManagerViewModel(
     private val _events = Channel<CharacterManagerEvent>()
     val events = _events.receiveAsFlow()
 
-    private var hasErrorOccurred = false
-
     init {
         getAllList()
     }
 
     fun onAction(action: CharacterManagerAction) {
-        when (action) {
-            is CharacterManagerAction.OnCharacterDeleteClick -> {
-
+        when(action) {
+            CharacterManagerAction.OnCharacterAddClick -> {
+                viewModelScope.launch {
+                    _events.send(CharacterManagerEvent.NavigateToCharacterAdd)
+                }
             }
             CharacterManagerAction.OnCharacterSettingClick -> {
-
+                viewModelScope.launch {
+                    _events.send(CharacterManagerEvent.NavigateToCharacterSetting)
+                }
             }
-
-            CharacterManagerAction.OnCharacterAddClick -> {
-
+            is CharacterManagerAction.OnCharacterDeleteClick -> {
+                deleteCharacter(action.character)
+                _state.update {
+                    it.copy(
+                        showDialog = false,
+                        characterToDelete = ""
+                    )
+                }
+            }
+            CharacterManagerAction.OnDismissDeleteClick -> {
+                _state.update {
+                    it.copy(
+                        showDialog = false,
+                        characterToDelete = ""
+                    )
+                }
+            }
+            is CharacterManagerAction.OnShowDialog -> {
+                _state.update {
+                    it.copy(
+                        showDialog = true,
+                        characterToDelete = action.character
+                    )
+                }
             }
         }
 
+    }
+
+    private fun deleteCharacter(character: String) {
+        viewModelScope.launch {
+            localCharacterDataSource.deleteCharacter(character)
+            _events.send(CharacterManagerEvent.OnDeleteCharacter(character))
+        }
     }
 
     private fun getAllList() {
@@ -84,17 +113,6 @@ class CharacterManagerViewModel(
                         )
                     }
                 }
-        }
-    }
-
-
-
-    private fun sendError(message: UiText) {
-        viewModelScope.launch {
-            if (!hasErrorOccurred) {
-                hasErrorOccurred = true
-                _events.send(CharacterManagerEvent.Error(message))
-            }
         }
     }
 }
