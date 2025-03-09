@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.hjw0623.core.database.dao.CharacterDao
 import com.hjw0623.core.database.dao.SelectedRaidDao
 import com.hjw0623.core.database.entity.CharacterEntity
 import com.hjw0623.core.database.entity.SelectedRaidEntity
+import com.hjw0623.core.database.mapper.ListConverters
 
 @Database(
     entities = [
@@ -15,6 +17,7 @@ import com.hjw0623.core.database.entity.SelectedRaidEntity
         SelectedRaidEntity::class],
     version = 1
 )
+@TypeConverters(ListConverters::class)
 abstract class CharacterDataBase : RoomDatabase() {
     abstract fun characterDao(): CharacterDao
     abstract fun selectedRaidDao(): SelectedRaidDao

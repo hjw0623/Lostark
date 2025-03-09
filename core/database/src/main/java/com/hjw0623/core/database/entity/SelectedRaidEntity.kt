@@ -22,7 +22,7 @@ data class SelectedRaidEntity(
     val characterId: String,
     val raidName: String,
     val difficulty: String,
-    val maxGoldReward: Int,
-    val isCompleted: Boolean = false
+    val gateProgress: List<Boolean>,
+    val gateRewards: List<Int>
 )
 
