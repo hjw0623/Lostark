@@ -3,7 +3,7 @@ package com.hjw0623.character.domain.model.raid
 object RaidData {
     val raids = listOf(
         RaidInfo("3막 칠흑 폭풍의 밤", "노말", 1680, 3, listOf(6000, 9500, 12500)),
-        RaidInfo("3막 칠흑 폭풍의 밤", "하드", 1700, 3, listOf(7000, 11000, 16000)),
+        RaidInfo("3막 칠흑 폭풍의 밤", "하드", 1700, 3, listOf(7000, 11000, 20000)),
         RaidInfo("2막 아브렐슈드", "노말", 1670, 2, listOf(8500, 16500)),
         RaidInfo("2막 아브렐슈드", "하드", 1690, 2, listOf(10000, 20500)),
         RaidInfo("1막 에기르", "노말", 1660, 2, listOf(7500, 15500)),
