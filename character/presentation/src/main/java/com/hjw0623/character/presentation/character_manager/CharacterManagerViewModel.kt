@@ -83,6 +83,13 @@ class CharacterManagerViewModel(
                 .collect { characters ->
                     val characterProgressList = characters.map { character ->
                         val selectedRaids = localCharacterDataSource.getSelectedRaids(character.characterName).first()
+                        val totalGold = selectedRaids.sumOf { it.gateRewards.sum() }
+
+                        val earnedGold = selectedRaids.sumOf { raid ->
+                            raid.gateProgress.zip(raid.gateRewards)
+                                .filter { (progress, _) -> progress }
+                                .sumOf { (_, reward) -> reward }
+                        }
 
                         CharacterProgressUi(
                             icon = getClassImg(character.className),
@@ -90,8 +97,8 @@ class CharacterManagerViewModel(
                             name = character.characterName,
                             className = character.className,
                             avgItemLevel = character.avgItemLevel.toString(),
-                            totalGold = 0,
-                            earnedGold = 0
+                            totalGold = totalGold,
+                            earnedGold = earnedGold
                         )
                     }
 
@@ -106,7 +113,9 @@ class CharacterManagerViewModel(
                     _state.update {
                         it.copy(
                             isCharacterProfileLoading = false,
-                            savedCharacterProgressListByServer = sortedByServer
+                            savedCharacterProgressListByServer = sortedByServer,
+                            totalGold = characterProgressList.sumOf { it.totalGold },
+                            totalEarnedGold = characterProgressList.sumOf { it.earnedGold }
                         )
                     }
                 }
