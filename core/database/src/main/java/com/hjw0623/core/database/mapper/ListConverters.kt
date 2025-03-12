@@ -1,7 +1,6 @@
 package com.hjw0623.core.database.mapper
 
 import androidx.room.TypeConverter
-import androidx.room.TypeConverters
 
 class ListConverters {
     @TypeConverter
