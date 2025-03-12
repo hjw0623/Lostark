@@ -15,8 +15,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,7 +56,7 @@ fun CharacterProgressListItem(
             .fillMaxWidth()
             .padding(8.dp)
             .combinedClickable(
-                onClick = { onCharacterSettingClick() },
+                onClick = {  },
                 onLongClick = { onCharacterDeleteClick() }
             ),
         colors = CardDefaults
@@ -81,22 +85,35 @@ fun CharacterProgressListItem(
             Column(
                 modifier = Modifier.weight(1f)
             ) {
-                Text(
-                    text = characterProgress.server,
-                    style = Typography.bodyMedium.copy(
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 10.sp,
-                        color = LostArkBlack
-                    )
-                )
-                Text(
-                    text = characterProgress.name,
-                    style = Typography.bodyMedium.copy(
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 14.sp,
-                        color = LostArkBlack
-                    )
-                )
+                Row {
+                    Column {
+                        Text(
+                            text = characterProgress.server,
+                            style = Typography.bodyMedium.copy(
+                                fontWeight = FontWeight.SemiBold,
+                                fontSize = 10.sp,
+                                color = LostArkBlack
+                            )
+                        )
+                        Text(
+                            text = characterProgress.name,
+                            style = Typography.bodyMedium.copy(
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 14.sp,
+                                color = LostArkBlack
+                            )
+                        )
+                    }
+                    IconButton(
+                        onClick = { onCharacterSettingClick() }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Settings,
+                            contentDescription = null,
+                            tint = LostArkBlack
+                        )
+                    }
+                }
 
                 Spacer(modifier = Modifier.height(4.dp))
 
