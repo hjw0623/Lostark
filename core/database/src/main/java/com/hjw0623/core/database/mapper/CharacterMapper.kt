@@ -29,8 +29,8 @@ fun SelectedRaidEntity.toSelectedRaid(): SelectedRaid {
         characterId = characterId,
         raidName = raidName,
         difficulty = difficulty,
-        maxGoldReward = maxGoldReward,
-        isCompleted = isCompleted
+        gateProgress = gateProgress,
+        gateRewards = gateRewards,
     )
 }
 
@@ -40,7 +40,7 @@ fun SelectedRaid.toSelectedRaidEntity(): SelectedRaidEntity {
         characterId = characterId,
         raidName = raidName,
         difficulty = difficulty,
-        maxGoldReward = maxGoldReward,
-        isCompleted = isCompleted
+        gateProgress = gateProgress,
+        gateRewards = gateRewards,
     )
 }

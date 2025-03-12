@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "66849bab7df02202dd9ad2eaa814890e",
+    "identityHash": "ff89265203a41f283d5a62bb53c3e440",
     "entities": [
       {
         "tableName": "character",
@@ -44,7 +44,7 @@
       },
       {
         "tableName": "selected_raid",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `characterId` TEXT NOT NULL, `raidName` TEXT NOT NULL, `difficulty` TEXT NOT NULL, `maxGoldReward` INTEGER NOT NULL, `isCompleted` INTEGER NOT NULL, FOREIGN KEY(`characterId`) REFERENCES `character`(`characterName`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `characterId` TEXT NOT NULL, `raidName` TEXT NOT NULL, `difficulty` TEXT NOT NULL, `gateProgress` TEXT NOT NULL, `gateRewards` TEXT NOT NULL, FOREIGN KEY(`characterId`) REFERENCES `character`(`characterName`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -71,15 +71,15 @@
             "notNull": true
           },
           {
-            "fieldPath": "maxGoldReward",
-            "columnName": "maxGoldReward",
-            "affinity": "INTEGER",
+            "fieldPath": "gateProgress",
+            "columnName": "gateProgress",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "isCompleted",
-            "columnName": "isCompleted",
-            "affinity": "INTEGER",
+            "fieldPath": "gateRewards",
+            "columnName": "gateRewards",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -118,7 +118,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '66849bab7df02202dd9ad2eaa814890e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ff89265203a41f283d5a62bb53c3e440')"
     ]
   }
 }

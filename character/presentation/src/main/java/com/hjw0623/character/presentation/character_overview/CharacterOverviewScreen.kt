@@ -46,7 +46,8 @@ fun CharacterOverviewScreenRoot(
         }
     }
     LaunchedEffect(characterName) {
-        viewModel.setCharacterName(characterName)
+        viewModel.
+        setCharacterName(characterName)
     }
     CharacterOverviewScreen(
         state = state,
