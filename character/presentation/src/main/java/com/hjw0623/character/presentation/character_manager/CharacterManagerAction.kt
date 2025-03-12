@@ -6,5 +6,5 @@ sealed interface CharacterManagerAction {
     data class OnShowDialog(val character: String): CharacterManagerAction
     data object OnDismissDeleteClick: CharacterManagerAction
     data object OnCharacterAddClick: CharacterManagerAction
-    data object OnCharacterSettingClick: CharacterManagerAction
+    data class OnCharacterSettingClick(val characterName: String): CharacterManagerAction
 }

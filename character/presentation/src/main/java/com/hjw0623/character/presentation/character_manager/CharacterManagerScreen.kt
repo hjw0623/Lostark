@@ -1,7 +1,6 @@
 package com.hjw0623.character.presentation.character_manager
 
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,7 +24,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hjw0623.character.presentation.R
 import com.hjw0623.character.presentation.character_manager.components.CharacterProgressListItem
-import com.hjw0623.character.presentation.character_manager.mockup.mockCharacterProgressContent
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostArkBlue
 import com.hjw0623.core.presentation.designsystem.LostArkGray
@@ -36,7 +34,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun CharacterManagerScreenRoot(
-    onCharacterSettingClick: () -> Unit,
+    onCharacterSettingClick: (String) -> Unit,
     onCharacterAddClick: () -> Unit,
     viewModel: CharacterManagerViewModel = koinViewModel(),
 ) {
@@ -55,6 +53,13 @@ fun CharacterManagerScreenRoot(
                 event.characterName + "가 삭제되었습니다.",
                 Toast.LENGTH_LONG
             ).show()
+            is CharacterManagerEvent.NavigateToCharacterSetting -> {
+                onCharacterSettingClick(event.characterName)
+            }
+
+            CharacterManagerEvent.NavigateToCharacterAdd -> {
+                onCharacterAddClick()
+            }
         }
     }
 
@@ -63,7 +68,7 @@ fun CharacterManagerScreenRoot(
         onAction = { action ->
             when (action) {
                 CharacterManagerAction.OnCharacterAddClick -> onCharacterAddClick()
-                CharacterManagerAction.OnCharacterSettingClick -> onCharacterSettingClick()
+                is CharacterManagerAction.OnCharacterSettingClick -> onCharacterSettingClick(action.characterName)
                 else -> viewModel.onAction(action)
             }
         }
@@ -226,7 +231,9 @@ fun CharacterManagerScreen(
                         }) { character ->
                             CharacterProgressListItem(
                                 characterProgress = character,
-                                onCharacterSettingClick = { onAction(CharacterManagerAction.OnCharacterSettingClick) },
+                                onCharacterSettingClick = {
+                                    onAction(CharacterManagerAction.OnCharacterSettingClick(character.name))
+                                                          },
                                 onCharacterDeleteClick = {
                                     onAction(CharacterManagerAction.OnShowDialog(character.name))
                                 }

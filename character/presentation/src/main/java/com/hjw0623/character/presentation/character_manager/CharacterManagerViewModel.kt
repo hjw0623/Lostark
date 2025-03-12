@@ -34,9 +34,9 @@ class CharacterManagerViewModel(
                     _events.send(CharacterManagerEvent.NavigateToCharacterAdd)
                 }
             }
-            CharacterManagerAction.OnCharacterSettingClick -> {
+            is CharacterManagerAction.OnCharacterSettingClick -> {
                 viewModelScope.launch {
-                    _events.send(CharacterManagerEvent.NavigateToCharacterSetting)
+                    _events.send(CharacterManagerEvent.NavigateToCharacterSetting(action.characterName))
                 }
             }
             is CharacterManagerAction.OnCharacterDeleteClick -> {
@@ -84,17 +84,14 @@ class CharacterManagerViewModel(
                     val characterProgressList = characters.map { character ->
                         val selectedRaids = localCharacterDataSource.getSelectedRaids(character.characterName).first()
 
-                        val totalGold = selectedRaids.sumOf { it.maxGoldReward }
-                        val earnedGold = selectedRaids.filter { it.isCompleted }.sumOf { it.maxGoldReward }
-
                         CharacterProgressUi(
                             icon = getClassImg(character.className),
                             server = character.server,
                             name = character.characterName,
                             className = character.className,
                             avgItemLevel = character.avgItemLevel.toString(),
-                            totalGold = totalGold,
-                            earnedGold = earnedGold
+                            totalGold = 0,
+                            earnedGold = 0
                         )
                     }
 

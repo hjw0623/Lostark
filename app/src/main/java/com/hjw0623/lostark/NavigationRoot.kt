@@ -10,6 +10,7 @@ import com.hjw0623.character.presentation.character_add.CharacterAddScreenRoot
 import com.hjw0623.character.presentation.character_manager.CharacterManagerScreenRoot
 import com.hjw0623.character.presentation.character_overview.CharacterOverviewScreenRoot
 import com.hjw0623.character.presentation.character_search.CharacterSearchScreenRoot
+import com.hjw0623.character.presentation.character_setting.CharacterSettingScreenRoot
 import com.hjw0623.events.presentation.events.EventScreen
 import org.koin.androidx.compose.koinViewModel
 
@@ -20,9 +21,10 @@ fun NavigationRoot(navController: NavHostController) {
         startDestination = BottomNavItem.CHARACTER_MANAGER.route,
         modifier = Modifier.fillMaxSize()
     ) {
-        composable(BottomNavItem.CHARACTER_MANAGER.route) {
+        composable(BottomNavItem.CHARACTER_MANAGER.route) { backStackEntry ->
             CharacterManagerScreenRoot(
-                onCharacterSettingClick = { },
+                onCharacterSettingClick = { characterName ->
+                    navController.navigate(NavigationRoutes.CharacterSetting.createRoute(characterName))},
                 onCharacterAddClick = { navController.navigate(NavigationRoutes.CharacterAdd.createRoute()) }
             )
         }
@@ -54,6 +56,19 @@ fun NavigationRoot(navController: NavHostController) {
 
         composable(NavigationRoutes.CharacterAdd.route) { backStackEntry ->
             CharacterAddScreenRoot(
+                onBackClick = {
+                    navController.navigate(NavigationRoutes.CharacterManager.route) {
+                        popUpTo(NavigationRoutes.CharacterManager.route) { inclusive = true }
+                    }
+                },
+                viewModel = koinViewModel()
+            )
+        }
+
+        composable(NavigationRoutes.CharacterSetting.route) { navBackStackEntry ->
+            val characterName = navBackStackEntry.arguments?.getString("characterName") ?: ""
+            CharacterSettingScreenRoot(
+                characterName = characterName,
                 onBackClick = {
                     navController.navigate(NavigationRoutes.CharacterManager.route) {
                         popUpTo(NavigationRoutes.CharacterManager.route) { inclusive = true }

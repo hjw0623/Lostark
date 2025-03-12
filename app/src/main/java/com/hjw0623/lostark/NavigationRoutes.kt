@@ -10,4 +10,8 @@ sealed class NavigationRoutes(val route: String) {
     data object CharacterOverview : NavigationRoutes("character_overview/{characterName}") {
         fun createRoute(characterName: String) = "character_overview/$characterName"
     }
+
+    data object CharacterSetting : NavigationRoutes("character_setting/{characterName}") {
+        fun createRoute(characterName: String) = "character_setting/$characterName"
+    }
 }
