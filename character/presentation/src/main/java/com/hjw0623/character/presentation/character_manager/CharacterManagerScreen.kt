@@ -53,6 +53,7 @@ fun CharacterManagerScreenRoot(
                 event.characterName + "가 삭제되었습니다.",
                 Toast.LENGTH_LONG
             ).show()
+
             is CharacterManagerEvent.NavigateToCharacterSetting -> {
                 onCharacterSettingClick(event.characterName)
             }
@@ -102,7 +103,9 @@ fun CharacterManagerScreen(
                     .padding(paddingValues)
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(6.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(6.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
@@ -231,13 +234,24 @@ fun CharacterManagerScreen(
                         }) { character ->
                             CharacterProgressListItem(
                                 characterProgress = character,
+                                onCharacterClick = {
+                                    onAction(CharacterManagerAction.OnCharacterClick(character.name))
+                                },
                                 onCharacterSettingClick = {
-                                    onAction(CharacterManagerAction.OnCharacterSettingClick(character.name))
-                                                          },
+                                    onAction(
+                                        CharacterManagerAction.OnCharacterSettingClick(
+                                            character.name
+                                        )
+                                    )
+                                },
                                 onCharacterDeleteClick = {
                                     onAction(CharacterManagerAction.OnShowDialog(character.name))
+                                },
+                                onGateToggled = { characterName,raidName, gateIndex ->
+                                    onAction(CharacterManagerAction.OnGateToggled(characterName, raidName, gateIndex))
                                 }
                             )
+
                         }
                     }
                 }

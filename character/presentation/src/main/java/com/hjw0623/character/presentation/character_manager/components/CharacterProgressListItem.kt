@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.hjw0623.character.presentation.R
+import com.hjw0623.character.presentation.character_manager.CharacterManagerAction
 import com.hjw0623.character.presentation.character_manager.mockup.mockCharacterProgressContent
 import com.hjw0623.character.presentation.character_manager.model.CharacterProgressUi
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
@@ -48,15 +49,17 @@ import com.hjw0623.core.presentation.designsystem.Typography
 fun CharacterProgressListItem(
     modifier: Modifier = Modifier,
     characterProgress: CharacterProgressUi,
+    onCharacterClick: () -> Unit,
     onCharacterSettingClick: () -> Unit,
-    onCharacterDeleteClick: () -> Unit
+    onCharacterDeleteClick: () -> Unit,
+    onGateToggled: (String, String, Int) -> Unit
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
             .padding(8.dp)
             .combinedClickable(
-                onClick = {  },
+                onClick = { onCharacterClick() },
                 onLongClick = { onCharacterDeleteClick() }
             ),
         colors = CardDefaults
@@ -149,6 +152,21 @@ fun CharacterProgressListItem(
                 }
             }
         }
+        if (characterProgress.isExpanded) {
+            Column(
+                modifier = Modifier
+                    .padding(start = 12.dp, end = 12.dp, bottom = 8.dp)
+            ) {
+                characterProgress.raids.forEach { raid ->
+                    RaidProgressItem(
+                        raid = raid,
+                        onGateToggled = { gateIndex ->
+                            onGateToggled(characterProgress.name, raid.raidName, gateIndex)
+                        }
+                    )
+                }
+            }
+        }
     }
 }
 
@@ -183,6 +201,8 @@ private fun CharacterProgressListItemPreview() {
             characterProgress = mockCharacterProgressContent(),
             onCharacterSettingClick = { },
             onCharacterDeleteClick = { },
+            onCharacterClick = { },
+            onGateToggled = { _, _, _ -> }
         )
     }
 }

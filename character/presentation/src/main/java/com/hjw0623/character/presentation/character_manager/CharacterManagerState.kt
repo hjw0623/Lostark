@@ -8,6 +8,9 @@ data class CharacterManagerState(
     val raidProgress: Float = 0.0F,
     val totalGold: Int = 0,
     val totalEarnedGold: Int = 0,
-    val savedCharacterProgressListByServer: List<Map.Entry<String, List<CharacterProgressUi>>> = emptyList(),
-    val characterToDelete: String = ""
+    val savedCharacterProgressListByServer: Map<String, List<CharacterProgressUi>> = emptyMap(),
+    val characterToDelete: String = "",
+    val selectedCharacterForGate: CharacterProgressUi? = null,
+    val selectedRaidGateProgress: Map<String, List<Boolean>> = emptyMap(),
+    val showGateSelectDialog: Boolean = false
 )

@@ -7,4 +7,9 @@ sealed interface CharacterManagerAction {
     data object OnDismissDeleteClick: CharacterManagerAction
     data object OnCharacterAddClick: CharacterManagerAction
     data class OnCharacterSettingClick(val characterName: String): CharacterManagerAction
+
+    data class OnCharacterClick(val characterName: String) : CharacterManagerAction
+    data class OnGateToggled(val characterName: String, val raidName: String, val gateIndex: Int) : CharacterManagerAction
+    data object OnSaveGateSelection : CharacterManagerAction
+    data object OnDismissGateSelection : CharacterManagerAction
 }

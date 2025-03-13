@@ -11,6 +11,8 @@ fun mockCharacterProgressContent(): CharacterProgressUi{
         className = "창술사",
         avgItemLevel = "1,644.17",
         totalGold = 20000,
-        earnedGold = 5500
+        earnedGold = 5500,
+        raids = emptyList(),
+        isExpanded = false,
     )
 }

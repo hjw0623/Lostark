@@ -7,5 +7,7 @@ data class CharacterProgressUi(
     val className: String,
     val avgItemLevel: String,
     val totalGold: Int,
-    val earnedGold: Int
+    val earnedGold: Int,
+    val raids: List<RaidProgressUi>,
+    val isExpanded: Boolean = false
 )
