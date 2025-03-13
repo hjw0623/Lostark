@@ -64,4 +64,10 @@ class RoomLocalCharacterDataSource(
     override suspend fun deleteSelectedRaids(characterId: String) {
         selectedRaidDao.deleteSelectedRaids(characterId)
     }
+
+    override suspend fun getSelectedRaid(characterId: String, raidName: String): SelectedRaid? {
+        return selectedRaidDao.getSelectedRaid(characterId, raidName)
+    }
+
+
 }

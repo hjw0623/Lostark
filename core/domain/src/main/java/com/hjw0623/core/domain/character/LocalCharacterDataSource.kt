@@ -16,4 +16,5 @@ interface LocalCharacterDataSource {
     suspend fun upsertSelectedRaid(raid: SelectedRaid): Result<RaidId, DataError.Local>
     suspend fun getSelectedRaids(characterId: String): Flow<List<SelectedRaid>>
     suspend fun deleteSelectedRaids(characterId: String)
+    suspend fun getSelectedRaid(characterId: String, raidName: String): SelectedRaid?
 }
