@@ -122,7 +122,15 @@ class CharacterManagerViewModel(
                                             raid
                                         }
                                     }
-                                    character.copy(raids = updatedRaids)
+                                    val newEarnedGold = updatedRaids.sumOf { raid ->
+                                        raid.gateProgress.zip(raid.gateRewards)
+                                            .filter { (progress, _) -> progress  }
+                                            .sumOf { (_, reward) -> reward }
+                                    }
+                                    character.copy(
+                                        raids = updatedRaids,
+                                        earnedGold = newEarnedGold
+                                    )
                                 } else {
                                     character
                                 }
