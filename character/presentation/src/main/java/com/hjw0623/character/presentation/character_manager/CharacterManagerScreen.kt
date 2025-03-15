@@ -143,7 +143,8 @@ fun CharacterManagerScreen(
                 ) {
                     Canvas(modifier = Modifier.matchParentSize()) {
                         val trackHeight = size.height
-                        val progressWidth = size.width * state.raidProgress
+                        val progressFraction = (state.raidProgress / 100).coerceIn(0f, 1f)
+                        val progressWidth = size.width * progressFraction
                         val strokeThickness = 12.dp.toPx()
 
                         drawLine(
@@ -163,6 +164,8 @@ fun CharacterManagerScreen(
                         )
                     }
                 }
+
+
 
                 Spacer(modifier = Modifier.height(8.dp))
 

@@ -86,9 +86,9 @@ class CharacterManagerViewModel(
             }
 
             is CharacterManagerAction.OnGateToggled -> {
-                _state.update {
+                _state.update { currentState ->
                     val updatedCharacters =
-                        it.savedCharacterProgressListByServer.mapValues { (_, characters) ->
+                        currentState.savedCharacterProgressListByServer.mapValues { (_, characters) ->
                             characters.map { character ->
                                 if (character.name == action.characterName) {
                                     val updatedRaids = character.raids.map { raid ->
@@ -136,7 +136,20 @@ class CharacterManagerViewModel(
                                 }
                             }
                         }
-                    it.copy(savedCharacterProgressListByServer = updatedCharacters)
+                    val totalGold = updatedCharacters.values.flatten().sumOf { it.totalGold }
+                    val totalEarnedGold = updatedCharacters.values.flatten().sumOf { it.earnedGold }
+                    val raidProgress = if(totalGold > 0) {
+                        ((totalEarnedGold.toFloat() / totalGold.toFloat())*100).coerceIn(0f, 100f)
+                    } else {
+                        0f
+                    }
+
+                    currentState.copy(
+                        savedCharacterProgressListByServer = updatedCharacters,
+                        totalGold = totalGold,
+                        totalEarnedGold = totalEarnedGold,
+                        raidProgress = raidProgress
+                    )
                 }
             }
 
@@ -239,12 +252,21 @@ class CharacterManagerViewModel(
                         }
                         .associate { it.toPair() }
 
+                    val totalGold = characterProgressList.sumOf { it.totalGold }
+                    val totalEarnedGold = characterProgressList.sumOf { it.earnedGold }
+                    val raidProgress = if(totalGold > 0) {
+                        ((totalEarnedGold.toFloat() / totalGold.toFloat())*100).coerceIn(0f, 100f)
+                    } else {
+                        0f
+                    }
+
                     _state.update {
                         it.copy(
                             isCharacterProfileLoading = false,
                             savedCharacterProgressListByServer = sortedByServer,
-                            totalGold = characterProgressList.sumOf { it.totalGold },
-                            totalEarnedGold = characterProgressList.sumOf { it.earnedGold }
+                            totalGold = totalGold,
+                            totalEarnedGold = totalEarnedGold,
+                            raidProgress = raidProgress
                         )
                     }
                 }
