@@ -1,5 +1,6 @@
 package com.hjw0623.character.presentation.character_add.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,10 +13,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -43,11 +44,17 @@ fun CharacterAddListItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .clickable { onClick(
-                character
-            ) },
+            .clickable {
+                onClick(
+                    character
+                )
+            },
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = LostArkWhite)
+        colors = CardDefaults.cardColors(containerColor = LostArkWhite),
+        border = BorderStroke(
+            width = 2.dp,
+            color = MaterialTheme.colorScheme.tertiary
+        )
     ) {
         Row(
             modifier = Modifier
@@ -57,7 +64,7 @@ fun CharacterAddListItem(
         ) {
             AsyncImage(
                 model = character.classIcon,
-                contentDescription = "클래스 이미지",
+                contentDescription = null,
                 modifier = Modifier
                     .size(48.dp)
                     .clip(CircleShape),
@@ -87,7 +94,8 @@ fun CharacterAddListItem(
                 imageVector = Icons.Default.Add,
                 contentDescription = null,
                 tint = LostArkBlack,
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier
+                    .size(24.dp)
                     .clickable { onClick(character) }
             )
         }
