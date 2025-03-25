@@ -36,7 +36,7 @@ fun RaidProgressItem(
             .fillMaxWidth()
             .padding(8.dp),
         shape = RoundedCornerShape(10.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
     ) {
         Column(
             modifier = Modifier.padding(12.dp)
@@ -65,7 +65,14 @@ fun RaidProgressItem(
                         onCheckedChange = { onGateToggled(index) }
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("관문 ${index + 1}")
+                    Text(
+                        text = "관문 ${index + 1}",
+                        style = Typography.bodyMedium.copy(
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold
+                        ),
+                        color = LostArkBlack
+                    )
                 }
             }
         }

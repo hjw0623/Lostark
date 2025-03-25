@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -36,7 +37,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.hjw0623.character.presentation.R
-import com.hjw0623.character.presentation.character_manager.CharacterManagerAction
 import com.hjw0623.character.presentation.character_manager.mockup.mockCharacterProgressContent
 import com.hjw0623.character.presentation.character_manager.model.CharacterProgressUi
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
@@ -60,7 +60,6 @@ fun CharacterProgressListItem(
             .padding(8.dp)
             .combinedClickable(
                 onClick = { onCharacterClick() },
-                onLongClick = { onCharacterDeleteClick() }
             ),
         colors = CardDefaults
             .cardColors(
@@ -76,7 +75,7 @@ fun CharacterProgressListItem(
         ) {
             AsyncImage(
                 model = characterProgress.icon,
-                contentDescription = "클래스 이미지",
+                contentDescription = null,
                 modifier = Modifier
                     .size(48.dp)
                     .clip(CircleShape),
@@ -112,6 +111,16 @@ fun CharacterProgressListItem(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Settings,
+                            contentDescription = null,
+                            tint = LostArkBlack
+                        )
+                    }
+                    Spacer(modifier = Modifier.weight(1f))
+                    IconButton(
+                        onClick = { onCharacterDeleteClick()}
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Clear,
                             contentDescription = null,
                             tint = LostArkBlack
                         )

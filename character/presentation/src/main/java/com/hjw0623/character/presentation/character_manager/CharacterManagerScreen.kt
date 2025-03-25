@@ -3,33 +3,32 @@ package com.hjw0623.character.presentation.character_manager
 import android.widget.Toast
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.layout.BeyondBoundsLayout
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.ResolvedTextDirection
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hjw0623.character.presentation.R
+import com.hjw0623.character.presentation.character_manager.components.CharacterDeleteDialog
 import com.hjw0623.character.presentation.character_manager.components.CharacterProgressListItem
 import com.hjw0623.character.presentation.character_manager.mockup.mockCharacterProgressContent
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostArkBlue
-import com.hjw0623.core.presentation.designsystem.LostArkDarkGray
 import com.hjw0623.core.presentation.designsystem.LostArkGray
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import com.hjw0623.core.presentation.designsystem.Typography
@@ -93,10 +92,19 @@ fun CharacterManagerScreen(
                 onClick = { onAction(CharacterManagerAction.OnCharacterAddClick) },
                 containerColor = LostArkBlue
             ) {
-                Text("+")
+                Text(
+                    text = "+",
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
             }
         }
     ) { paddingValues ->
+        val adjustedPadding = PaddingValues(
+            start = paddingValues.calculateStartPadding(LayoutDirection.Ltr),
+            top = paddingValues.calculateTopPadding(),
+            end = paddingValues.calculateEndPadding(LayoutDirection.Ltr),
+            bottom = 0.dp
+        )
         if (state.isCharacterProfileLoading) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator()
@@ -105,7 +113,7 @@ fun CharacterManagerScreen(
             Column(
                 modifier = modifier
                     .fillMaxSize()
-                    .padding(paddingValues)
+                    .padding(adjustedPadding)
             ) {
                 Column(
                     modifier = Modifier
@@ -306,22 +314,10 @@ fun CharacterManagerScreen(
         }
     }
     if (state.showDialog && state.savedCharacterProgressListByServer.isNotEmpty()) {
-        AlertDialog(
-            onDismissRequest = { onAction(CharacterManagerAction.OnDismissDeleteClick) },
-            title = { Text(text = "캐릭터 삭제") },
-            text = { Text(text = "\"${state.characterToDelete}\"(을)를 삭제 하시겠습니까?") },
-            confirmButton = {
-                TextButton(onClick = {
-                    onAction(CharacterManagerAction.OnCharacterDeleteClick(state.characterToDelete))
-                }) {
-                    Text("예")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { onAction(CharacterManagerAction.OnDismissDeleteClick) }) {
-                    Text("아니오")
-                }
-            }
+        CharacterDeleteDialog(
+            characterName = state.characterToDelete,
+            onConfirm = { onAction(CharacterManagerAction.OnCharacterDeleteClick(state.characterToDelete)) },
+            onDismiss = { onAction(CharacterManagerAction.OnDismissDeleteClick) }
         )
     }
 }
