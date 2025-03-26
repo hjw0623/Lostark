@@ -26,7 +26,7 @@ fun CharacterSummationText(
     Text(
         text = text,
         fontSize = textSize.sp,
-        color = MaterialTheme.colorScheme.onSurface,
+        color = MaterialTheme.colorScheme.surface,
         textAlign = textAlign
     )
 }
@@ -36,11 +36,11 @@ fun CharacterSummationTextGrid(
     characterProfileUi: CharacterProfileUi
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(16.dp), // Space between columns
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally // Center-align text in each column
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CharacterSummationText(
                 text = "원정대",
@@ -54,7 +54,7 @@ fun CharacterSummationTextGrid(
             )
         }
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally // Center-align text in each column
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CharacterSummationText(
                 text = "영지",
@@ -68,7 +68,7 @@ fun CharacterSummationTextGrid(
             )
         }
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally // Center-align text in each column
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CharacterSummationText(
                 text = "PvP",
