@@ -58,7 +58,7 @@ fun GearScreen(
     card: List<CardUi>,
     cardEffectList: List<CardEffectUi>
 ) {
-    
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -131,8 +131,10 @@ fun GearScreen(
                     modifier = Modifier
                         .weight(1f)
                         .fillMaxWidth()
-                        .background(color = MaterialTheme.colorScheme.background,
-                            shape = RoundedCornerShape(12.dp))
+                        .background(
+                            color = MaterialTheme.colorScheme.background,
+                            shape = RoundedCornerShape(12.dp)
+                        )
                         .padding(8.dp)
                 ) {
                     ElixirItem(
@@ -144,8 +146,10 @@ fun GearScreen(
                     modifier = Modifier
                         .weight(1f)
                         .fillMaxWidth()
-                        .background(color = MaterialTheme.colorScheme.background,
-                            shape = RoundedCornerShape(12.dp))
+                        .background(
+                            color = MaterialTheme.colorScheme.background,
+                            shape = RoundedCornerShape(12.dp)
+                        )
                         .padding(8.dp)
                 ) {
                     TranscendenceItem(
@@ -156,38 +160,53 @@ fun GearScreen(
             }
         }
 
+        Spacer(modifier = Modifier
+            .fillMaxWidth()
+            .height(5.dp))
 
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(5.dp)
-        )
         Box(
             modifier = Modifier
                 .fillMaxWidth()
+                .background(
+                    color = MaterialTheme.colorScheme.background,
+                    shape = RoundedCornerShape(12.dp)
+                )
+                .padding(8.dp)
         ) {
             GemsList(gemsList)
         }
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(5.dp)
-        )
+
+        Spacer(modifier = Modifier
+            .fillMaxWidth()
+            .height(5.dp))
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .height(IntrinsicSize.Max)
         ) {
             Box(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
+                    .background(
+                        color = MaterialTheme.colorScheme.background,
+                        shape = RoundedCornerShape(12.dp)
+                    )
             ) {
                 StatsList(statsUi)
             }
+
+            Spacer(modifier = Modifier.width(5.dp))
+
             Box(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
+                    .background(
+                        color = MaterialTheme.colorScheme.background,
+                        shape = RoundedCornerShape(12.dp)
+                    )
             )
             {
                 EngravingsList(engravingUiList)
@@ -198,10 +217,20 @@ fun GearScreen(
                 .fillMaxWidth()
                 .height(5.dp)
         )
-        CardList(
-            cardList = card,
-            cardEffectList = cardEffectList,
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    color = MaterialTheme.colorScheme.background,
+                    shape = RoundedCornerShape(12.dp)
+                )
+                .padding(8.dp)
+        ) {
+            CardList(
+                cardList = card,
+                cardEffectList = cardEffectList,
+            )
+        }
     }
 }
 

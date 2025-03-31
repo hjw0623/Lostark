@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -81,16 +83,19 @@ fun GemsList(
                         Box(
                             modifier = Modifier
                                 .align(Alignment.BottomEnd)
-                                .background(color = LostArkWhite, shape = RoundedCornerShape(4.dp))
-                                .padding(horizontal = 2.dp, vertical = 1.dp)
-                                .size(16.dp),
+                                .offset(x = 2.dp, y = 2.dp)
+                                .background(
+                                    color = MaterialTheme.colorScheme.primaryContainer,
+                                    shape = RoundedCornerShape(4.dp)
+                                )
+                                .size(18.dp),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
                                 text = gem.level.toString(),
                                 fontSize = 10.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = LostArkOrange
+                                fontWeight = FontWeight.SemiBold,
+                                color = LostArkOrange,
                             )
                         }
 
