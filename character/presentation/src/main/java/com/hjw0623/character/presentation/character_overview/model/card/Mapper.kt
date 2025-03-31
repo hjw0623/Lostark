@@ -9,7 +9,7 @@ fun Card.toCardUi(): CardUi {
     return CardUi(
         cardIcon = this.icon,
         cardName = this.name,
-        cardLevel = this.awakeTotal,
+        cardLevel = this.awakeCount,
         cardGrade = this.grade
     )
 }
