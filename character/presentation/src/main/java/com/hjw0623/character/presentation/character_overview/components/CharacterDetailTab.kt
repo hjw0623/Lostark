@@ -1,14 +1,18 @@
 package com.hjw0623.character.presentation.character_overview.components
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -52,7 +56,17 @@ fun CharacterDetailTab(
         ScrollableTabRow(
             selectedTabIndex = tabIndex,
             edgePadding = 16.dp,
-            containerColor = LostArkGray,
+            containerColor = MaterialTheme.colorScheme.background,
+            indicator = { tabPositions ->
+                Box(
+                    Modifier
+                        .tabIndicatorOffset(tabPositions[tabIndex])
+                        .height(2.dp)
+                        .padding(horizontal = 24.dp)
+                        .background(MaterialTheme.colorScheme.primary)
+                )
+            },
+            divider = {},
             modifier = Modifier.fillMaxWidth()
         ) {
             tabs.forEachIndexed { index, title ->
