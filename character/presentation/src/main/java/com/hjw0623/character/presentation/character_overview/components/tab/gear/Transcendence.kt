@@ -1,7 +1,8 @@
 package com.hjw0623.character.presentation.character_overview.components.tab.gear
 
-import androidx.compose.foundation.border
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,13 +19,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.hjw0623.character.presentation.character_overview.components.GradientBackgroundItem
 import com.hjw0623.character.presentation.character_overview.mockup.mockTranscendenceUi
+import com.hjw0623.character.presentation.character_overview.model.gear.TranscendenceUi
+import com.hjw0623.core.presentation.designsystem.LostArkBlack
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable
-fun TranscendenceItem(transcendenceUi: com.hjw0623.character.presentation.character_overview.model.gear.TranscendenceUi) {
+fun TranscendenceItem(
+    transcendenceUi: TranscendenceUi,
+    modifier: Modifier = Modifier
+) {
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(3.dp)
     ) {
@@ -35,8 +41,9 @@ fun TranscendenceItem(transcendenceUi: com.hjw0623.character.presentation.charac
         )
         Row(
             modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp, vertical = 6.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             GradientBackgroundItem(
                 icon = transcendenceUi.icon,
@@ -47,32 +54,32 @@ fun TranscendenceItem(transcendenceUi: com.hjw0623.character.presentation.charac
             )
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 5.dp),
-
-                ) {
-
+                    .weight(1f),
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
                 Text(
                     text = "합계 " + transcendenceUi.total.toString(),
                     fontWeight = FontWeight.Bold,
                     fontSize = 10.sp,
                     color = Color.Black
                 )
-                Text(
-                    text = "평균 " + transcendenceUi.avgLevel.toString() + "단계",
-                    maxLines = 1,
-                    style = MaterialTheme.typography.bodySmall
-                        .copy(fontSize = 10.sp, fontWeight = FontWeight.SemiBold),
+                Box(
                     modifier = Modifier
-                        .padding(horizontal = 3.dp)
-                        .border(
-                            width = 1.dp,
-                            color = MaterialTheme.colorScheme.onBackground,
-                            shape = RoundedCornerShape(16.dp)
+                        .background(
+                            color = MaterialTheme.colorScheme.primaryContainer,
+                            RoundedCornerShape(12.dp)
                         )
-                        .padding(5.dp)
-                )
-
+                        .padding(horizontal = 8.dp, vertical = 4.dp)
+                ) {
+                    Text(
+                        text = if (transcendenceUi.avgLevel == 0.0) "없음"
+                        else "평균 " + transcendenceUi.avgLevel.toString() + "단계",
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = LostArkBlack,
+                        maxLines = 1
+                    )
+                }
             }
         }
     }

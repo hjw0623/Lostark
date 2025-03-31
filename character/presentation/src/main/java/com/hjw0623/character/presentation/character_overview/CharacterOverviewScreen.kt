@@ -19,6 +19,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.hjw0623.character.presentation.character_overview.components.CharacterDetailTab
 import com.hjw0623.character.presentation.character_overview.components.CharacterProfile
+import com.hjw0623.character.presentation.character_overview.model.gear.AbilityStoneUi
+import com.hjw0623.character.presentation.character_overview.model.gear.AccessoriesUi
+import com.hjw0623.character.presentation.character_overview.model.gear.BraceletUi
+import com.hjw0623.character.presentation.character_overview.model.gear.ElixirUi
+import com.hjw0623.character.presentation.character_overview.model.gear.GearUi
+import com.hjw0623.character.presentation.character_overview.model.profile.CharacterProfileUi
 import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import com.hjw0623.core.presentation.ui.ObserveAsEvents

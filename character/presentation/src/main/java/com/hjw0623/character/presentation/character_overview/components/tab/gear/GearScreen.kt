@@ -4,15 +4,19 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,9 +41,7 @@ import com.hjw0623.character.presentation.character_overview.model.gear.Bracelet
 import com.hjw0623.character.presentation.character_overview.model.gear.GearUi
 import com.hjw0623.character.presentation.character_overview.model.gem.GemsUi
 import com.hjw0623.character.presentation.character_overview.model.profile.StatsUi
-
 import com.hjw0623.core.presentation.designsystem.LostArkLightBlue
-import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable
@@ -56,18 +58,20 @@ fun GearScreen(
     card: List<CardUi>,
     cardEffectList: List<CardEffectUi>
 ) {
+    
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(5.dp)
+            .background(color = LostArkLightBlue)
+            .padding(10.dp)
             .verticalScroll(rememberScrollState())
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
-                    color = LostArkLightBlue,
-                    shape = RoundedCornerShape(8.dp)
+                    color = MaterialTheme.colorScheme.background,
+                    shape = RoundedCornerShape(12.dp)
                 )
         ) {
             Column(
@@ -100,39 +104,59 @@ fun GearScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(
-                    color = LostArkLightBlue,
-                    shape = RoundedCornerShape(8.dp)
-                )
+                .height(IntrinsicSize.Max)
         ) {
-            Row(
+            Box(
                 modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
                     .background(
-                    color = LostArkWhite,
-                    shape = RoundedCornerShape(8.dp)
-                )
-                    .padding(10.dp)
+                        color = MaterialTheme.colorScheme.background,
+                        shape = RoundedCornerShape(12.dp)
+                    )
+                    .padding(8.dp)
+            ) {
+                BraceletItem(braceletUi)
+            }
+
+            Spacer(modifier = Modifier.width(5.dp))
+
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Box(
                     modifier = Modifier
-                        .weight(1.4f)
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .background(color = MaterialTheme.colorScheme.background,
+                            shape = RoundedCornerShape(12.dp))
+                        .padding(8.dp)
                 ) {
-                    BraceletItem(braceletUi)
+                    ElixirItem(
+                        elixirUi = elixirUi,
+                        modifier = Modifier.fillMaxSize()
+                    )
                 }
                 Box(
                     modifier = Modifier
                         .weight(1f)
+                        .fillMaxWidth()
+                        .background(color = MaterialTheme.colorScheme.background,
+                            shape = RoundedCornerShape(12.dp))
+                        .padding(8.dp)
                 ) {
-                    ElixirItem(elixirUi)
-                }
-                Box(
-                    modifier = Modifier
-                        .weight(1f)
-                ) {
-                    TranscendenceItem(transcendenceUi)
+                    TranscendenceItem(
+                        transcendenceUi = transcendenceUi,
+                        modifier = Modifier.fillMaxSize()
+                    )
                 }
             }
         }
+
+
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
@@ -141,10 +165,6 @@ fun GearScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(
-                    color = LostArkLightBlue,
-                    shape = RoundedCornerShape(8.dp)
-                )
         ) {
             GemsList(gemsList)
         }
@@ -156,10 +176,6 @@ fun GearScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(
-                    color = LostArkLightBlue,
-                    shape = RoundedCornerShape(8.dp)
-                )
         ) {
             Box(
                 modifier = Modifier
@@ -192,7 +208,7 @@ fun GearScreen(
 
 @Preview
 @Composable
-fun GearListPreview() {
+private fun GearListPreview() {
     val equipmentList = listOf(
         mockEquipmentContent(),
         mockEquipmentContent(),

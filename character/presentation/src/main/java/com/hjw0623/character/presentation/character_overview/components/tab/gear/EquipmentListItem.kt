@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,16 +42,14 @@ import com.hjw0623.core.presentation.designsystem.LostArkYellow
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 
 @Composable
-fun EquipmentListItem(gearUi: GearUi) {
+fun EquipmentListItem(
+    gearUi: GearUi
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(80.dp)
-            .padding(5.dp)
-            .background(
-                color = LostArkWhite,
-                shape = RoundedCornerShape(8.dp)
-            ),
+            .padding(5.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
@@ -164,27 +163,24 @@ fun EquipmentListItem(gearUi: GearUi) {
 
             if (!gearUi.elixirList.isNullOrEmpty()) {
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 3.dp)
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     gearUi.elixirList.forEach { elixir ->
-                        Text(
-                            text = elixir,
-                            style = MaterialTheme.typography.bodySmall
-                                .copy(fontSize = 11.sp, fontWeight = FontWeight.SemiBold),
-                            maxLines = 1,
+                        Box(
                             modifier = Modifier
-                                .padding(horizontal = 3.dp)
-                                .border(
-                                    width = 1.dp,
-                                    color = MaterialTheme.colorScheme.onBackground,
-                                    shape = RoundedCornerShape(16.dp)
+                                .background(
+                                    color = MaterialTheme.colorScheme.primaryContainer,
+                                    shape = RoundedCornerShape(12.dp)
                                 )
-                                .padding(5.dp)
-
-
-                        )
+                                .padding(horizontal = 8.dp, vertical = 4.dp)
+                        ) {
+                            Text(
+                                text = elixir,
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Medium,
+                                color = Color.Black
+                            )
+                        }
                     }
                 }
             }
