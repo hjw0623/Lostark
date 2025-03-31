@@ -2,7 +2,6 @@ package com.hjw0623.character.presentation.character_overview
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.navArgument
 import com.hjw0623.character.domain.CharacterRepository
 import com.hjw0623.character.presentation.character_overview.mockup.emptyAbilityStoneUi
 import com.hjw0623.character.presentation.character_overview.mockup.emptyBraceletUi
@@ -30,11 +29,8 @@ import com.hjw0623.core.presentation.ui.UiText
 import com.hjw0623.core.presentation.ui.asUiText
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -109,7 +105,6 @@ class CharacterOverviewViewModel(
                     val onlyBracelet = categorizedGears["팔찌"] ?: emptyList()
                     val gearUiList = onlyEquipment.map { it.toGearUi() }
 
-                    val elixirList = gearUiList.map { it.elixirList }
                     val allElixirs = gearUiList.flatMap { it.elixirList ?: emptyList() }
                         .filter { it.isNotBlank() }
                     val totalElixirSum = gearUiList.sumOf { it.elixirSum }
@@ -124,12 +119,10 @@ class CharacterOverviewViewModel(
                     } else {
                         ""
                     }
-
                     val totalTranscendenceSum = gearUiList.sumOf { it.transcendence }
-                    val avgTranscendenceGrade = (gearUiList.sumOf { it.transcendenceGrade }.toDouble() / 6.0)
-                        .let { String.format("%.1f", it).toDouble() }
-
-
+                    val avgTranscendenceGrade =
+                        (gearUiList.sumOf { it.transcendenceGrade }.toDouble() / 6.0)
+                            .let { String.format("%.1f", it).toDouble() }
                     _state.update {
                         it.copy(
                             isGearLoading = false,
