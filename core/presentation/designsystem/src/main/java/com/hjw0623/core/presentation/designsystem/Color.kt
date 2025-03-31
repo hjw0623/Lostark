@@ -3,7 +3,7 @@ package com.hjw0623.core.presentation.designsystem
 import androidx.compose.ui.graphics.Color
 
 val LostArkBlue = Color(0xFF2250FB)
-val LostArkLightBlue = Color(0xFFC4CAF8)
+val LostArkLightBlue = Color(0xFFE8F3FF)
 val LostArkWhite = Color(0xFFFAFAFA)
 val LostArkDarkRed = Color(0xFFBB3D3D)
 val LostArkGray = Color(0xFF87938C)
