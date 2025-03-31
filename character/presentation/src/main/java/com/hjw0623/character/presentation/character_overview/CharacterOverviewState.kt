@@ -13,10 +13,13 @@ import com.hjw0623.character.presentation.character_overview.model.engraving.Eng
 import com.hjw0623.character.presentation.character_overview.model.gear.AbilityStoneUi
 import com.hjw0623.character.presentation.character_overview.model.gear.AccessoriesUi
 import com.hjw0623.character.presentation.character_overview.model.gear.BraceletUi
+import com.hjw0623.character.presentation.character_overview.model.gear.ElixirUi
 import com.hjw0623.character.presentation.character_overview.model.gear.GearUi
+import com.hjw0623.character.presentation.character_overview.model.gear.TranscendenceUi
 import com.hjw0623.character.presentation.character_overview.model.gem.GemsUi
 import com.hjw0623.character.presentation.character_overview.model.profile.CharacterProfileUi
 import com.hjw0623.character.presentation.character_overview.model.profile.StatsUi
+import com.hjw0623.character.presentation.character_overview.model.siblings.SiblingUi
 import com.hjw0623.character.presentation.character_overview.model.skill.SkillUi
 
 
@@ -41,8 +44,8 @@ data class CharacterOverviewState(
     val accessoriesList: List<AccessoriesUi> = emptyList(),
     val abilityStone: AbilityStoneUi = emptyAbilityStoneUi,
     val bracelet: BraceletUi = emptyBraceletUi,
-    val elixir: com.hjw0623.character.presentation.character_overview.model.gear.ElixirUi = com.hjw0623.character.presentation.character_overview.model.gear.ElixirUi(),
-    val transcendence: com.hjw0623.character.presentation.character_overview.model.gear.TranscendenceUi = com.hjw0623.character.presentation.character_overview.model.gear.TranscendenceUi(),
+    val elixir: ElixirUi = ElixirUi(),
+    val transcendence: TranscendenceUi = TranscendenceUi(),
     val gemsList: List<GemsUi> = emptyList(),
     val stats: StatsUi = StatsUi(),
     val engraving: List<EngravingUi> = emptyList(),
@@ -51,7 +54,7 @@ data class CharacterOverviewState(
     val arkPassive: ArkPassiveUi = emptyArkPassiveUi,
     val skillList: List<SkillUi> = emptyList(),
     val avatarList: List<AvatarUi> = emptyList(),
-    val siblingList: List<com.hjw0623.character.presentation.character_overview.model.siblings.SiblingUi> = emptyList(),
+    val siblingList: List<SiblingUi> = emptyList(),
     val collectibleSummationList: List<CollectibleSummationUi> = emptyList()
 ) {
     val isLoading: Boolean
