@@ -1,10 +1,12 @@
 package com.hjw0623.character.presentation.character_overview.components.tab.collectibles
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Icon
@@ -31,6 +33,10 @@ fun CollectibleDetailListItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .background(
+                color = MaterialTheme.colorScheme.background,
+                shape = RoundedCornerShape(12.dp)
+            )
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

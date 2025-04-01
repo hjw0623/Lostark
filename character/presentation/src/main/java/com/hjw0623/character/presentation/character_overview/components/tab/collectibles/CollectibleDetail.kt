@@ -24,6 +24,7 @@ fun CollectibleDetail(
     Column(
         modifier = Modifier
             .fillMaxWidth()
+
             .padding(16.dp)
     ) {
         Text(

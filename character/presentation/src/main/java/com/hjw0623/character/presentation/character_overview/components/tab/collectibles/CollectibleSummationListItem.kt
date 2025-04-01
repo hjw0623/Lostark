@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -42,7 +43,7 @@ fun CollectibleSummationListItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFF2ECFA)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background),
         shape = RoundedCornerShape(12.dp)
     ) {
         Row(
