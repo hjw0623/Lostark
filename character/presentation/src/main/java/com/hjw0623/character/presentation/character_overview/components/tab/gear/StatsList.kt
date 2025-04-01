@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,7 +22,6 @@ import androidx.compose.ui.unit.sp
 import com.hjw0623.character.presentation.character_overview.mockup.mockStatsContent
 import com.hjw0623.character.presentation.character_overview.model.profile.StatsUi
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
-import com.hjw0623.core.presentation.designsystem.LostArkWhite
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import com.hjw0623.core.presentation.designsystem.Typography
 
@@ -47,8 +47,8 @@ fun StatsList(
                 .fillMaxWidth()
                 .padding(10.dp)
                 .background(
-                    color = LostArkWhite,
-                    shape = RoundedCornerShape(4.dp)
+                    color = MaterialTheme.colorScheme.primaryContainer,
+                    shape = RoundedCornerShape(12.dp)
                 ),
             verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -92,8 +92,8 @@ fun StatsList(
                 .fillMaxWidth()
                 .padding(10.dp)
                 .background(
-                    color = LostArkWhite,
-                    shape = RoundedCornerShape(4.dp)
+                    color = MaterialTheme.colorScheme.primaryContainer,
+                    shape = RoundedCornerShape(12.dp)
                 ),
         ) {
             Column(
