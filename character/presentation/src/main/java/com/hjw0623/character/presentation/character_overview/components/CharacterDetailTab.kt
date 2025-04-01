@@ -22,7 +22,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.hjw0623.character.presentation.character_overview.CharacterOverviewState
-import com.hjw0623.character.presentation.character_overview.CharacterOverviewViewModel
 import com.hjw0623.character.presentation.character_overview.components.tab.arkpassive.ArkPassiveScreen
 import com.hjw0623.character.presentation.character_overview.components.tab.avatar.AvatarScreen
 import com.hjw0623.character.presentation.character_overview.components.tab.collectibles.CollectibleScreen
@@ -30,10 +29,9 @@ import com.hjw0623.character.presentation.character_overview.components.tab.gear
 import com.hjw0623.character.presentation.character_overview.components.tab.siblings.SiblingScreen
 import com.hjw0623.character.presentation.character_overview.components.tab.skill.SkillScreen
 import com.hjw0623.core.presentation.designsystem.LostArkBlack
-import com.hjw0623.core.presentation.designsystem.LostArkGray
+import com.hjw0623.core.presentation.designsystem.LostArkLightBlue
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun CharacterDetailTab(
@@ -93,7 +91,9 @@ fun CharacterDetailTab(
         }
         HorizontalPager(
             state = pagerState,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = LostArkLightBlue),
             userScrollEnabled = true
         ) { page ->
             when (page) {

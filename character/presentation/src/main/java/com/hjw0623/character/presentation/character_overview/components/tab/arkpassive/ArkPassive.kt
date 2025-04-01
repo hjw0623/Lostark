@@ -39,7 +39,7 @@ fun ArkPassiveScreen(
             .fillMaxWidth()
             .padding(10.dp)
             .background(
-                color = MaterialTheme.colorScheme.primaryContainer,
+                color = MaterialTheme.colorScheme.background,
                 shape = RoundedCornerShape(12.dp),
             )
             .verticalScroll(rememberScrollState())
