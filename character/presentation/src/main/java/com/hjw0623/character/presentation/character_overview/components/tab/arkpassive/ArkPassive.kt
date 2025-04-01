@@ -1,5 +1,6 @@
 package com.hjw0623.character.presentation.character_overview.components.tab.arkpassive
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,7 +9,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -35,6 +38,10 @@ fun ArkPassiveScreen(
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp)
+            .background(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                shape = RoundedCornerShape(12.dp),
+            )
             .verticalScroll(rememberScrollState())
     ) {
         Row(
@@ -163,7 +170,9 @@ fun ArkPassiveScreen(
 
 }
 
-@Preview
+@Preview(
+    showBackground = true
+)
 @Composable
 private fun ArkPassiveScreenPreview() {
     LostarkTheme {
