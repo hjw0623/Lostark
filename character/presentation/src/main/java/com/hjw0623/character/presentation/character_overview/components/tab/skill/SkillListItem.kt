@@ -2,14 +2,19 @@ package com.hjw0623.character.presentation.character_overview.components.tab.ski
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,6 +34,7 @@ import com.hjw0623.core.presentation.designsystem.LostArkBlue
 import com.hjw0623.core.presentation.designsystem.LostArkGray
 import com.hjw0623.core.presentation.designsystem.LostArkGreen
 import com.hjw0623.core.presentation.designsystem.LostArkLegend
+import com.hjw0623.core.presentation.designsystem.LostArkOrange
 import com.hjw0623.core.presentation.designsystem.LostArkPurple
 import com.hjw0623.core.presentation.designsystem.LostArkRelic
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
@@ -45,6 +51,9 @@ fun SkillListItem(
     val gemsGrade = gem.filter {
         it.skillName == skill.name
     }.map { it.grade }
+    val gemsLevel = gem.filter {
+        it.skillName == skill.name
+    }.map { it.level }
 
     val gemIcons = when (gems.size) {
         0 -> listOf("", "")
@@ -57,11 +66,16 @@ fun SkillListItem(
         1 -> listOf(gemsGrade[0], "")
         else -> listOf(gemsGrade[0], gemsGrade[1])
     }
+    val gemLevel = when (gems.size) {
+        0 -> listOf("", "")
+        1 -> listOf(gemsLevel[0].toString(), "")
+        else -> listOf(gemsLevel[0].toString(), gemsLevel[1].toString())
+    }
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(5.dp),
+            .padding(10.dp),
         verticalArrangement = Arrangement.Center
     )
     {
@@ -73,11 +87,10 @@ fun SkillListItem(
         ) {
             AsyncImage(
                 model = skill.icon,
-                contentDescription = "스킬 이미지",
+                contentDescription = null,
                 modifier = Modifier
-                    .size(60.dp)
+                    .size(50.dp)
                     .clip(shape = RoundedCornerShape(8.dp))
-                    .weight(0.3f)
             )
             Column(
                 modifier = Modifier
@@ -88,7 +101,7 @@ fun SkillListItem(
                     text = skill.skillLevel.toString() + "레벨",
                     style = Typography.bodyMedium.copy(
                         textAlign = TextAlign.Start,
-                        fontSize = 10.sp,
+                        fontSize = 13.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = LostArkBlue
                     )
@@ -97,14 +110,14 @@ fun SkillListItem(
                     text = skill.name,
                     style = Typography.bodyMedium.copy(
                         textAlign = TextAlign.Start,
-                        fontSize = 13.sp,
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.Bold
                     )
                 )
             }
             AsyncImage(
                 model = skill.rune?.icon ?: "",
-                contentDescription = "룬 이미지",
+                contentDescription = null,
                 modifier = Modifier
                     .size(40.dp)
                     .background(
@@ -117,71 +130,120 @@ fun SkillListItem(
                         },
                         shape = CircleShape
                     )
-                    .weight(0.2f)
+
             )
+
+            Spacer(modifier = Modifier.width(4.dp))
 
             Text(
                 text = skill.rune?.name ?: "",
+                style = Typography.bodyMedium.copy(
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.SemiBold
+                ),
                 textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .weight(0.2f)
+                modifier = Modifier.align(Alignment.CenterVertically)
             )
-            AsyncImage(
-                model = gemIcons[0],
-                contentDescription = "보석 이미지",
-                modifier = Modifier
-                    .background(
-                        color = when (gemGrade[0]) {
-                            "고대" -> LostArkRelic
-                            "전설" -> LostArkLegend
-                            "영웅" -> LostArkPurple
-                            "희귀" -> LostArkBlue
-                            else -> LostArkGray
-                        },
-                        shape = CircleShape
-                    )
-                    .size(40.dp)
-                    .clip(CircleShape)
-                    .weight(0.2f)
-            )
-            AsyncImage(
-                model = gemIcons[1],
-                contentDescription = "보석 이미지",
-                modifier = Modifier
-                    .background(
-                        color = when (gemGrade[1]) {
-                            "고대" -> LostArkRelic
-                            "전설" -> LostArkLegend
-                            "영웅" -> LostArkPurple
-                            "희귀" -> LostArkBlue
-                            else -> LostArkGray
-                        },
-                        shape = CircleShape
-                    )
-                    .size(40.dp)
-                    .clip(CircleShape)
-                    .weight(0.2f)
-            )
+
+            Spacer(modifier = Modifier.width(4.dp))
+            Box {
+                AsyncImage(
+                    model = gemIcons[0],
+                    contentDescription = null,
+                    modifier = Modifier
+                        .background(
+                            color = when (gemGrade[0]) {
+                                "고대" -> LostArkRelic
+                                "전설" -> LostArkLegend
+                                "영웅" -> LostArkPurple
+                                "희귀" -> LostArkBlue
+                                else -> LostArkGray
+                            },
+                            shape = CircleShape
+                        )
+                        .size(40.dp)
+                        .clip(CircleShape)
+
+                )
+                if (gemLevel[0] != "") {
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .offset(x = 2.dp, y = 2.dp)
+                            .background(
+                                color = MaterialTheme.colorScheme.background,
+                                shape = RoundedCornerShape(4.dp)
+                            )
+                            .size(18.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = gemLevel[0],
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = LostArkOrange
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.width(4.dp))
+            Box {
+                AsyncImage(
+                    model = gemIcons[1],
+                    contentDescription = null,
+                    modifier = Modifier
+                        .background(
+                            color = when (gemGrade[1]) {
+                                "고대" -> LostArkRelic
+                                "전설" -> LostArkLegend
+                                "영웅" -> LostArkPurple
+                                "희귀" -> LostArkBlue
+                                else -> LostArkGray
+                            },
+                            shape = CircleShape
+                        )
+                        .size(40.dp)
+                        .clip(CircleShape)
+                )
+                if (gemLevel[1] != "") {
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .offset(x = 2.dp, y = 2.dp)
+                            .background(
+                                color = MaterialTheme.colorScheme.background,
+                                shape = RoundedCornerShape(4.dp)
+                            )
+                            .size(18.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = gemLevel[0],
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = LostArkOrange
+                        )
+                    }
+                }
+            }
+
         }
-        if (
-            skill.firstTripod != null ||
-            skill.secondTripod != null ||
-            skill.thirdTripod != null
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.weight(1f),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
-                    modifier = Modifier.weight(1f),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
+                if (skill.firstTripod?.level != null) {
+
                     AsyncImage(
-                        model = skill.firstTripod?.icon ?: "",
-                        contentDescription = "1번째 트라이포드 이미지",
+                        model = skill.firstTripod.icon,
+                        contentDescription = null,
                         modifier = Modifier
-                            .size(60.dp)
+                            .size(40.dp)
                             .clip(shape = RoundedCornerShape(8.dp))
                     )
                     Column(
@@ -189,7 +251,7 @@ fun SkillListItem(
                         verticalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = ("Lv." + skill.firstTripod?.level),
+                            text = ("Lv." + skill.firstTripod.level),
                             style = Typography.bodyMedium.copy(
                                 textAlign = TextAlign.Start,
                                 fontSize = 10.sp,
@@ -198,7 +260,7 @@ fun SkillListItem(
                             )
                         )
                         Text(
-                            text = skill.firstTripod?.name ?: "",
+                            text = skill.firstTripod.name,
                             style = Typography.bodyMedium.copy(
                                 textAlign = TextAlign.Start,
                                 fontSize = 10.sp,
@@ -207,22 +269,26 @@ fun SkillListItem(
                         )
                     }
                 }
-                Row(
-                    modifier = Modifier.weight(1f),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
+            }
+            Row(
+                modifier = Modifier.weight(1f),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (skill.secondTripod?.level != null) {
+
+
                     AsyncImage(
-                        model = skill.secondTripod?.icon ?: "",
-                        contentDescription = "2번째 트라이포드 이미지",
+                        model = skill.secondTripod.icon,
+                        contentDescription = null,
                         modifier = Modifier
-                            .size(60.dp)
+                            .size(40.dp)
                             .clip(shape = RoundedCornerShape(8.dp))
                     )
                     Column(
                         modifier = Modifier.padding(5.dp)
                     ) {
                         Text(
-                            text = "Lv." + skill.secondTripod?.level,
+                            text = "Lv." + skill.secondTripod.level,
                             style = Typography.bodyMedium.copy(
                                 textAlign = TextAlign.Start,
                                 fontSize = 10.sp,
@@ -231,7 +297,7 @@ fun SkillListItem(
                             )
                         )
                         Text(
-                            text = skill.secondTripod?.name ?: "",
+                            text = skill.secondTripod.name,
                             style = Typography.bodyMedium.copy(
                                 textAlign = TextAlign.Start,
                                 fontSize = 10.sp,
@@ -241,22 +307,24 @@ fun SkillListItem(
                         )
                     }
                 }
-                Row(
-                    modifier = Modifier.weight(1f),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
+            }
+            Row(
+                modifier = Modifier.weight(1f),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (skill.thirdTripod?.level != null) {
                     AsyncImage(
-                        model = skill.thirdTripod?.icon ?: "",
-                        contentDescription = "3번째 트라이포드 이미지",
+                        model = skill.thirdTripod.icon,
+                        contentDescription = null,
                         modifier = Modifier
-                            .size(60.dp)
+                            .size(40.dp)
                             .clip(shape = RoundedCornerShape(8.dp))
                     )
                     Column(
                         modifier = Modifier.padding(5.dp)
                     ) {
                         Text(
-                            text = "Lv." + skill.thirdTripod?.level,
+                            text = "Lv." + skill.thirdTripod.level,
                             style = Typography.bodyMedium.copy(
                                 textAlign = TextAlign.Start,
                                 fontSize = 10.sp,
@@ -265,7 +333,7 @@ fun SkillListItem(
                             )
                         )
                         Text(
-                            text = skill.thirdTripod?.name ?: "",
+                            text = skill.thirdTripod.name,
                             style = Typography.bodyMedium.copy(
                                 textAlign = TextAlign.Start,
                                 fontSize = 10.sp,
@@ -279,6 +347,7 @@ fun SkillListItem(
         }
     }
 }
+
 
 @Preview
 @Composable

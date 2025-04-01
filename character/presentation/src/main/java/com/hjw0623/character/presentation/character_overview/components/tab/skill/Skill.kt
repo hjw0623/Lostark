@@ -1,10 +1,13 @@
 package com.hjw0623.character.presentation.character_overview.components.tab.skill
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,6 +27,10 @@ fun SkillScreen(
         modifier = Modifier
             .fillMaxWidth()
             .padding(20.dp)
+            .background(
+                color = MaterialTheme.colorScheme.background,
+                shape = RoundedCornerShape(12.dp)
+            )
             .verticalScroll(rememberScrollState())
     ) {
         skillList.forEach {
