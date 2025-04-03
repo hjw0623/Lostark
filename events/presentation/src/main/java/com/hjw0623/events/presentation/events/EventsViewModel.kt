@@ -7,29 +7,27 @@ import com.hjw0623.core.domain.util.onSuccess
 import com.hjw0623.core.presentation.ui.UiText
 import com.hjw0623.core.presentation.ui.asUiText
 import com.hjw0623.events.domain.EventsRepository
-import com.hjw0623.events.domain.model.Islands
+import com.hjw0623.events.presentation.events.model.IslandUi
 import com.hjw0623.events.presentation.events.model.toEventUi
 import com.hjw0623.events.presentation.events.model.toIslandUi
 import com.hjw0623.events.presentation.events.model.toNoticeUi
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import java.time.LocalDateTime
 
 class EventsViewModel(
     private val eventsRepository: EventsRepository
 ) : ViewModel() {
 
     private var _state = MutableStateFlow(EventState())
-    var state = _state
-        .onStart { loadAllData() }
+    val state = _state
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000L),
@@ -39,14 +37,27 @@ class EventsViewModel(
     private val _events = Channel<EventsEvent>(Channel.BUFFERED)
     val events = _events.receiveAsFlow()
 
-
     private var hasErrorOccurred = false
 
+    init {
+        viewModelScope.launch {
+            while (true) {
+                _state.update { it.copy(now = LocalDateTime.now()) }
+                delay(1000)
+            }
+        }
+
+        loadAllData()
+    }
 
     private fun loadAllData() {
         loadIslands()
         loadEvents()
         loadNotices()
+    }
+
+    fun onIslandSelected(island: IslandUi?) {
+        _state.update { it.copy(selectedIsland = island) }
     }
 
     private fun loadIslands() {
@@ -55,14 +66,13 @@ class EventsViewModel(
             _state.update { it.copy(isIslandsLoading = true) }
             eventsRepository.getIslands()
                 .onSuccess { islands ->
-                    val filteredIslands = filterEventsByCurrentDate(islands)
                     _state.update {
                         it.copy(
                             isIslandsLoading = false,
-                            currentIslands = filteredIslands.map { it.toIslandUi() }
+                            currentIslands = islands.map { it.toIslandUi() }
                         )
                     }
-                    Timber.d("Successfully loaded islands: $filteredIslands")
+                    Timber.d("Successfully loaded islands: $islands")
                 }
                 .onError { error ->
                     Timber.e("$error", "Failed to load Events")
@@ -121,22 +131,6 @@ class EventsViewModel(
             if (!hasErrorOccurred) {
                 hasErrorOccurred = true
                 _events.send(EventsEvent.Error(message))
-            }
-        }
-    }
-
-    private fun filterEventsByCurrentDate(islands: List<Islands>): List<Islands> {
-        val currentDate = LocalDate.now()
-        return islands.mapNotNull { island ->
-            val filteredStartTimes = island.startTimes.filter { startTime ->
-                val eventDate =
-                    LocalDate.parse(startTime.substring(0, 10), DateTimeFormatter.ISO_LOCAL_DATE)
-                eventDate == currentDate
-            }
-            if (filteredStartTimes.isNotEmpty()) {
-                island.copy(startTimes = filteredStartTimes)
-            } else {
-                null
             }
         }
     }

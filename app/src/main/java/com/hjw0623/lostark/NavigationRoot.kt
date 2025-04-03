@@ -11,7 +11,7 @@ import com.hjw0623.character.presentation.character_manager.CharacterManagerScre
 import com.hjw0623.character.presentation.character_overview.CharacterOverviewScreenRoot
 import com.hjw0623.character.presentation.character_search.CharacterSearchScreenRoot
 import com.hjw0623.character.presentation.character_setting.CharacterSettingScreenRoot
-import com.hjw0623.events.presentation.events.EventScreen
+import com.hjw0623.events.presentation.events.EventScreenRoot
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -39,7 +39,7 @@ fun NavigationRoot(navController: NavHostController) {
         }
 
         composable(BottomNavItem.EVENT_SCREEN.route) {
-            EventScreen(viewModel = koinViewModel())
+            EventScreenRoot(viewModel = koinViewModel())
         }
 
         composable(NavigationRoutes.CharacterOverview.route) { backStackEntry ->

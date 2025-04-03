@@ -28,17 +28,23 @@ import com.hjw0623.core.presentation.designsystem.LostArkGray
 import com.hjw0623.core.presentation.designsystem.LostArkOrange
 import com.hjw0623.core.presentation.designsystem.LostArkPurple
 import com.hjw0623.core.presentation.designsystem.LostArkYellow
+import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import com.hjw0623.core.presentation.designsystem.Typography
 import com.hjw0623.events.presentation.events.model.IslandUi
 
 @Composable
- fun IslandBottomSheet(
-    islandUi: IslandUi
+fun IslandBottomSheet(
+    islandUi: IslandUi,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(400.dp)
+            .background(
+                color = MaterialTheme.colorScheme.background
+            )
+            .padding(top = 24.dp)
     ) {
         Row(
             modifier = Modifier
@@ -47,7 +53,7 @@ import com.hjw0623.events.presentation.events.model.IslandUi
         ) {
             AsyncImage(
                 model = islandUi.imgUrl,
-                contentDescription = "island image",
+                contentDescription = null,
                 modifier = Modifier.size(60.dp)
             )
             Column(modifier = Modifier.padding(8.dp)) {
@@ -96,10 +102,12 @@ import com.hjw0623.events.presentation.events.model.IslandUi
             columns = GridCells.Fixed(2),
             contentPadding = PaddingValues(10.dp),
             modifier = Modifier
+                .padding(12.dp)
                 .background(
                     color = MaterialTheme.colorScheme.primaryContainer,
                     shape = RoundedCornerShape(8.dp)
                 )
+
         ) {
             items(islandUi.additionalItem) { item ->
                 Row(
@@ -127,7 +135,9 @@ import com.hjw0623.events.presentation.events.model.IslandUi
 @Preview
 @Composable
 private fun IslandBottomSheetPreview() {
-    IslandBottomSheet(
-        islandUi = previewIsland
-    )
+    LostarkTheme {
+        IslandBottomSheet(
+            islandUi = previewIsland
+        )
+    }
 }
