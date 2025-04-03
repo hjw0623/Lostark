@@ -13,11 +13,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.layout.BeyondBoundsLayout
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.ResolvedTextDirection
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -197,7 +195,9 @@ fun CharacterManagerScreen(
 
                     Spacer(modifier = Modifier.width(5.dp))
 
-                    val progress = state.totalEarnedGold / state.totalGold.toFloat() * 100
+                    val progress = if (state.totalGold == 0) 0f else{
+                        state.totalEarnedGold / state.totalGold.toFloat() * 100
+                    }
 
                     Text(
                         text = "획득 골드 (${progress.roundToInt()}%)",
@@ -237,7 +237,9 @@ fun CharacterManagerScreen(
                     Spacer(modifier = Modifier.width(5.dp))
 
                     val remainGold = state.totalGold - state.totalEarnedGold
-                    val progress = remainGold / state.totalGold.toFloat() * 100
+                    val progress = if (state.totalGold == 0) 0f else {
+                        (remainGold / state.totalGold.toFloat()) * 100
+                    }
 
                     Text(
                         text = "남은 골드 (${progress.roundToInt()}%)",
