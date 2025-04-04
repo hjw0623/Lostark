@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class CharacterAddViewModel(
     private val characterRepository: CharacterRepository,
@@ -108,10 +107,8 @@ class CharacterAddViewModel(
                             characterList = filteredCharacterList.map { it.toCharacterAddUi() }
                         )
                     }
-                    Timber.d("Successfully loaded character list: $characterList")
                 }
                 .onError { error ->
-                    Timber.e("$error", "Failed to load character list")
                     sendError(error.asUiText())
                     _state.update { it.copy(searchQuery = "") }
                 }

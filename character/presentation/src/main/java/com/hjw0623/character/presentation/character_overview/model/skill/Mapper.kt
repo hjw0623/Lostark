@@ -7,7 +7,6 @@ import com.hjw0623.character.presentation.character_overview.model.gear.removeHt
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
-import timber.log.Timber
 
 fun Skill.toSkillUi(): SkillUi {
     val rune = this.rune?.toRuneUi()
@@ -86,7 +85,6 @@ fun Rune.toRuneUi(): RuneUi {
     val tooltipJson = try {
         Json.parseToJsonElement(this.tooltip).jsonObject
     } catch (e: Exception) {
-        Timber.e(e, "JSON 파싱 오류: tooltip = ${this.tooltip}")
         return RuneUi(
             name = this.name,
             icon = this.icon,

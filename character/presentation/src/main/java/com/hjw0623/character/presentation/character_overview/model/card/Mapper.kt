@@ -3,7 +3,6 @@ package com.hjw0623.character.presentation.character_overview.model.card
 import com.hjw0623.character.domain.model.card.Card
 import com.hjw0623.character.domain.model.card.CardEffect
 import com.hjw0623.character.presentation.character_overview.util.shortCardEffect
-import timber.log.Timber
 
 fun Card.toCardUi(): CardUi {
     return CardUi(
@@ -30,9 +29,6 @@ fun CardEffect.toCardEffectUi(): CardEffectUi {
         val key = item.name.substringAfterLast(" ")
         key to item.description
     }
-    Timber.tag("dddd").d(effectName)
-    Timber.tag("dddd").d(effectGrade.toString())
-    Timber.tag("dddd").d(effectDescriptions.toString())
 
     return CardEffectUi(
         index = this.index,

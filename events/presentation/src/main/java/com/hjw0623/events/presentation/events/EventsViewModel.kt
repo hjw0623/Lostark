@@ -19,7 +19,6 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import java.time.LocalDateTime
 
 class EventsViewModel(
@@ -62,7 +61,6 @@ class EventsViewModel(
 
     private fun loadIslands() {
         viewModelScope.launch {
-            Timber.d("Loading islands...")
             _state.update { it.copy(isIslandsLoading = true) }
             eventsRepository.getIslands()
                 .onSuccess { islands ->
@@ -72,10 +70,8 @@ class EventsViewModel(
                             currentIslands = islands.map { it.toIslandUi() }
                         )
                     }
-                    Timber.d("Successfully loaded islands: $islands")
                 }
                 .onError { error ->
-                    Timber.e("$error", "Failed to load Events")
                     sendError(error.asUiText())
                 }
         }
@@ -83,7 +79,6 @@ class EventsViewModel(
 
     private fun loadEvents() {
         viewModelScope.launch {
-            Timber.d("Loading events...")
             _state.update { it.copy(isEventsLoading = true) }
 
             eventsRepository
@@ -95,10 +90,8 @@ class EventsViewModel(
                             events = events.map { it.toEventUi() }
                         )
                     }
-                    Timber.d("Successfully loaded events: $events")
                 }
                 .onError { error ->
-                    Timber.e("$error", "Failed to load Events")
                     sendError(error.asUiText())
                 }
         }
@@ -117,10 +110,8 @@ class EventsViewModel(
                             notices = notices.map { it.toNoticeUi() }
                         )
                     }
-                    Timber.d("Successfully loaded Notices: $notices")
                 }
                 .onError { error ->
-                    Timber.e("$error", "Failed to load Events")
                     sendError(error.asUiText())
                 }
         }

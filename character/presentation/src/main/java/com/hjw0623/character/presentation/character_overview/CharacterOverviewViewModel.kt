@@ -33,7 +33,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class CharacterOverviewViewModel(
     private val characterRepository: CharacterRepository
@@ -84,10 +83,8 @@ class CharacterOverviewViewModel(
                             stats = stats
                         )
                     }
-                    Timber.d("Successfully loaded characterProfile: $profile")
                 }
                 .onError { error ->
-                    Timber.e("$error", "Failed to load characterProfile")
                     sendError(error.asUiText())
                 }
         }
@@ -142,8 +139,6 @@ class CharacterOverviewViewModel(
                             )
                         )
                     }
-
-                    Timber.d("Successfully loaded characterProfile: $gearList")
                 }
 
         }
@@ -160,7 +155,6 @@ class CharacterOverviewViewModel(
                             gemsList = gemsList.gems.map { it.toGemsUi() }
                         )
                     }
-                    Timber.d("Successfully loaded Gems $gemsList")
                 }
         }
     }
@@ -182,7 +176,6 @@ class CharacterOverviewViewModel(
 
                 }
                 .onError { error ->
-                    Timber.e("$error", "Failed to load engraving")
                     sendError(error.asUiText())
                 }
         }
@@ -203,10 +196,8 @@ class CharacterOverviewViewModel(
                             cardEffect = cardEffect
                         )
                     }
-                    Timber.d("Successfully loaded card ${state.value.card}")
                 }
                 .onError { error ->
-                    Timber.e("$error", "Failed to load card")
                     sendError(error.asUiText())
                 }
         }
@@ -224,10 +215,8 @@ class CharacterOverviewViewModel(
                             arkPassive = arkPassive.toArkPassiveUi()
                         )
                     }
-                    Timber.d("Successfully loaded ArkPassive ${state.value.arkPassive}")
                 }
                 .onError { error ->
-                    Timber.e("$error", "Failed to arkPassive")
                     sendError(error.asUiText())
                 }
         }
@@ -252,10 +241,8 @@ class CharacterOverviewViewModel(
 
                         )
                     }
-                    Timber.d("Successfully loaded ArkPassive ${state.value.skillList}")
                 }
                 .onError { error ->
-                    Timber.e("$error", "Failed to skill")
                     sendError(error.asUiText())
                 }
         }
@@ -273,10 +260,8 @@ class CharacterOverviewViewModel(
                             avatarList = avatarList.map { it.toAvatarUi() }
                         )
                     }
-                    Timber.d("Successfully loaded Avatar ${state.value.avatarList}")
                 }
                 .onError { error ->
-                    Timber.e("$error", "Failed to Avatar")
                     sendError(error.asUiText())
                 }
         }
@@ -294,11 +279,8 @@ class CharacterOverviewViewModel(
                             siblingList = siblingList.map { it.toSiblingUi() }
                         )
                     }
-
-                    Timber.d("Successfully loaded Sibling: ${siblingList}")
                 }
                 .onError { error ->
-                    Timber.e("$error", "Failed to load sibling")
                     sendError(error.asUiText())
                 }
         }
@@ -316,10 +298,8 @@ class CharacterOverviewViewModel(
                             collectibleSummationList = collectibleList.map { it.toCollectibleSummationUi() }
                         )
                     }
-                    Timber.d("Successfully loaded collectible: ${collectibleList}")
                 }
                 .onError { error ->
-                    Timber.e("$error", "Failed to load collectible")
                     sendError(error.asUiText())
                 }
         }
@@ -337,8 +317,6 @@ class CharacterOverviewViewModel(
     }
 
     private fun findElixirEffect(elixirList: List<String>): String {
-        Timber.tag("elixir_debug").d("Received Elixirs: $elixirList")
-
         val effectPairs = mapOf(
             "강맹 (질서)" to "강맹 (혼돈)", "달인 (질서)" to "달인 (혼돈)", "선각자 (질서)" to "선각자 (혼돈)",
             "선봉대 (질서)" to "선봉대 (혼돈)", "신념 (질서)" to "신념 (혼돈)", "진군 (질서)" to "진군 (혼돈)",
@@ -346,11 +324,9 @@ class CharacterOverviewViewModel(
         )
 
         val normalizedElixirs = elixirList.map { it.replace(Regex("\\sLv\\.\\d+"), "").trim() }
-        Timber.tag("elixir_debug").d("Normalized Elixirs: $normalizedElixirs")
 
         for ((order, chaos) in effectPairs) {
             if (normalizedElixirs.any { it.trim() == order } && normalizedElixirs.any { it.trim() == chaos }) {
-                Timber.tag("elixir_debug").d("Matched Effect: ${order.substringBefore(" (")}")
                 return order.substringBefore(" (")
             }
         }

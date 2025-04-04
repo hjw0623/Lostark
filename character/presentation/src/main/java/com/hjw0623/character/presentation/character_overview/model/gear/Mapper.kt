@@ -15,7 +15,6 @@ import kotlinx.serialization.json.JsonPrimitive
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import timber.log.Timber
 import java.util.LinkedList
 import java.util.Queue
 import java.util.Stack
@@ -461,7 +460,6 @@ fun extractGemEffectAndSkill(jsonString: String): Pair<String, String>? {
 
         return Pair(skillName, effect)
     } catch (e: Exception) {
-        Timber.e(e, "extractGemEffectAndSkill: Error parsing JSON")
         null
     }
 }
