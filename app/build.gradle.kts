@@ -14,6 +14,28 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file(project.property("MYLOA_KEYSTORE_FILE") as String)
+            storePassword = project.property("MYLOA_KEYSTORE_PASSWORD") as String
+            keyAlias = project.property("MYLOA_KEY_ALIAS") as String
+            keyPassword = project.property("MYLOA_KEY_PASSWORD") as String
+        }
+    }
+
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = true
+            signingConfig = signingConfigs.getByName("release")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        getByName("debug") {
+        }
+    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
