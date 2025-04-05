@@ -29,11 +29,32 @@
 - 다음 등장 시간까지 남은 시간 실시간으로 업데이트
 
 ---
+## 📱 앱 화면 미리보기
 
-## 📱 스크린샷
-| 캐릭터 검색 | 캐릭터 관리 | 레이드 설정 | 레이드 진행 |
+---
+
+### 🏠 홈 화면 및 주요 기능
+| 홈 화면 | 레이드 선택 | 캐릭터 추가 |
+|:--:|:--:|:--:|
+| ![](docs/screenshots/home_screen.jpg) | ![](docs/screenshots/selectRaid_screen.jpg) | ![](docs/screenshots/characterAdd_screen.jpg) |
+
+---
+
+### 🧙 캐릭터 검색 및 상세 정보
+| 캐릭터 검색 | 장비 | 각인 |
+|:--:|:--:|:--:|
+| ![](docs/screenshots/charactersearch_screen.jpg) | ![](docs/screenshots/characterOverview_equipment_screen.jpg) | ![](docs/screenshots/characterOverview_arkpassive_screen.jpg) |
+
+| 스킬 | 아바타 | 보유 캐릭터 | 수집형 |
 |:--:|:--:|:--:|:--:|
-| ![search](docs/screenshots/characterSearch_screen) | ![character](docs/screenshots/character.png) | ![setting](docs/screenshots/setting.png) | ![progress](docs/screenshots/progress.png) |
+| ![](docs/screenshots/characterOverview_skill_screen.jpg) | ![](docs/screenshots/characterOverview_avatar_screen.jpg) | ![](docs/screenshots/characterOverview_siblings_screen.jpg) | ![](docs/screenshots/characterOverview_collectibles_screen.jpg) |
+
+---
+
+### 📰 이벤트 화면
+<p align="center">
+  <img src="docs/screenshots/event_screen.jpg" alt="이벤트 화면" width="60%">
+</p>
 
 ---
 
@@ -53,7 +74,30 @@
 ## 📁 모듈 구조
 
 - 기능별 멀티 모듈 구조를 통해 **유지보수성과 테스트 용이성**을 높였습니다.
-
+```Lostark/
+├── app/                       # 앱 실행을 담당하는 메인 모듈 (UI Entry Point)
+│
+├── character/                # 캐릭터 검색 및 관리 기능 모듈
+│   ├── data/                 # API, DB 관련 구현
+│   ├── domain/               # UseCase, Entity 등 비즈니스 로직
+│   └── presentation/         # Compose UI 및 ViewModel
+│
+├── events/                   # 게임 이벤트 및 모험섬 정보 표시 모듈
+│   ├── data/                 # 이벤트 API 호출 등 데이터 계층
+│   ├── domain/               # 이벤트 도메인 로직
+│   └── presentation/         # 이벤트 UI 구성 및 상태 관리
+│
+├── core/                     # 공통 코드 모듈 (앱 전역에서 사용)
+│   ├── model/                # 공통 데이터 모델 정의
+│   ├── data/                 # 공통 데이터 처리 유틸 (e.g., Result wrapper)
+│   └── domain/               # 공통 비즈니스 로직 (e.g., Error 처리)
+│
+├── build-logic/              # Gradle Convention Plugins 관리
+│   └── convention/           # Android/Kotlin 설정 공통화 (build.gradle.kts)
+│
+└── docs/                     # 프로젝트 문서 및 스크린샷 이미지
+    └── screenshots/
+```
 ---
 
 ## 🧑‍💻 개발자
