@@ -122,6 +122,7 @@ fun SkillListItem(
                     .size(40.dp)
                     .background(
                         color = when (skill.rune?.grade) {
+                            "유물" -> LostArkRelic
                             "전설" -> LostArkLegend
                             "영웅" -> LostArkPurple
                             "희귀" -> LostArkBlue
@@ -153,7 +154,7 @@ fun SkillListItem(
                     modifier = Modifier
                         .background(
                             color = when (gemGrade[0]) {
-                                "고대" -> LostArkRelic
+                                "유물" -> LostArkRelic
                                 "전설" -> LostArkLegend
                                 "영웅" -> LostArkPurple
                                 "희귀" -> LostArkBlue
@@ -195,7 +196,7 @@ fun SkillListItem(
                     modifier = Modifier
                         .background(
                             color = when (gemGrade[1]) {
-                                "고대" -> LostArkRelic
+                                "유물" -> LostArkRelic
                                 "전설" -> LostArkLegend
                                 "영웅" -> LostArkPurple
                                 "희귀" -> LostArkBlue
@@ -219,7 +220,7 @@ fun SkillListItem(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = gemLevel[0],
+                            text = gemLevel[1],
                             fontSize = 10.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = LostArkOrange
