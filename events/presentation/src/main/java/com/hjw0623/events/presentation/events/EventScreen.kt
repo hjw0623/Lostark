@@ -121,7 +121,6 @@ fun EventScreen(
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
                     IslandTimeStatus(
-                        island = filteredIslands.firstOrNull() ?: return@Row,
                         now = state.now
                     )
                 }

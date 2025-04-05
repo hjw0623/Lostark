@@ -10,37 +10,39 @@ import com.hjw0623.core.presentation.designsystem.LostArkDarkGray
 import com.hjw0623.core.presentation.designsystem.LostArkGreen
 import com.hjw0623.core.presentation.designsystem.LostarkTheme
 import com.hjw0623.core.presentation.designsystem.Typography
-import com.hjw0623.events.presentation.events.mockup.mockIslandContent
-import com.hjw0623.events.presentation.events.model.IslandUi
-import com.hjw0623.events.presentation.events.model.toIslandUi
 import java.time.Duration
 import java.time.LocalDateTime
 
 @Composable
 fun IslandTimeStatus(
-    island: IslandUi,
     now: LocalDateTime,
-    durationSeconds: Long = 180L
 ) {
-    val currentPeriod = island.startTimes.firstOrNull {
-        val end = it.plusSeconds(durationSeconds)
-        now in it..end
+    val timeSlots = getIslandTimeSlots(now)
+
+    val currentSlot = timeSlots.firstOrNull { (start, end) ->
+        now in start..end
     }
 
-    val nextStart = island.startTimes.filter { it.isAfter(now) }.minOrNull()
+    val nextSlot = timeSlots.firstOrNull { (start, _) ->
+        now.isBefore(start)
+    }
 
     val (status, color) = when {
-        currentPeriod != null -> {
-            val remain = Duration.between(now, currentPeriod.plusSeconds(durationSeconds))
+        currentSlot != null -> {
+            val remain = Duration.between(now, currentSlot.second)
             "닫히기까지 ${formatDuration(remain)}" to LostArkGreen
         }
 
-        nextStart != null -> {
-            val remain = Duration.between(now, nextStart)
+        nextSlot != null -> {
+            val remain = Duration.between(now, nextSlot.first)
             "열리기까지 ${formatDuration(remain)}" to MaterialTheme.colorScheme.primary
         }
 
-        else -> "예정된 시간 없음" to LostArkDarkGray
+        else -> {
+            val tomorrowFirst = getIslandTimeSlots(now.plusDays(1)).first().first
+            val remain = Duration.between(now, tomorrowFirst)
+            "열리기까지 ${formatDuration(remain)}" to LostArkDarkGray
+        }
     }
 
     Text(
@@ -53,6 +55,17 @@ fun IslandTimeStatus(
     )
 }
 
+fun getIslandTimeSlots(now: LocalDateTime): List<Pair<LocalDateTime, LocalDateTime>> {
+    val isWeekend = now.dayOfWeek.value == 6 || now.dayOfWeek.value == 7
+    val hours = if (isWeekend) listOf(9, 11, 13, 19, 21, 23) else listOf(11, 13, 19, 21, 23)
+
+    return hours.map { hour ->
+        val start = now.toLocalDate().atTime(hour, 0)
+        val end = start.plusSeconds(180)
+        start to end
+    }
+}
+
 fun formatDuration(duration: Duration): String {
     val hours = duration.toHours()
     val minutes = duration.toMinutes() % 60
@@ -60,14 +73,10 @@ fun formatDuration(duration: Duration): String {
     return "%02d:%02d:%02d".format(hours, minutes, seconds)
 }
 
-
 @Preview
 @Composable
 private fun IslandTimeStatusPreview() {
     LostarkTheme {
-        IslandTimeStatus(
-            island = mockIslandContent().toIslandUi(),
-            now = LocalDateTime.now(),
-        )
+        IslandTimeStatus(now = LocalDateTime.now())
     }
 }
