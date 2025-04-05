@@ -117,7 +117,7 @@ fun StatsList(
                         text = statsUi.critical.toString(),
                         style = Typography.bodyMedium.copy(
                             color = LostArkBlack,
-                            fontSize = 13.sp,
+                            fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
                         ),
                         modifier = Modifier.padding(5.dp)
@@ -138,7 +138,7 @@ fun StatsList(
                         text = statsUi.specialty.toString(),
                         style = Typography.bodyMedium.copy(
                             color = LostArkBlack,
-                            fontSize = 13.sp,
+                            fontSize = 11.sp,
                             fontWeight = FontWeight.Bold
                         ),
                         modifier = Modifier.padding(5.dp)
@@ -159,7 +159,7 @@ fun StatsList(
                         text = statsUi.agility.toString(),
                         style = Typography.bodyMedium.copy(
                             color = LostArkBlack,
-                            fontSize = 13.sp,
+                            fontSize = 11.sp,
                             fontWeight = FontWeight.Bold
                         ),
                         modifier = Modifier.padding(5.dp)
@@ -187,7 +187,7 @@ fun StatsList(
                         text = statsUi.subdue.toString(),
                         style = Typography.bodyMedium.copy(
                             color = LostArkBlack,
-                            fontSize = 13.sp,
+                            fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
                         ),
                         modifier = Modifier.padding(5.dp)
@@ -208,7 +208,7 @@ fun StatsList(
                         text = statsUi.endurance.toString(),
                         style = Typography.bodyMedium.copy(
                             color = LostArkBlack,
-                            fontSize = 13.sp,
+                            fontSize = 11.sp,
                             fontWeight = FontWeight.Bold
                         ),
                         modifier = Modifier.padding(5.dp)
@@ -229,7 +229,7 @@ fun StatsList(
                         text = statsUi.proficiency.toString(),
                         style = Typography.bodyMedium.copy(
                             color = LostArkBlack,
-                            fontSize = 13.sp,
+                            fontSize = 11.sp,
                             fontWeight = FontWeight.Bold
                         ),
                         modifier = Modifier.padding(5.dp)
