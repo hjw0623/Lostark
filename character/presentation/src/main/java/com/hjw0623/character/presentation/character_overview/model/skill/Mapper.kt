@@ -5,6 +5,8 @@ import com.hjw0623.character.domain.model.skill.Skill
 import com.hjw0623.character.domain.model.skill.Tripod
 import com.hjw0623.character.presentation.character_overview.model.gear.removeHtmlTags
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
@@ -13,26 +15,22 @@ fun Skill.toSkillUi(): SkillUi {
 
     val skillInfoJson = Json.parseToJsonElement(this.tooltip).jsonObject
 
-    val name = skillInfoJson["Element_000"]?.jsonObject
-        ?.get("value")?.jsonPrimitive?.content ?: ""
+    val name = skillInfoJson["Element_000"]
+        ?.jsonObject?.get("value").safeContent()
 
-    val skillType = skillInfoJson["Element_001"]?.jsonObject
-        ?.get("value")?.jsonObject
-        ?.get("level")?.jsonPrimitive?.content ?: ""
+    val valueElement = skillInfoJson["Element_001"]
+        ?.jsonObject?.get("value")?.jsonObject
 
-    val castingType = skillInfoJson["Element_001"]?.jsonObject
-        ?.get("value")?.jsonObject
-        ?.get("name")?.jsonPrimitive?.content ?: ""
+    val skillType = valueElement?.get("level").safeContent()
+    val castingType = valueElement?.get("name").safeContent()
+    val cooldownTime = valueElement?.get("leftText").safeContent()
 
-    val cooldownTime = skillInfoJson["Element_001"]?.jsonObject
-        ?.get("value")?.jsonObject
-        ?.get("leftText")?.jsonPrimitive?.content ?: ""
+    val mana = skillInfoJson["Element_004"]
+        ?.jsonObject?.get("value").safeContent()
 
-    val mana = skillInfoJson["Element_004"]?.jsonObject
-        ?.get("value")?.jsonPrimitive?.content ?: ""
+    val description = skillInfoJson["Element_005"]
+        ?.jsonObject?.get("value").safeContent()
 
-    val description = skillInfoJson["Element_005"]?.jsonObject
-        ?.get("value")?.jsonPrimitive?.content ?: ""
 
     val neutralize = Regex("무력화 : (.*?)<").find(description)?.groupValues?.get(1) ?: ""
 
@@ -115,4 +113,7 @@ fun Tripod.toTripodUi(): TripodUi {
 
 fun String.cleanSkillDescription(): String {
     return this.replace(Regex("(무력화|공격 타입|슈퍼아머|부위 파괴).*"), "").trim()
+}
+fun JsonElement?.safeContent(): String {
+    return (this as? JsonPrimitive)?.content ?: ""
 }
